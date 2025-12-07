@@ -20,7 +20,7 @@
 
 .sign-out:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: rgb(12, 196, 39);
 }
 
 .account-child-container {

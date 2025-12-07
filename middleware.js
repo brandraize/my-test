@@ -1,25 +1,18 @@
-// middleware-debug.js
+// middleware.js
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  console.log("Middleware executing for:", request.url);
-  
-  try {
-    // Add your original logic back piece by piece
-    const url = request.nextUrl.clone();
-    
-    // Start with minimal logic
-    if (url.pathname === "/protected") {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-    
+  // Production no-op mode
+  if (process.env.NODE_ENV === "production") {
     return NextResponse.next();
+  }
+  
+  // Development: Test your logic
+  try {
+    // Your actual middleware logic here
+    return actualMiddlewareLogic(request);
   } catch (error) {
-    console.error("Middleware error:", error);
-    return NextResponse.next(); // Fallback
+    console.error("Dev middleware error:", error);
+    return NextResponse.next();
   }
 }
-
-export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-};

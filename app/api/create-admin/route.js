@@ -1,31 +1,17 @@
-import { authAdmin } from "@/configuration/firebase-admin";
-import admin from "firebase-admin";
-
-const db = admin.firestore();
-
 export async function POST(req) {
   try {
     const { email, password, name } = await req.json();
 
-    // Create the user
-    const userRecord = await authAdmin.createUser({
-      email,
-      password,
-    });
-
-    // Set custom claim
-    await authAdmin.setCustomUserClaims(userRecord.uid, { isAdmin: true });
-
-    // Save in Firestore
-    await db.collection("admins").doc(userRecord.uid).set({
-      name,
-      email,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
+    // Admin system is disabled
     return new Response(
-      JSON.stringify({ message: `Admin ${name} created successfully` }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      JSON.stringify({ 
+        message: "Admin creation is currently disabled",
+        error: "Admin system is not available"
+      }),
+      { 
+        status: 503, 
+        headers: { "Content-Type": "application/json" } 
+      }
     );
   } catch (error) {
     console.error(error);

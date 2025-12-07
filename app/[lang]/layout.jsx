@@ -30,11 +30,11 @@ export async function generateMetadata({ params }) {
 
 const metas = {
   en: {
-    title: "ORVEXCO",
-    description: "Team Orvexco established in the USA in 2009 as CIL, expanded to Kuwait in 2010 (officially registered in 2024), and further strengthened its presence in Saudi Arabia in 2025. We deliver innovative and reliable engineering solutions across the construction and architectural sectors, combining experience with modern technology, quality workmanship, and customer-focused excellence.",
+    title: "Sensing Nature",
+    description: "Team Sensing Nature established in the USA in 2009 as CIL, expanded to Kuwait in 2010 (officially registered in 2024), and further strengthened its presence in Saudi Arabia in 2025. We deliver innovative and reliable engineering solutions across the construction and architectural sectors, combining experience with modern technology, quality workmanship, and customer-focused excellence.",
   },
   ar: {
-    title: "أورفكسو",
+    title: "Sensing Nature",
     description: "تأسست شركة أورفكسو في الولايات المتحدة عام 2009 باسم CIL، وتوسعت إلى الكويت في عام 2010، وتم تسجيلها رسميًا في عام 2024، وعززت حضورها في المملكة العربية السعودية في عام 2025. نقدم حلولًا هندسية مبتكرة وموثوقة في مجالات البناء والعمارة، مع الجمع بين الخبرة والتقنيات الحديثة والجودة العالية وتركيز على رضا العملاء.",
   },
 };

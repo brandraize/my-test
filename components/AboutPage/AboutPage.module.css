@@ -1,0 +1,367 @@
+.container {
+  font-family: "Somar", sans-serif;
+}
+
+/* Hero Section with Curves */
+.heroSection {
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  background: linear-gradient(135deg, #0c4a6e 0%, #059669 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.logoBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.logoPart {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.15;
+  filter: brightness(0) invert(1);
+}
+
+.curveOverlay {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: white;
+  border-radius: 50% 50% 0 0;
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  color: white;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #ffffff, #d1fae5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.heroSubtitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #d1fae5;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.heroDescription {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+/* Mission & Vision Section */
+.missionSection {
+  padding: 5rem 0;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.missionSection::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to right, #0c4a6e, #059669);
+  border-radius: 0 0 50% 50%;
+  z-index: 1;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.sectionDescription {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.imageLogoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floatingLogo {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.missionImage {
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.valueCard {
+  height: 100%;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.valueCard:hover {
+  border-color: #059669;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.valueIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.valueTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.valueText {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+/* Contact Section */
+.contactSection {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #0c4a6e 0%, #059669 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.contactLogoPart {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.1;
+  filter: brightness(0) invert(1);
+}
+
+.contactTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.contactSubtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.primaryButton {
+  background: white;
+  color: #059669;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.primaryButton:hover {
+  background: #f0fdf4;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.secondaryButton {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  font-family: "Somar", sans-serif; /* Add this line */
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* RTL Support - Remove Cairo font and use Somar only */
+.container[dir="rtl"] .sectionTitle,
+.container[dir="rtl"] .heroTitle,
+.container[dir="rtl"] .heroSubtitle,
+.container[dir="rtl"] .valueTitle,
+.container[dir="rtl"] .contactTitle {
+  font-family: "Somar", sans-serif;
+}
+
+/* Arabic text alignment */
+.container[dir="rtl"] .heroContent,
+.container[dir="rtl"] .sectionDescription,
+.container[dir="rtl"] .valueText,
+.container[dir="rtl"] .contactSubtitle {
+  text-align: right;
+}
+
+/* Hero Title adjustments for Arabic */
+.container[dir="rtl"] .heroTitle {
+  font-size: 3.2rem; /* Slightly smaller for Arabic */
+  line-height: 1.3;
+}
+
+.container[dir="rtl"] .heroSubtitle {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.3rem;
+  }
+  
+  .heroDescription {
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .imageContainer {
+    height: 300px;
+  }
+  
+  .heroSection {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .logoPart {
+    opacity: 0.1;
+    transform: scale(0.7);
+  }
+}
+
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .contactTitle {
+    font-size: 2rem;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .logoPart {
+    display: none;
+  }
+  
+  .floatingLogo {
+    transform: scale(0.7);
+  }
+}

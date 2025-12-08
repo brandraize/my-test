@@ -2,10 +2,16 @@
 import { motion } from "framer-motion";
 import Head from 'next/head';
 import Image from 'next/image';
+import { useEffect, useState } from 'react'; // Added import
 
 export default function IntroSection({ lang = "en" }) {
   const isRTL = lang === "ar";
+  const [isMounted, setIsMounted] = useState(false); // Track if component is mounted on client
   
+  useEffect(() => {
+    setIsMounted(true); // Component is now mounted on client
+  }, []);
+
   // Image paths - assuming images are in the public folder
   const imagePaths = {
     circle: '/circel.png',
@@ -28,20 +34,42 @@ export default function IntroSection({ lang = "en" }) {
   
   // Content based on language
   const content = {
-    title: isRTL ? "لدينا ما تحتاجه!" : "We Have What You Need!",
+    title: isRTL ? "  لدينا ما تحتاجه!" : "We've got what you need!",
     description: isRTL 
-      ? `في "سينسينغ نيتشر"، نلتزم بتقديم خدمات متخصصة وموثوقة ومبتكرة في مختلف التخصصات الجيولوجية والجيوفيزيائية والبيئية والأرصاد الجوية. بفضل فريق من المتخصصين ذوي الخبرة والتقنيات الحديثة، نقدم رؤى شاملة لدعم الاستكشاف والتطوير والمحافظة على البيئة وإدارة المخاطر في جميع أنحاء العالم.`
-      : `At "Sensing Nature", we are committed to providing specialized, reliable, and innovative services in various geological, geophysical, environmental, and meteorological disciplines. Thanks to a team of experienced specialists and modern technologies, we offer comprehensive insights to support exploration, development, environmental conservation, and risk management worldwide.`,
+      ? ` "              في "سينسينغ نيتشر"، نلتزم بتقديم خدمات متخصصة وموثوقة ومبتكرة في مختلف التخصصات الجيولوجية والجيوفيزيائية والبيئية والأرصاد الجوية. بفضل فريق من المتخصصين ذوي الخبرة والتقنيات الحديثة، نقدم رؤى شاملة لدعم الاستكشاف والتطوير والمحافظة على البيئة وإدارة المخاطر في جميع أنحاء العالم.        .`
+      : `At "Sensing Nature" we are committed to delivering expert, reliable, and innovative services across geological, geophysical, environmental, and meteorological disciplines. With a team of experienced professionals and state-of-the-art technologies, we provide comprehensive insights to support exploration, development, environmental stewardship, and risk management worldwide.`,
     
     missionTitle: isRTL ? "مهمتنا" : "Our Mission",
     missionText: isRTL 
       ? "تقديم خدمات استشارية وتطويرية وهندسية وأرصاد جوية وبيئية متميزة ودقيقة من خلال توفير حلول مبتكرة للتحديات المعقدة باستخدام أفضل الكفاءات والطرق والوسائل العلمية من أجل تحقيق القيادة والتميز في المملكة العربية السعودية ودول الخليج العربي والشرق الأوسط."
-      : "To provide distinguished and accurate consulting, development, engineering, meteorological, and environmental services by offering innovative solutions to complex challenges using the best competencies, methods, and scientific means to achieve leadership and excellence in the Kingdom of Saudi Arabia, Gulf Arab states, and the Middle East.",
+      : "At Sensing Nature we are committed to delivering expert, reliable, and innovative services across geological, geophysical, environmental, and meteorological disciplines. With a team of experienced professionals and state-of-the-art technologies, we provide comprehensive insights to support exploration, development, environmental stewardship, and risk management worldwide.",
     
     visionTitle: isRTL ? "رؤيتنا" : "Our Vision",
     visionText: isRTL 
       ? "تسهيل عملية اتخاذ القرار للجهات والأفراد من خلال توفير معلومات دقيقة وموثوقة."
-      : "To facilitate the decision-making process for entities and individuals by providing accurate and reliable information."
+      : "Facilitate decision-making for entities and individuals by providing accurate and reliable information."
+  };
+
+
+  const getStableValue = (index, seed = 0) => {
+    // Simple deterministic pseudo-random function
+    const x = Math.sin(index + seed) * 10000;
+    return x - Math.floor(x); // Returns value between 0 and 1
+  };
+
+  // Fixed: Use deterministic values for animations
+  const getSize = (index, base = 50, variation = 30) => {
+    return base + getStableValue(index, 100) * variation;
+  };
+
+  const getPosition = (index, seed = 0) => {
+    return getStableValue(index, seed) * 100;
+  };
+
+  // Fixed: Get image based on index, not random
+  const getImage = (index) => {
+    const images = [imagePaths.circle, imagePaths.mountain, imagePaths.leaf, imagePaths.flight];
+    return images[index % 4];
   };
 
   // Professional Logo Component with varied animations
@@ -49,11 +77,11 @@ export default function IntroSection({ lang = "en" }) {
     <div className="position-relative w-100 h-100 d-flex align-items-center justify-content-center">
       {/* Animated Background Grid */}
       <div className="position-absolute w-100 h-100">
-        {/* Grid Circles */}
+        {/* Grid Circles - FIXED: Use deterministic sizes */}
         {[...Array(16)].map((_, i) => {
           const row = Math.floor(i / 4);
           const col = i % 4;
-          const size = 50 + Math.random() * 30;
+          const size = getSize(i, 50, 30); // Fixed: deterministic size
           return (
             <motion.div
               key={`grid-circle-${i}`}
@@ -70,10 +98,10 @@ export default function IntroSection({ lang = "en" }) {
                 rotate: [0, 180, 360],
               }}
               transition={{
-                duration: 15 + Math.random() * 10,
+                duration: 15 + (i % 10), // Fixed: deterministic duration
                 repeat: Infinity,
                 ease: "linear",
-                delay: Math.random() * 5,
+                delay: i % 5, // Fixed: deterministic delay
               }}
             >
               <Image
@@ -508,12 +536,11 @@ export default function IntroSection({ lang = "en" }) {
         </p>
       </motion.div>
       
-      {/* Background Floating Particles */}
+      {/* Background Floating Particles - FIXED: Use deterministic values */}
       <div className="position-absolute w-100 h-100" style={{ pointerEvents: "none", zIndex: 0 }}>
         {[...Array(12)].map((_, i) => {
-          const size = Math.random() * 8 + 4;
-          const imgIndex = Math.floor(Math.random() * 4);
-          const images = [imagePaths.circle, imagePaths.mountain, imagePaths.leaf, imagePaths.flight];
+          const size = 4 + (i % 8); // Fixed: deterministic size
+          const img = getImage(i); // Fixed: deterministic image
           
           return (
             <motion.div
@@ -522,25 +549,25 @@ export default function IntroSection({ lang = "en" }) {
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${(i * 7) % 100}%`, // Fixed: deterministic position
+                top: `${(i * 11) % 100}%`, // Fixed: deterministic position
                 opacity: 0.1,
               }}
               animate={{
-                x: [0, Math.random() * 100 - 50, 0],
-                y: [0, Math.random() * 100 - 50, 0],
+                x: [0, ((i * 3) % 100) - 50, 0], // Fixed: deterministic animation
+                y: [0, ((i * 5) % 100) - 50, 0], // Fixed: deterministic animation
                 rotate: [0, 180, 360],
               }}
               transition={{
-                duration: Math.random() * 20 + 10,
+                duration: 10 + (i % 20), // Fixed: deterministic duration
                 repeat: Infinity,
                 ease: "linear",
-                delay: Math.random() * 5,
+                delay: i % 5, // Fixed: deterministic delay
               }}
             >
               <div className="w-100 h-100 position-relative">
                 <Image
-                  src={images[imgIndex]}
+                  src={img}
                   alt=""
                   fill
                   className="object-contain"
@@ -552,6 +579,38 @@ export default function IntroSection({ lang = "en" }) {
       </div>
     </div>
   );
+
+  // Don't render animations until mounted to avoid hydration mismatch
+  if (!isMounted) {
+    return (
+      <section 
+        className="py-5"
+        style={{
+          backgroundColor: colors.lightBg,
+          direction: isRTL ? "rtl" : "ltr",
+          overflow: "hidden",
+        }}
+        aria-labelledby="intro-title"
+      >
+        <div className="container">
+          <div className="row align-items-center">
+            {/* Simplified version for SSR */}
+            <div className="col-lg-6 mb-5 mb-lg-0">
+              <h2 id="intro-title" className="mb-4" style={{ color: colors.accent }}>
+                {content.title}
+              </h2>
+              <p className="mb-4 lead" style={{ color: colors.textDark }}>
+                {content.description}
+              </p>
+            </div>
+            <div className="col-lg-6">
+              <div style={{ height: "500px", backgroundColor: colors.white }} />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -569,7 +628,7 @@ export default function IntroSection({ lang = "en" }) {
         }}
         aria-labelledby="intro-title"
       >
-        {/* Background Decorative Elements */}
+        {/* Background Decorative Elements - FIXED: Use deterministic values */}
         <div className="position-absolute w-100 h-100" style={{ 
           top: 0, 
           left: 0,
@@ -578,9 +637,8 @@ export default function IntroSection({ lang = "en" }) {
           zIndex: 0
         }}>
           {[...Array(8)].map((_, i) => {
-            const size = 100 + Math.random() * 150;
-            const images = [imagePaths.circle, imagePaths.mountain, imagePaths.leaf, imagePaths.flight];
-            const img = images[i % 4];
+            const size = 100 + (i * 20); // Fixed: deterministic size
+            const img = getImage(i); // Fixed: deterministic image
             
             return (
               <motion.div
@@ -589,8 +647,8 @@ export default function IntroSection({ lang = "en" }) {
                 style={{
                   width: `${size}px`,
                   height: `${size}px`,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  left: `${(i * 12) % 100}%`, // Fixed: deterministic position
+                  top: `${(i * 15) % 100}%`, // Fixed: deterministic position
                 }}
                 animate={{
                   rotate: i % 2 === 0 ? [0, 360] : [360, 0],
@@ -598,12 +656,12 @@ export default function IntroSection({ lang = "en" }) {
                 }}
                 transition={{
                   rotate: {
-                    duration: 30 + Math.random() * 30,
+                    duration: 30 + (i * 5), // Fixed: deterministic duration
                     repeat: Infinity,
                     ease: "linear",
                   },
                   scale: {
-                    duration: 5 + Math.random() * 5,
+                    duration: 5 + (i % 5), // Fixed: deterministic duration
                     repeat: Infinity,
                     ease: "easeInOut",
                   },

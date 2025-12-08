@@ -7,7 +7,7 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 // 🌌 Moving Stars Canvas
 function StarCanvas({ style }) {
   const canvasRef = useRef(null);
-
+// https://api.whatsapp.com/send/?phone=966534161555&text&type=phone_number&app_absent=0
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -83,20 +83,20 @@ Reach out today and start building something extraordinary with us!`,
       {
         icon: <FaMapMarkerAlt size={28} />,
         label: "Address",
-        value: "Jubail Industrial City, King Faisal Bin Abdulaziz Street, Saudi Arabia",
-        link: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3554.474482733462!2d49.65254067544304!3d27.01516887658635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjfCsDAwJzU0LjYiTiA0OcKwMzknMTguNCJF!5e0!3m2!1sen!2ssa!4v1762516140061!5m2!1sen!2ssa",
+        value: "       6931 King Fahd Branch Rd 3716 Ar Rabwa Dist, Saudi Arabia",
+        link: "https://www.google.com/maps/place/%D9%86%D9%8A%D9%83%D8%B3%D8%AA+%D9%81%D9%8A%D9%88%D8%AA%D8%B4%D8%B1+%D9%84%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9+Next+Future%E2%80%AD/@21.5879137,39.1762911,21z/data=!4m6!3m5!1s0x15c3d16f01439ecd:0xdf829b7e2fc0739c!8m2!3d21.5878556!4d39.1763816!16s%2Fg%2F11xlbnb8nq?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D",
       },
       {
         icon: <FaPhoneAlt size={28} />,
         label: "Phone",
-        value: "+966557828312",
-        link: "tel:+966557828312",
+        value: "+966534161555",
+        link: "tel:+966534161555",
       },
       {
         icon: <FaEnvelope size={28} />,
         label: "Email",
-        value: "abc@orvexco.com",
-        link: "mailto:brandraize1@gmail.com",
+        value: "info@sensingnatures.com",
+        link: "mailto:info@sensingnatures.com",
       },
     ],
     formTitle: "Send Us a Message",
@@ -114,20 +114,20 @@ Reach out today and start building something extraordinary with us!`,
       {
         icon: <FaMapMarkerAlt size={28} />,
         label: "العنوان",
-        value: "الجبيل الصناعية، شارع الملك فيصل بن عبدالعزيز، المملكة العربية السعودية",
-        link: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3554.474482733462!2d49.65254067544304!3d27.01516887658635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjfCsDAwJzU0LjYiTiA0OcKwMzknMTguNCJF!5e0!3m2!1sen!2ssa!4v1762516140061!5m2!1sen!2ssa",
+        value: "٦٩١٣ طريق الملك فهد الفرعي , ٣٧١٦ حي الربوة , المملكة العربية السعودية",
+        link: "https://www.google.com/maps/place/%D9%86%D9%8A%D9%83%D8%B3%D8%AA+%D9%81%D9%8A%D9%88%D8%AA%D8%B4%D8%B1+%D9%84%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9+Next+Future%E2%80%AD/@21.5879137,39.1762911,21z/data=!4m6!3m5!1s0x15c3d16f01439ecd:0xdf829b7e2fc0739c!8m2!3d21.5878556!4d39.1763816!16s%2Fg%2F11xlbnb8nq?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D",
       },
       {
         icon: <FaPhoneAlt size={28} />,
         label: "الهاتف",
-        value: "966557828312",
-        link: "tel:+966557828312",
+        value: "966534161555",
+        link: "tel:+966534161555",
       },
       {
         icon: <FaEnvelope size={28} />,
         label: "البريد الإلكتروني",
-        value: "abc@orvexco.com",
-        link: "mailto:abc@orvexco.com",
+        value: "info@sensingnatures.com",
+        link: "mailto:info@sensingnatures.com",
       },
     ],
     formTitle: "أرسل لنا رسالة",

@@ -27,13 +27,13 @@ export default function Navbar({ lang }) {
   };
 
   const menuItems = [
-    { href: "/aman", label: lang === "ar" ? "الرئيسية" : "Home" },
+    { href: "/", label: lang === "ar" ? "الرئيسية" : "Home" },
     {
-      href: "/aman",
+      href: "/service",
       label: lang === "ar" ? "الخدمات" : "Services",
     },
-    { href: "/aman", label: lang === "ar" ? "من نحن" : "About Us" },
-    { href: "/aman", label: lang === "ar" ? "اتصل بنا" : "Contact Us" },
+    { href: "/about", label: lang === "ar" ? "من نحن" : "About Us" },
+    { href: "/contact", label: lang === "ar" ? "اتصل بنا" : "Contact Us" },
   ];
 
   if (!pathname || pathname?.startsWith(`/${lang}/admin`)) return null;

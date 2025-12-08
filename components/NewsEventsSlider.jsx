@@ -7,71 +7,144 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { Calendar, Clock, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function NewsEventsSlider() {
-  const [activeCategory, setActiveCategory] = useState("All");
+export default function NewsEventsSlider({ lang = "en" }) {
+  const isRTL = lang === "ar";
+
+  // Content based on language
+  const content = {
+    en: {
+      title: "News & Events",
+      subtitle: "Stay informed about the latest happenings, achievements, and announcements from UMT",
+      categories: [],
+      readMore: "Read Full Story",
+      viewAll: "View All News & Events",
+      latestUpdates: "LATEST UPDATES",
+      minRead: "min read",
+      newsItems: [
+        {
+          title: "UMT ACCA Global Workshop 2024",
+          description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards and practical case studies. Industry experts shared insights on emerging trends.",
+          date: "Dec 15, 2024",
+          time: "10:00 AM - 4:00 PM",
+          category: "Announcements",
+          readTime: "3 min read",
+          image: "/5.jpg",
+          features: [
+            "Global Accounting Standards",
+            "Practical Case Studies",
+            "Industry Expert Insights",
+            "Networking Opportunities",
+          ],
+        },
+        {
+          title: "UMT Wins Academic Excellence Award",
+          description: "UMT received national recognition for academic excellence and research innovation at the annual education summit, competing against top institutions.",
+          date: "Nov 28, 2024",
+          time: "2:00 PM",
+          category: "University News",
+          readTime: "4 min read",
+          image: "/55.jpg",
+          features: [
+            "National Recognition",
+            "Research Innovation",
+            "Academic Excellence",
+            "Education Summit",
+          ],
+        },
+        {
+          title: "Student Achieves Top National Rank",
+          description: "UMT student secures 1st position in nationwide talent examination among 5000+ participants, showcasing exceptional academic prowess.",
+          date: "Nov 15, 2024",
+          time: "11:00 AM",
+          category: "Achievements",
+          readTime: "2 min read",
+          image: "/bg-1.webp",
+          features: [
+            "National Talent Exam",
+            "1st Position",
+            "5000+ Participants",
+            "Academic Excellence",
+          ],
+        },
+      ]
+    },
+    ar: {
+      title: "الأخبار والفعاليات",
+      subtitle: "ابقَ على اطلاع بأحدث الأحداث والإنجازات والإعلانات من UMT",
+      categories: [],
+      readMore: "قراءة القصة الكاملة",
+      viewAll: "عرض جميع الأخبار والفعاليات",
+      latestUpdates: "أحدث التحديثات",
+      minRead: "دقائق للقراءة",
+      newsItems: [
+        {
+          title: "ورشة عمل UMT ACCA العالمية 2024",
+          description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية ودراسات الحالة العملية. شارك خبراء الصناعة رؤى حول الاتجاهات الناشئة.",
+          date: "15 ديسمبر 2024",
+          time: "10:00 صباحًا - 4:00 مساءً",
+          category: "الإعلانات",
+          readTime: "3 دقائق للقراءة",
+          image: "/5.jpg",
+          features: [
+            "معايير المحاسبة العالمية",
+            "دراسات الحالة العملية",
+            "رؤى خبراء الصناعة",
+            "فرص التواصل",
+          ],
+        },
+        {
+          title: "UMT تفوز بجائزة التميز الأكاديمي",
+          description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي في قمة التعليم السنوية، حيث تنافست ضد أبرز المؤسسات.",
+          date: "28 نوفمبر 2024",
+          time: "2:00 مساءً",
+          category: "أخبار الجامعة",
+          readTime: "4 دقائق للقراءة",
+          image: "/55.jpg",
+          features: [
+            "اعتراف وطني",
+            "الابتكار البحثي",
+            "التميز الأكاديمي",
+            "قمة التعليم",
+          ],
+        },
+        {
+          title: "طالب يحقق المركز الأول على المستوى الوطني",
+          description: "حقق طالب UMT المركز الأول في الامتحان الوطني للمواهب بين أكثر من 5000 مشارك، مما يظهر قدرة أكاديمية استثنائية.",
+          date: "15 نوفمبر 2024",
+          time: "11:00 صباحًا",
+          category: "الإنجازات",
+          readTime: "2 دقائق للقراءة",
+          image: "/bg-1.webp",
+          features: [
+            "امتحان المواهب الوطني",
+            "المركز الأول",
+            "أكثر من 5000 مشارك",
+            "التميز الأكاديمي",
+          ],
+        },
+      ]
+    }
+  };
+
+  const t = content[lang] || content.en;
+  const slides = t.newsItems;
+
+  // Initialize activeCategory with the first category of current language
+  const [activeCategory, setActiveCategory] = useState(t.categories[0]);
+
+  // Update activeCategory when language changes
+  useEffect(() => {
+    setActiveCategory(t.categories[0]);
+  }, [lang, t.categories]);
 
   const categories = [
-    { name: "All", color: "#059669" },
-    { name: "Announcements", color: "#10B981" },
-    { name: "University News", color: "#059669" },
-    { name: "Achievements", color: "#D97706" },
-  ];
 
-  const slides = [
-    {
-      title: "UMT ACCA Global Workshop 2024",
-      description:
-        "UMT conducted an exclusive ACCA workshop focusing on global accounting standards and practical case studies. Industry experts shared insights on emerging trends.",
-      date: "Dec 15, 2024",
-      time: "10:00 AM - 4:00 PM",
-      category: "Announcements",
-      readTime: "3 min read",
-      image: "/5.jpg",
-      features: [
-        "Global Accounting Standards",
-        "Practical Case Studies",
-        "Industry Expert Insights",
-        "Networking Opportunities",
-      ],
-    },
-    {
-      title: "UMT Wins Academic Excellence Award",
-      description:
-        "UMT received national recognition for academic excellence and research innovation at the annual education summit, competing against top institutions.",
-      date: "Nov 28, 2024",
-      time: "2:00 PM",
-      category: "University News",
-      readTime: "4 min read",
-      image: "/55.jpg",
-      features: [
-        "National Recognition",
-        "Research Innovation",
-        "Academic Excellence",
-        "Education Summit",
-      ],
-    },
-    {
-      title: "Student Achieves Top National Rank",
-      description:
-        "UMT student secures 1st position in nationwide talent examination among 5000+ participants, showcasing exceptional academic prowess.",
-      date: "Nov 15, 2024",
-      time: "11:00 AM",
-      category: "Achievements",
-      readTime: "2 min read",
-      image: "/bg-1.webp",
-      features: [
-        "National Talent Exam",
-        "1st Position",
-        "5000+ Participants",
-        "Academic Excellence",
-      ],
-    },
   ];
 
   const filteredSlides =
-    activeCategory === "All"
+    activeCategory === t.categories[0]
       ? slides
       : slides.filter((slide) => slide.category === activeCategory);
 
@@ -83,23 +156,23 @@ export default function NewsEventsSlider() {
   return (
     <section
       className="py-16 bg-gradient-to-b from-green-50 to-white"
-      dir="ltr"
+      dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="container mx-auto px-4">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 ${isRTL ? "font-['Cairo']" : ""}`}>
           <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-50 rounded-full mb-4">
             <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
             <span className="text-sm font-semibold text-green-700">
-              LATEST UPDATES
+              {t.latestUpdates}
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            News & <span className="text-green-600">Events</span>
+            {t.title.split(" ")[0]}{" "}
+            <span className="text-green-600">{t.title.split(" ")[1]}</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Stay informed about the latest happenings, achievements, and
-            announcements from UMT
+            {t.subtitle}
           </p>
         </div>
 
@@ -120,6 +193,7 @@ export default function NewsEventsSlider() {
                     backgroundColor:
                       activeCategory === category.name ? category.color : "white",
                     color: activeCategory === category.name ? "white" : "#4B5563",
+                    fontFamily: isRTL ? "'Cairo', sans-serif" : "inherit",
                   }}
                 >
                   {category.name}
@@ -147,7 +221,7 @@ export default function NewsEventsSlider() {
               <SwiperSlide key={index} className="NewsSlider_slide">
                 <div className="NewsSlider_slideContent">
                   {/* Content Section */}
-                  <div className="NewsSlider_left">
+                  <div className="NewsSlider_left" style={{ direction: isRTL ? "rtl" : "ltr" }}>
                     <div
                       className="NewsSlider_badge"
                       style={{
@@ -164,7 +238,7 @@ export default function NewsEventsSlider() {
                     </p>
 
                     {/* Date & Time */}
-                    <div className="flex flex-wrap gap-4 mb-6">
+                    <div className="flex flex-wrap gap-4 mb-6" style={{ direction: "ltr" }}>
                       <div className="flex items-center gap-2 text-gray-600">
                         <Calendar size={18} className="text-green-600" />
                         <span className="text-sm font-medium">
@@ -189,7 +263,12 @@ export default function NewsEventsSlider() {
                       {slide.features.map((feature, i) => (
                         <div key={i} className="NewsSlider_featureItem">
                           <div className="NewsSlider_featureIcon">
-                            <ChevronRight size={16} />
+                            <ChevronRight 
+                              size={16} 
+                              style={{ 
+                                transform: isRTL ? "rotate(180deg)" : "none" 
+                              }}
+                            />
                           </div>
                           <div className="NewsSlider_featureText">
                             {feature}
@@ -200,8 +279,13 @@ export default function NewsEventsSlider() {
 
                     {/* Read More Button */}
                     <button className="NewsSlider_readMore">
-                      <span>Read Full Story</span>
-                      <ChevronRight size={20} />
+                      <span>{t.readMore}</span>
+                      <ChevronRight 
+                        size={20} 
+                        style={{ 
+                          transform: isRTL ? "rotate(180deg)" : "none" 
+                        }}
+                      />
                     </button>
                   </div>
 
@@ -215,7 +299,11 @@ export default function NewsEventsSlider() {
                         className="NewsSlider_image"
                         priority={index === 0}
                       />
-                      <div className="NewsSlider_imageOverlay"></div>
+                      <div className="NewsSlider_imageOverlay" style={{
+                        background: isRTL 
+                          ? "linear-gradient(to left, rgba(0, 0, 0, 0.1), transparent 30%)"
+                          : "linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent 30%)"
+                      }}></div>
                     </div>
                   </div>
                 </div>
@@ -227,7 +315,7 @@ export default function NewsEventsSlider() {
         {/* View All Button */}
         <div className="text-center mt-12">
           <button className="NewsSlider_viewAllButton">
-            View All News & Events
+            {t.viewAll}
           </button>
         </div>
       </div>
@@ -290,6 +378,7 @@ export default function NewsEventsSlider() {
           line-height: 1.2;
           color: #111827;
           margin: 0;
+          text-align: right;
         }
 
         .NewsSlider_description {
@@ -297,6 +386,7 @@ export default function NewsEventsSlider() {
           line-height: 1.6;
           color: #6b7280;
           margin: 0;
+          text-align: right;
         }
 
         .NewsSlider_featuresGrid {
@@ -323,6 +413,7 @@ export default function NewsEventsSlider() {
           justify-content: center;
           font-size: 0.875rem;
           flex-shrink: 0;
+          order: 1;
         }
 
         .NewsSlider_featureText {
@@ -330,6 +421,8 @@ export default function NewsEventsSlider() {
           color: #374151;
           line-height: 1.4;
           font-weight: 500;
+          text-align: right;
+          flex: 1;
         }
 
         .NewsSlider_readMore {
@@ -345,6 +438,7 @@ export default function NewsEventsSlider() {
           padding: 0.5rem 0;
           transition: all 0.2s;
           width: fit-content;
+          flex-direction: row-reverse;
         }
 
         .NewsSlider_readMore:hover {
@@ -376,11 +470,6 @@ export default function NewsEventsSlider() {
         .NewsSlider_imageOverlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0.1),
-            transparent 30%
-          );
           border-radius: 1rem;
         }
 
@@ -396,12 +485,26 @@ export default function NewsEventsSlider() {
           transition: all 0.3s;
           font-size: 1rem;
           box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+          font-family: ${isRTL ? "'Cairo', sans-serif" : "inherit"};
         }
 
         .NewsSlider_viewAllButton:hover {
           background: #047857;
           transform: translateY(-2px);
           box-shadow: 0 6px 12px -1px rgba(5, 150, 105, 0.4);
+        }
+
+        /* RTL Specific Styles */
+        .NewsSlider_left[dir="rtl"] .NewsSlider_featureItem {
+          flex-direction: row-reverse;
+        }
+
+        .NewsSlider_left[dir="rtl"] .NewsSlider_featureIcon {
+          order: 2;
+        }
+
+        .NewsSlider_left[dir="rtl"] .NewsSlider_readMore {
+          flex-direction: row;
         }
 
         /* Responsive Design */

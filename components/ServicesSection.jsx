@@ -517,50 +517,7 @@ export default function ServicesSection({ lang = "en" }) {
           </div>
 
           <Link href="/services">
-            <button
-              className="btn fw-semibold rounded-pill px-5 py-3 position-relative overflow-hidden"
-              style={{
-                backgroundColor: colors.primary,
-                color: colors.white,
-                border: "none",
-                fontSize: "1.1rem",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 15px rgba(16, 185, 129, 0.3)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = colors.primaryDark;
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 6px 20px rgba(5, 150, 105, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = colors.primary;
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 4px 15px rgba(16, 185, 129, 0.3)";
-              }}
-            >
-              <span className="position-relative" style={{ zIndex: 1 }}>
-                {isRTL ? "عرض جميع الخدمات" : "View All Services"}
-              </span>
-              <span className="ms-2" style={{ 
-                transform: isRTL ? "rotate(180deg)" : "none",
-                display: "inline-block",
-                zIndex: 1,
-                position: "relative"
-              }}>
-                {isRTL ? "←" : "→"}
-              </span>
-              
-              {/* Button Background Pattern */}
-              <div className="position-absolute top-0 start-0 w-100 h-100" style={{ opacity: 0.1, zIndex: 0 }}>
-                <Image
-                  src={imagePaths.circle}
-                  alt=""
-                  fill
-                  className="object-contain"
-                  style={{ transform: "scale(1.5)" }}
-                />
-              </div>
-            </button>
+        
           </Link>
         </motion.div>
       </div>

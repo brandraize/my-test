@@ -62,7 +62,7 @@ export default function Home({ params }) {
         <IntroSection lang={lang} />
         <ServicesSection lang={lang} />
         <NewsEventsSlider lang={lang} />
-        <Contact lang={lang} />
+        {/* <Contact lang={lang} /> */}
       </main>
     </>
   );

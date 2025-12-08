@@ -32,6 +32,7 @@ export default function Navbar({ lang }) {
       href: "/service",
       label: lang === "ar" ? "الخدمات" : "Services",
     },
+     { href: "/projects", label: lang === "ar" ? "المشاريع " : "Project" },
     { href: "/about", label: lang === "ar" ? "من نحن" : "About Us" },
     { href: "/contact", label: lang === "ar" ? "اتصل بنا" : "Contact Us" },
   ];

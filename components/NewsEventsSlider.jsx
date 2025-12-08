@@ -1,13 +1,9 @@
-"use client";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
-import { Calendar, Clock, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ChevronRight } from "lucide-react";
 
 export default function NewsEventsSlider({ lang = "en" }) {
   const isRTL = lang === "ar";
@@ -17,112 +13,88 @@ export default function NewsEventsSlider({ lang = "en" }) {
     en: {
       title: "News & Events",
       subtitle: "Stay informed about the latest happenings, achievements, and announcements from UMT",
-      categories: [],
-      readMore: "Read Full Story",
-      viewAll: "View All News & Events",
-      latestUpdates: "LATEST UPDATES",
-      minRead: "min read",
+      readMore: "Read More",
+      viewAll: "View All",
       newsItems: [
         {
           title: "UMT ACCA Global Workshop 2024",
-          description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards and practical case studies. Industry experts shared insights on emerging trends.",
-          date: "Dec 15, 2024",
-          time: "10:00 AM - 4:00 PM",
+          description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards.",
           category: "Announcements",
-          readTime: "3 min read",
           image: "/5.jpg",
-          features: [
-            "Global Accounting Standards",
-            "Practical Case Studies",
-            "Industry Expert Insights",
-            "Networking Opportunities",
-          ],
         },
         {
           title: "UMT Wins Academic Excellence Award",
-          description: "UMT received national recognition for academic excellence and research innovation at the annual education summit, competing against top institutions.",
-          date: "Nov 28, 2024",
-          time: "2:00 PM",
+          description: "UMT received national recognition for academic excellence and research innovation.",
           category: "University News",
-          readTime: "4 min read",
           image: "/55.jpg",
-          features: [
-            "National Recognition",
-            "Research Innovation",
-            "Academic Excellence",
-            "Education Summit",
-          ],
         },
         {
           title: "Student Achieves Top National Rank",
-          description: "UMT student secures 1st position in nationwide talent examination among 5000+ participants, showcasing exceptional academic prowess.",
-          date: "Nov 15, 2024",
-          time: "11:00 AM",
+          description: "UMT student secures 1st position in nationwide talent examination.",
           category: "Achievements",
-          readTime: "2 min read",
           image: "/bg-1.webp",
-          features: [
-            "National Talent Exam",
-            "1st Position",
-            "5000+ Participants",
-            "Academic Excellence",
-          ],
+        },
+        {
+          title: "New Research Center Launch",
+          description: "UMT launches state-of-the-art research center for sustainable technologies.",
+          category: "Research",
+          image: "/5.jpg",
+        },
+        {
+          title: "International Collaboration",
+          description: "UMT signs partnership with leading European university.",
+          category: "Partnerships",
+          image: "/55.jpg",
+        },
+        {
+          title: "Annual Career Fair 2024",
+          description: "Over 100 companies participate in UMT's annual career fair.",
+          category: "Events",
+          image: "/bg-1.webp",
         },
       ]
     },
     ar: {
       title: "الأخبار والفعاليات",
       subtitle: "ابقَ على اطلاع بأحدث الأحداث والإنجازات والإعلانات من UMT",
-      categories: [],
-      readMore: "قراءة القصة الكاملة",
-      viewAll: "عرض جميع الأخبار والفعاليات",
-      latestUpdates: "أحدث التحديثات",
-      minRead: "دقائق للقراءة",
+      readMore: "اقرأ المزيد",
+      viewAll: "عرض الكل",
       newsItems: [
         {
           title: "ورشة عمل UMT ACCA العالمية 2024",
-          description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية ودراسات الحالة العملية. شارك خبراء الصناعة رؤى حول الاتجاهات الناشئة.",
-          date: "15 ديسمبر 2024",
-          time: "10:00 صباحًا - 4:00 مساءً",
+          description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية.",
           category: "الإعلانات",
-          readTime: "3 دقائق للقراءة",
           image: "/5.jpg",
-          features: [
-            "معايير المحاسبة العالمية",
-            "دراسات الحالة العملية",
-            "رؤى خبراء الصناعة",
-            "فرص التواصل",
-          ],
         },
         {
           title: "UMT تفوز بجائزة التميز الأكاديمي",
-          description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي في قمة التعليم السنوية، حيث تنافست ضد أبرز المؤسسات.",
-          date: "28 نوفمبر 2024",
-          time: "2:00 مساءً",
+          description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي.",
           category: "أخبار الجامعة",
-          readTime: "4 دقائق للقراءة",
           image: "/55.jpg",
-          features: [
-            "اعتراف وطني",
-            "الابتكار البحثي",
-            "التميز الأكاديمي",
-            "قمة التعليم",
-          ],
         },
         {
           title: "طالب يحقق المركز الأول على المستوى الوطني",
-          description: "حقق طالب UMT المركز الأول في الامتحان الوطني للمواهب بين أكثر من 5000 مشارك، مما يظهر قدرة أكاديمية استثنائية.",
-          date: "15 نوفمبر 2024",
-          time: "11:00 صباحًا",
+          description: "حقق طالب UMT المركز الأول في الامتحان الوطني للمواهب.",
           category: "الإنجازات",
-          readTime: "2 دقائق للقراءة",
           image: "/bg-1.webp",
-          features: [
-            "امتحان المواهب الوطني",
-            "المركز الأول",
-            "أكثر من 5000 مشارك",
-            "التميز الأكاديمي",
-          ],
+        },
+        {
+          title: "إطلاق مركز بحثي جديد",
+          description: "تطلق UMT مركزًا بحثيًا حديثًا للتقنيات المستدامة.",
+          category: "البحث",
+          image: "/5.jpg",
+        },
+        {
+          title: "تعاون دولي",
+          description: "توقع UMT شراكة مع جامعة أوروبية رائدة.",
+          category: "الشراكات",
+          image: "/55.jpg",
+        },
+        {
+          title: "معرض التوظيف السنوي 2024",
+          description: "يشارك أكثر من 100 شركة في معرض التوظيف السنوي لـ UMT.",
+          category: "الفعاليات",
+          image: "/bg-1.webp",
         },
       ]
     }
@@ -130,28 +102,6 @@ export default function NewsEventsSlider({ lang = "en" }) {
 
   const t = content[lang] || content.en;
   const slides = t.newsItems;
-
-  // Initialize activeCategory with the first category of current language
-  const [activeCategory, setActiveCategory] = useState(t.categories[0]);
-
-  // Update activeCategory when language changes
-  useEffect(() => {
-    setActiveCategory(t.categories[0]);
-  }, [lang, t.categories]);
-
-  const categories = [
-
-  ];
-
-  const filteredSlides =
-    activeCategory === t.categories[0]
-      ? slides
-      : slides.filter((slide) => slide.category === activeCategory);
-
-  const getCategoryColor = (categoryName) => {
-    const category = categories.find((cat) => cat.name === categoryName);
-    return category?.color || "#059669";
-  };
 
   return (
     <section
@@ -161,155 +111,96 @@ export default function NewsEventsSlider({ lang = "en" }) {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className={`text-center mb-12 ${isRTL ? "font-['Cairo']" : ""}`}>
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-50 rounded-full mb-4">
-            <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
-            <span className="text-sm font-semibold text-green-700">
-              {t.latestUpdates}
-            </span>
-          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {t.title.split(" ")[0]}{" "}
-            <span className="text-green-600">{t.title.split(" ")[1]}</span>
+            {t.title}
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             {t.subtitle}
           </p>
         </div>
 
-        {/* Perfectly Centered Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10 px-4">
-          <div className="w-full flex justify-center">
-            <div className="inline-flex flex-wrap justify-center gap-3 bg-white/50 backdrop-blur-sm p-2 rounded-2xl border border-green-100 shadow-sm">
-              {categories.map((category) => (
-                <button
-                  key={category.name}
-                  onClick={() => setActiveCategory(category.name)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeCategory === category.name
-                      ? "shadow-lg transform scale-105"
-                      : "bg-white shadow-sm hover:shadow-md border border-gray-200"
-                  }`}
-                  style={{
-                    backgroundColor:
-                      activeCategory === category.name ? category.color : "white",
-                    color: activeCategory === category.name ? "white" : "#4B5563",
-                    fontFamily: isRTL ? "'Cairo', sans-serif" : "inherit",
-                  }}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Centered Slider Container */}
+        {/* Multi-Card Slider Container */}
         <div className="NewsSlider_container">
           <Swiper
-            modules={[Autoplay]}
+            modules={[Pagination, Autoplay]}
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,
             }}
+            pagination={{
+              clickable: true,
+              el: '.swiper-pagination',
+              type: 'bullets',
+            }}
             loop={true}
             className="NewsSlider_slideContainer"
-            spaceBetween={0}
+            spaceBetween={30}
             slidesPerView={1}
-            centeredSlides={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 25,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+            }}
           >
-            {filteredSlides.map((slide, index) => (
+            {slides.map((slide, index) => (
               <SwiperSlide key={index} className="NewsSlider_slide">
-                <div className="NewsSlider_slideContent">
+                {/* Single Card Design */}
+                <div className="NewsSlider_card">
+                  {/* Image Section */}
+                  <div className="NewsSlider_cardImageContainer">
+                    <Image
+                      src={slide.image}
+                      alt={slide.title}
+                      fill
+                      className="NewsSlider_cardImage"
+                      priority={index === 0}
+                    />
+                  </div>
+
+                  {/* Category Badge */}
+                  <div className="NewsSlider_cardCategoryBadge">
+                    {slide.category}
+                  </div>
+
                   {/* Content Section */}
-                  <div className="NewsSlider_left" style={{ direction: isRTL ? "rtl" : "ltr" }}>
-                    <div
-                      className="NewsSlider_badge"
-                      style={{
-                        backgroundColor: getCategoryColor(slide.category),
-                      }}
-                    >
-                      {slide.category}
-                    </div>
+                  <div className="NewsSlider_cardContent" style={{ direction: isRTL ? "rtl" : "ltr" }}>
+                    {/* Title */}
+                    <h3 className="NewsSlider_cardTitle">
+                      {slide.title}
+                    </h3>
 
-                    <h2 className="NewsSlider_title">{slide.title}</h2>
-
-                    <p className="NewsSlider_description">
+                    {/* Description */}
+                    <p className="NewsSlider_cardDescription">
                       {slide.description}
                     </p>
 
-                    {/* Date & Time */}
-                    <div className="flex flex-wrap gap-4 mb-6" style={{ direction: "ltr" }}>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Calendar size={18} className="text-green-600" />
-                        <span className="text-sm font-medium">
-                          {slide.date}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Clock size={18} className="text-green-600" />
-                        <span className="text-sm font-medium">
-                          {slide.time}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <span className="text-sm font-medium opacity-75">
-                          • {slide.readTime}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Features */}
-                    <div className="NewsSlider_featuresGrid">
-                      {slide.features.map((feature, i) => (
-                        <div key={i} className="NewsSlider_featureItem">
-                          <div className="NewsSlider_featureIcon">
-                            <ChevronRight 
-                              size={16} 
-                              style={{ 
-                                transform: isRTL ? "rotate(180deg)" : "none" 
-                              }}
-                            />
-                          </div>
-                          <div className="NewsSlider_featureText">
-                            {feature}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
                     {/* Read More Button */}
-                    <button className="NewsSlider_readMore">
+                    <button className="NewsSlider_cardReadMore">
                       <span>{t.readMore}</span>
                       <ChevronRight 
-                        size={20} 
+                        size={16} 
                         style={{ 
                           transform: isRTL ? "rotate(180deg)" : "none" 
                         }}
                       />
                     </button>
                   </div>
-
-                  {/* Image Section */}
-                  <div className="NewsSlider_right">
-                    <div className="NewsSlider_imageContainer">
-                      <Image
-                        src={slide.image}
-                        alt={slide.title}
-                        fill
-                        className="NewsSlider_image"
-                        priority={index === 0}
-                      />
-                      <div className="NewsSlider_imageOverlay" style={{
-                        background: isRTL 
-                          ? "linear-gradient(to left, rgba(0, 0, 0, 0.1), transparent 30%)"
-                          : "linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent 30%)"
-                      }}></div>
-                    </div>
-                  </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Pagination Dots */}
+          <div className="swiper-pagination mt-8"></div>
         </div>
 
         {/* View All Button */}
@@ -325,152 +216,122 @@ export default function NewsEventsSlider({ lang = "en" }) {
           position: relative;
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 20px;
         }
 
-        .NewsSlider_slideContainer {
-          margin: 0 auto;
-        }
-
-        .NewsSlider_slide {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 600px;
-        }
-
-        .NewsSlider_slideContent {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          align-items: center;
-          width: 100%;
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 2rem;
+        .NewsSlider_card {
           background: white;
-          border-radius: 1.5rem;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          border-radius: 1rem;
+          overflow: hidden;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
           border: 1px solid #e5e7eb;
+          height: 100%;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          position: relative;
         }
 
-        .NewsSlider_left {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
+        .NewsSlider_card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
         }
 
-        .NewsSlider_badge {
-          background: #f3f4f6;
+        .NewsSlider_cardImageContainer {
+          position: relative;
+          width: 100%;
+          height: 220px;
+          overflow: hidden;
+        }
+
+        .NewsSlider_cardImage {
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .NewsSlider_card:hover .NewsSlider_cardImage {
+          transform: scale(1.05);
+        }
+
+        .NewsSlider_cardCategoryBadge {
+          position: absolute;
+          top: 1rem;
+          ${isRTL ? "right" : "left"}: 1rem;
+          background: #059669;
           color: white;
-          padding: 0.5rem 1.5rem;
+          padding: 0.4rem 1rem;
           border-radius: 2rem;
-          font-size: 0.875rem;
+          font-size: 0.75rem;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          display: inline-block;
-          width: fit-content;
         }
 
-        .NewsSlider_title {
-          font-size: 2.5rem;
-          font-weight: 700;
-          line-height: 1.2;
-          color: #111827;
-          margin: 0;
-          text-align: right;
-        }
-
-        .NewsSlider_description {
-          font-size: 1.1rem;
-          line-height: 1.6;
-          color: #6b7280;
-          margin: 0;
-          text-align: right;
-        }
-
-        .NewsSlider_featuresGrid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1rem;
-          margin: 1rem 0;
-        }
-
-        .NewsSlider_featureItem {
+        .NewsSlider_cardContent {
+          padding: 1.5rem;
           display: flex;
-          align-items: center;
+          flex-direction: column;
           gap: 0.75rem;
         }
 
-        .NewsSlider_featureIcon {
-          background: #059669;
-          color: white;
-          border-radius: 50%;
-          width: 1.5rem;
-          height: 1.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.875rem;
-          flex-shrink: 0;
-          order: 1;
+        .NewsSlider_cardTitle {
+          font-size: 1.25rem;
+          font-weight: 700;
+          line-height: 1.3;
+          color: #111827;
+          margin: 0;
+          text-align: ${isRTL ? "right" : "left"};
         }
 
-        .NewsSlider_featureText {
+        .NewsSlider_cardDescription {
           font-size: 0.95rem;
-          color: #374151;
-          line-height: 1.4;
-          font-weight: 500;
-          text-align: right;
-          flex: 1;
+          line-height: 1.5;
+          color: #6b7280;
+          margin: 0;
+          text-align: ${isRTL ? "right" : "left"};
         }
 
-        .NewsSlider_readMore {
+        .NewsSlider_cardReadMore {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
           color: #059669;
           font-weight: 600;
-          font-size: 1rem;
+          font-size: 0.9rem;
           background: none;
           border: none;
           cursor: pointer;
           padding: 0.5rem 0;
           transition: all 0.2s;
           width: fit-content;
-          flex-direction: row-reverse;
+          margin-top: 0.5rem;
+          flex-direction: ${isRTL ? "row-reverse" : "row"};
         }
 
-        .NewsSlider_readMore:hover {
+        .NewsSlider_cardReadMore:hover {
           gap: 0.75rem;
           color: #047857;
         }
 
-        .NewsSlider_right {
-          position: relative;
-          width: 100%;
-          height: 450px;
-          border-radius: 1rem;
-          overflow: hidden;
-          box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
+        /* Pagination Dots */
+        .swiper-pagination {
+          position: relative !important;
+          bottom: 0 !important;
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
         }
 
-        .NewsSlider_imageContainer {
-          position: relative;
-          width: 100%;
-          height: 100%;
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          background: #d1d5db;
+          opacity: 1;
+          transition: all 0.3s ease;
         }
 
-        .NewsSlider_image {
-          object-fit: cover;
-          border-radius: 1rem;
-          transition: transform 0.7s ease;
-        }
-
-        .NewsSlider_imageOverlay {
-          position: absolute;
-          inset: 0;
-          border-radius: 1rem;
+        .swiper-pagination-bullet-active {
+          background: #059669;
+          width: 30px;
+          border-radius: 5px;
         }
 
         /* View All Button */
@@ -478,7 +339,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           background: #059669;
           color: white;
           font-weight: 600;
-          padding: 1rem 2.5rem;
+          padding: 0.875rem 2.5rem;
           border-radius: 2rem;
           border: none;
           cursor: pointer;
@@ -494,78 +355,50 @@ export default function NewsEventsSlider({ lang = "en" }) {
           box-shadow: 0 6px 12px -1px rgba(5, 150, 105, 0.4);
         }
 
-        /* RTL Specific Styles */
-        .NewsSlider_left[dir="rtl"] .NewsSlider_featureItem {
-          flex-direction: row-reverse;
-        }
-
-        .NewsSlider_left[dir="rtl"] .NewsSlider_featureIcon {
-          order: 2;
-        }
-
-        .NewsSlider_left[dir="rtl"] .NewsSlider_readMore {
-          flex-direction: row;
-        }
-
         /* Responsive Design */
-        @media (max-width: 1024px) {
-          .NewsSlider_slideContent {
-            max-width: 900px;
-            gap: 3rem;
-          }
-        }
-
         @media (max-width: 768px) {
-          .NewsSlider_slideContent {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 1.5rem;
-            max-width: 600px;
+          .NewsSlider_cardImageContainer {
+            height: 180px;
           }
 
-          .NewsSlider_title {
-            font-size: 2rem;
+          .NewsSlider_cardContent {
+            padding: 1.25rem;
           }
 
-          .NewsSlider_description {
-            font-size: 1rem;
+          .NewsSlider_cardTitle {
+            font-size: 1.1rem;
           }
 
-          .NewsSlider_featuresGrid {
-            grid-template-columns: 1fr;
-          }
-
-          .NewsSlider_right {
-            height: 350px;
-            order: -1;
+          .NewsSlider_cardDescription {
+            font-size: 0.875rem;
           }
         }
 
         @media (max-width: 480px) {
-          .NewsSlider_title {
-            font-size: 1.75rem;
+          .NewsSlider_cardImageContainer {
+            height: 160px;
           }
 
-          .NewsSlider_description {
-            font-size: 0.9rem;
+          .NewsSlider_cardContent {
+            padding: 1rem;
           }
 
-          .NewsSlider_badge {
-            font-size: 0.75rem;
-            padding: 0.4rem 1rem;
+          .NewsSlider_cardTitle {
+            font-size: 1rem;
+          }
+
+          .NewsSlider_cardDescription {
+            font-size: 0.8rem;
+          }
+
+          .NewsSlider_cardCategoryBadge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.75rem;
           }
 
           .NewsSlider_viewAllButton {
             padding: 0.75rem 2rem;
             font-size: 0.9rem;
-          }
-
-          .NewsSlider_right {
-            height: 250px;
-          }
-
-          .NewsSlider_slideContent {
-            padding: 1.25rem;
           }
         }
       `}</style>

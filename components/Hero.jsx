@@ -31,8 +31,8 @@ export default function HeroSection({
         muted
         playsInline
         className="position-absolute top-0 start-0 w-100 h-100"
-        style={{ 
-          objectFit: "cover", 
+        style={{
+          objectFit: "cover",
           zIndex: 1,
           // filter: "brightness(0.7) sepia(0.3) hue-rotate(60deg) saturate(1.3)"
         }}
@@ -44,10 +44,10 @@ export default function HeroSection({
       {/* Green overlay - Layer 1 */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
-        style={{ 
+        style={{
           backgroundColor: "rgba(4, 57, 17, 0.39)", // Your brand green with 30% opacity
           mixBlendMode: "multiply",
-          zIndex: 2 
+          zIndex: 2,
         }}
         aria-hidden="true"
       />
@@ -55,9 +55,9 @@ export default function HeroSection({
       {/* Dark overlay - Layer 2 */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
-        style={{ 
+        style={{
           backgroundColor: "rgba(50, 117, 12, 0.2)", // Dark overlay for contrast
-          zIndex: 2 
+          zIndex: 2,
         }}
         aria-hidden="true"
       />
@@ -65,7 +65,12 @@ export default function HeroSection({
       {/* Centered content */}
       <div
         className="position-relative text-center"
-        style={{ zIndex: 3, maxWidth: "800px", margin: "0 auto", padding: "0 20px" }}
+        style={{
+          zIndex: 3,
+          maxWidth: "800px",
+          margin: "0 auto",
+          padding: "0 20px",
+        }}
       >
         <motion.h1
           style={{
@@ -82,6 +87,10 @@ export default function HeroSection({
         >
           {heroTitle}
         </motion.h1>
+
+    
+
+      
 
         <motion.p
           className="lead"
@@ -118,8 +127,8 @@ export default function HeroSection({
                 backgroundColor: "#25a244", // Your brand green
                 color: "white",
                 border: "none",
-                boxShadow: hoverContact 
-                  ? "0 6px 20px rgba(37, 162, 68, 0.5)" 
+                boxShadow: hoverContact
+                  ? "0 6px 20px rgba(37, 162, 68, 0.5)"
                   : "0 4px 15px rgba(37, 162, 68, 0.4)",
                 minWidth: "160px",
                 whiteSpace: "nowrap",
@@ -163,8 +172,8 @@ export default function HeroSection({
                 backgroundColor: "transparent",
                 color: "white",
                 border: "2px solid white",
-                boxShadow: hoverLearnMore 
-                  ? "0 6px 20px rgba(255, 255, 255, 0.3)" 
+                boxShadow: hoverLearnMore
+                  ? "0 6px 20px rgba(255, 255, 255, 0.3)"
                   : "0 4px 15px rgba(255, 255, 255, 0.2)",
                 minWidth: "160px",
                 whiteSpace: "nowrap",
@@ -202,13 +211,13 @@ export default function HeroSection({
             transform: translateX(0) !important;
           }
         }
-        
+
         @media (max-width: 576px) {
           .d-flex.flex-wrap {
             flex-direction: column !important;
             gap: 1rem !important;
           }
-          
+
           button {
             width: 100%;
             max-width: 280px;

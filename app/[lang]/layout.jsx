@@ -60,13 +60,7 @@ const metas = {
       description: meta.description,
       type: "website",
       url: canonicalUrl,
-      //  images: [
-      //    {
-      //      url: image,
-      //      width: 1200,
-      //      height: 630,
-      //    },
-      //  ],
+
     },
     twitter: {
       card: "summary_large_image",

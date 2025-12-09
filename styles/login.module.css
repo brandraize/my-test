@@ -13,3 +13,8 @@
         width: 75%;
     }
 }
+
+@font-face {
+  font-family: "Somar";
+  src: url("/fonts/somar/fonnts.com-Somar_Regular.ttf") format("ttf");
+}

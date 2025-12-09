@@ -5,6 +5,7 @@ import IntroSection from "../../components/IntroSection";
 import ServicesSection from "../../components/ServicesSection";
 import "@/styles/globals.css";
 import NewsEventsSlider from "../../components/NewsEventsSlider";
+import Accreditations from "../../components/Accreditations";
 
 export default function Home({ params }) {
   const resolvedParams = use(params);
@@ -49,6 +50,8 @@ export default function Home({ params }) {
           heroDescription={currentContent.heroDescription}
         />
         <IntroSection lang={lang} />
+                <Accreditations lang={lang} />
+
         <ServicesSection lang={lang} />
         <NewsEventsSlider lang={lang} />
       </main>

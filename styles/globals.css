@@ -26,24 +26,36 @@
   }
 }
 
-/* Rest of your existing CSS remains the same */
-@font-face {
-  font-family: "Somar";
-  src: url("/fonts/somar/fonnts.com-Somar_Regular.ttf") format("ttf");
-}
-
+/* Fix: Don't apply font-family to body for Bootstrap components */
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
+/* Apply Somar font only to specific elements, not body */
 body {
   color: var(--foreground);
-  font-family: "Somar", sans-serif;
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Apply Somar font to specific elements only */
+.somar-font {
+  font-family: "Somar", sans-serif;
+}
+
+/* Bootstrap components should use system fonts */
+.navbar,
+.navbar *,
+.offcanvas,
+.offcanvas *,
+.btn,
+.dropdown-menu {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 * {
@@ -71,13 +83,15 @@ a {
 .primary-bg {
   background-color: var(--primary-color) !important;
 }
-.heroTitle{
-  font-size: 18px;
 
+.heroTitle {
+  font-size: 18px;
 }
+
 .main-hero-title {
   font-size: clamp(2rem, 5vw, 3rem) !important;
 }
+
 .primary-bg:hover {
   background-color: var(--primary-hover-color) !important;
 }
@@ -124,15 +138,13 @@ a {
 .cursor-pointer {
   cursor: pointer;
 }
-.cursor-pointer {
-  cursor: pointer;
-}
 
 .text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .w-md-75 {
   width: 100%;
 }
@@ -198,7 +210,11 @@ input[type="search"]::-webkit-search-cancel-button {
   transform: rotate(180deg);
 }
 
-/* Navbar */
+/* Navbar - Fixed to ensure Bootstrap works */
+.navbar {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 #navbar a {
   font-weight: 500;
 }
@@ -220,6 +236,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .primaryButton:hover {
@@ -239,6 +256,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .secondaryButton:hover {
@@ -257,6 +275,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: 2px solid var(--primary-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .green-outline-button:hover {
@@ -331,4 +350,150 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .text-green-light {
   color: var(--primary-light) !important;
+}
+
+/* ===== IMPORTANT FIXES FOR BOOTSTRAP NAVBAR ===== */
+
+/* Ensure Bootstrap JS works properly */
+.navbar-toggler {
+  border: none !important;
+  padding: 0.5rem !important;
+  font-size: 1.25rem !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Fix for offcanvas */
+.offcanvas {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.offcanvas.show {
+  visibility: visible !important;
+}
+
+/* Ensure proper stacking */
+.navbar {
+  z-index: 1030 !important;
+}
+
+.offcanvas {
+  z-index: 1045 !important;
+}
+
+.offcanvas-backdrop {
+  z-index: 1040 !important;
+}
+
+/* Fix for mobile menu animation */
+.offcanvas-end {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out !important;
+}
+
+.offcanvas-end.show {
+  transform: translateX(0) !important;
+}
+
+/* RTL support for offcanvas */
+[dir="rtl"] .offcanvas-end {
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .offcanvas-end.show {
+  transform: translateX(0) !important;
+}
+
+/* Ensure buttons work on mobile */
+.btn,
+.nav-link,
+.dropdown-item {
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+}
+
+/* Fix for touch devices */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    display: none !important;
+  }
+  
+  .offcanvas {
+    width: 85% !important;
+    max-width: 300px;
+  }
+  
+  /* Ensure toggler is clickable */
+  .navbar-toggler {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Fix for Bootstrap dropdowns */
+.dropdown-menu {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Ensure Bootstrap styles aren't overridden */
+.collapse:not(.show) {
+  display: none !important;
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease !important;
+}
+
+/* Fix for Bootstrap JavaScript events */
+[data-bs-toggle="collapse"],
+[data-bs-toggle="offcanvas"],
+[data-bs-toggle="dropdown"] {
+  cursor: pointer !important;
+}
+
+/* Fix Bootstrap Offcanvas */
+.offcanvas {
+  visibility: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.offcanvas.show {
+  visibility: visible;
+}
+
+/* RTL Support */
+[dir="rtl"] .offcanvas-end {
+  left: 0;
+  right: auto;
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .offcanvas-end.show {
+  transform: translateX(0) !important;
+}
+
+/* Ensure proper z-index */
+.offcanvas {
+  z-index: 1045;
+}
+
+.offcanvas-backdrop {
+  z-index: 1040;
+}
+
+.navbar {
+  z-index: 1030;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .offcanvas {
+    width: 85% !important;
+    max-width: 320px;
+  }
 }

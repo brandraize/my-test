@@ -11,15 +11,6 @@ import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
-const primary = Poppins({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
-
-export const secondary = Domine({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "ar" }];

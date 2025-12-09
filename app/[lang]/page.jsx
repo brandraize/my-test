@@ -1,12 +1,10 @@
 "use client";
-import Head from "next/head";
 import { use } from "react";
 import Hero from "../../components/Hero";
 import IntroSection from "../../components/IntroSection";
 import ServicesSection from "../../components/ServicesSection";
 import "@/styles/globals.css";
 import NewsEventsSlider from "../../components/NewsEventsSlider";
-import Contact from "../../components/Contact";
 
 export default function Home({ params }) {
   const resolvedParams = use(params);
@@ -37,21 +35,12 @@ export default function Home({ params }) {
 
   return (
     <>
-      <Head>
-        <title>{currentContent.title}</title>
-        <meta name="description" content={currentContent.description} />
-        <meta name="keywords" content={currentContent.keywords} />
-        <meta name="author" content="Sensing Nature" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content={currentContent.title} />
-        <meta property="og:description" content={currentContent.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content={lang === "ar" ? "ar_SA" : "en_US"} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={currentContent.title} />
-        <meta name="twitter:description" content={currentContent.description} />
-      </Head>
-
+      <title>{currentContent.title}</title>
+      <meta name="description" content={currentContent.description} />
+      <meta name="keywords" content={currentContent.keywords} />
+      <meta name="author" content="Sensing Nature" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
       <main>
         <Hero
           lang={lang}
@@ -62,7 +51,6 @@ export default function Home({ params }) {
         <IntroSection lang={lang} />
         <ServicesSection lang={lang} />
         <NewsEventsSlider lang={lang} />
-        {/* <Contact lang={lang} /> */}
       </main>
     </>
   );

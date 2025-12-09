@@ -1,12 +1,16 @@
+"use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function NewsEventsSlider({ lang = "en" }) {
   const isRTL = lang === "ar";
+  const router = useRouter();
 
   // Content based on language
   const content = {
@@ -17,36 +21,48 @@ export default function NewsEventsSlider({ lang = "en" }) {
       viewAll: "View All",
       newsItems: [
         {
+          id: "umt-acca-global-workshop-2024",
+          slug: "umt-acca-global-workshop-2024",
           title: "UMT ACCA Global Workshop 2024",
           description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards.",
           category: "Announcements",
           image: "/5.jpg",
         },
         {
+          id: "umt-wins-academic-excellence-award",
+          slug: "umt-wins-academic-excellence-award",
           title: "UMT Wins Academic Excellence Award",
           description: "UMT received national recognition for academic excellence and research innovation.",
           category: "University News",
           image: "/55.jpg",
         },
         {
+          id: "student-achieves-top-national-rank",
+          slug: "student-achieves-top-national-rank",
           title: "Student Achieves Top National Rank",
           description: "UMT student secures 1st position in nationwide talent examination.",
           category: "Achievements",
           image: "/bg-1.webp",
         },
         {
+          id: "new-research-center-launch",
+          slug: "new-research-center-launch",
           title: "New Research Center Launch",
           description: "UMT launches state-of-the-art research center for sustainable technologies.",
           category: "Research",
           image: "/5.jpg",
         },
         {
+          id: "international-collaboration",
+          slug: "international-collaboration",
           title: "International Collaboration",
           description: "UMT signs partnership with leading European university.",
           category: "Partnerships",
           image: "/55.jpg",
         },
         {
+          id: "annual-career-fair-2024",
+          slug: "annual-career-fair-2024",
           title: "Annual Career Fair 2024",
           description: "Over 100 companies participate in UMT's annual career fair.",
           category: "Events",
@@ -61,36 +77,48 @@ export default function NewsEventsSlider({ lang = "en" }) {
       viewAll: "عرض الكل",
       newsItems: [
         {
+          id: "umt-acca-global-workshop-2024",
+          slug: "umt-acca-global-workshop-2024",
           title: "ورشة عمل UMT ACCA العالمية 2024",
           description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية.",
           category: "الإعلانات",
           image: "/5.jpg",
         },
         {
+          id: "umt-wins-academic-excellence-award",
+          slug: "umt-wins-academic-excellence-award",
           title: "UMT تفوز بجائزة التميز الأكاديمي",
           description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي.",
           category: "أخبار الجامعة",
           image: "/55.jpg",
         },
         {
+          id: "student-achieves-top-national-rank",
+          slug: "student-achieves-top-national-rank",
           title: "طالب يحقق المركز الأول على المستوى الوطني",
           description: "حقق طالب UMT المركز الأول في الامتحان الوطني للمواهب.",
           category: "الإنجازات",
           image: "/bg-1.webp",
         },
         {
+          id: "new-research-center-launch",
+          slug: "new-research-center-launch",
           title: "إطلاق مركز بحثي جديد",
           description: "تطلق UMT مركزًا بحثيًا حديثًا للتقنيات المستدامة.",
           category: "البحث",
           image: "/5.jpg",
         },
         {
+          id: "international-collaboration",
+          slug: "international-collaboration",
           title: "تعاون دولي",
           description: "توقع UMT شراكة مع جامعة أوروبية رائدة.",
           category: "الشراكات",
           image: "/55.jpg",
         },
         {
+          id: "annual-career-fair-2024",
+          slug: "annual-career-fair-2024",
           title: "معرض التوظيف السنوي 2024",
           description: "يشارك أكثر من 100 شركة في معرض التوظيف السنوي لـ UMT.",
           category: "الفعاليات",
@@ -102,6 +130,21 @@ export default function NewsEventsSlider({ lang = "en" }) {
 
   const t = content[lang] || content.en;
   const slides = t.newsItems;
+
+  // Handle Read More click
+  const handleReadMore = (slug) => {
+    router.push(`/${lang}/news/${slug}`);
+  };
+
+  // Handle View All click
+  const handleViewAll = () => {
+    router.push(`/${lang}/news`);
+  };
+
+  // Handle card click (entire card is clickable)
+  const handleCardClick = (slug) => {
+    router.push(`/${lang}/news/${slug}`);
+  };
 
   return (
     <section
@@ -154,7 +197,10 @@ export default function NewsEventsSlider({ lang = "en" }) {
             {slides.map((slide, index) => (
               <SwiperSlide key={index} className="NewsSlider_slide">
                 {/* Single Card Design */}
-                <div className="NewsSlider_card">
+                <div 
+                  className="NewsSlider_card cursor-pointer"
+                  onClick={() => handleCardClick(slide.slug)}
+                >
                   {/* Image Section */}
                   <div className="NewsSlider_cardImageContainer">
                     <Image
@@ -184,7 +230,13 @@ export default function NewsEventsSlider({ lang = "en" }) {
                     </p>
 
                     {/* Read More Button */}
-                    <button className="NewsSlider_cardReadMore">
+                    <button 
+                      className="NewsSlider_cardReadMore"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent card click
+                        handleReadMore(slide.slug);
+                      }}
+                    >
                       <span>{t.readMore}</span>
                       <ChevronRight 
                         size={16} 
@@ -205,7 +257,10 @@ export default function NewsEventsSlider({ lang = "en" }) {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button className="NewsSlider_viewAllButton">
+          <button 
+            className="NewsSlider_viewAllButton"
+            onClick={handleViewAll}
+          >
             {t.viewAll}
           </button>
         </div>
@@ -263,6 +318,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.05em;
+          z-index: 10;
         }
 
         .NewsSlider_cardContent {
@@ -304,6 +360,8 @@ export default function NewsEventsSlider({ lang = "en" }) {
           width: fit-content;
           margin-top: 0.5rem;
           flex-direction: ${isRTL ? "row-reverse" : "row"};
+          position: relative;
+          z-index: 20;
         }
 
         .NewsSlider_cardReadMore:hover {

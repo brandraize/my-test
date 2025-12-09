@@ -49,6 +49,7 @@ export default function Home({ params }) {
           heroTitle={currentContent.heroTitle}
           heroDescription={currentContent.heroDescription}
         />
+        
         <IntroSection lang={lang} />
                 <Accreditations lang={lang} />
 

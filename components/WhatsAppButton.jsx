@@ -23,28 +23,29 @@ const WhatsAppButton = ({ lang = "en" }) => {
         onClick={handleClick}
         style={{
           position: "fixed",
-          bottom: "80px",
+          bottom: "30px", // Increased from 80px to be more accessible
           ...position,
-          zIndex: 999999, // Very high z-index
+          zIndex: 999999,
           cursor: "pointer",
           backgroundColor: "#25D366",
-          width: "60px",
-          height: "60px",
+          width: "70px", // Increased size
+          height: "70px", // Increased size
           borderRadius: "50%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          boxShadow: "0 6px 20px rgba(0,0,0,0.4)", // Stronger shadow
           transition: "all 0.3s ease",
           animation: "pulse 2s infinite",
+          border: "3px solid white", // Added white border for contrast
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.4)";
+          e.currentTarget.style.transform = "scale(1.15)";
+          e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.5)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.3)";
+          e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.4)";
         }}
         role="button"
         aria-label={lang === "ar" ? "تواصل عبر واتساب" : "Contact via WhatsApp"}
@@ -58,9 +59,44 @@ const WhatsAppButton = ({ lang = "en" }) => {
         <FaWhatsapp 
           style={{ 
             color: "white", 
-            fontSize: "32px" 
+            fontSize: "38px", // Increased icon size
           }} 
         />
+        
+        {/* Tooltip/Text label */}
+        <div 
+          className="whatsapp-tooltip"
+          style={{
+            position: "absolute",
+            bottom: "100%",
+            [lang === "ar" ? "right" : "left"]: "50%",
+            transform: lang === "ar" ? "translateX(50%)" : "translateX(-50%)",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            color: "white",
+            padding: "8px 12px",
+            borderRadius: "8px",
+            fontSize: "14px",
+            whiteSpace: "nowrap",
+            marginBottom: "10px",
+            opacity: 0,
+            visibility: "hidden",
+            transition: "all 0.3s ease",
+            pointerEvents: "none",
+          }}
+        >
+          {lang === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
+          <div 
+            style={{
+              position: "absolute",
+              top: "100%",
+              [lang === "ar" ? "right" : "left"]: "50%",
+              transform: lang === "ar" ? "translateX(50%)" : "translateX(-50%)",
+              borderLeft: "6px solid transparent",
+              borderRight: "6px solid transparent",
+              borderTop: "6px solid rgba(0, 0, 0, 0.8)",
+            }}
+          />
+        </div>
       </div>
       
       <style jsx global>{`
@@ -69,11 +105,17 @@ const WhatsAppButton = ({ lang = "en" }) => {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
           }
           70% {
-            box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); /* Larger pulse */
           }
           100% {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
           }
+        }
+        
+        /* Show tooltip on hover */
+        .whatsapp-button:hover .whatsapp-tooltip {
+          opacity: 1;
+          visibility: visible;
         }
         
         /* Ensure nothing covers the button */
@@ -81,12 +123,34 @@ const WhatsAppButton = ({ lang = "en" }) => {
           z-index: 999999 !important;
         }
         
-        /* Debug if needed */
-        /* 
-        .whatsapp-button {
-          border: 3px solid yellow !important;
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          .whatsapp-button {
+            width: 65px !important;
+            height: 65px !important;
+            bottom: 25px !important;
+          }
+          
+          .whatsapp-button svg {
+            font-size: 34px !important;
+          }
+          
+          .whatsapp-tooltip {
+            display: none; /* Hide tooltip on mobile */
+          }
         }
-        */
+        
+        @media (max-width: 480px) {
+          .whatsapp-button {
+            width: 60px !important;
+            height: 60px !important;
+            bottom: 20px !important;
+          }
+          
+          .whatsapp-button svg {
+            font-size: 30px !important;
+          }
+        }
       `}</style>
     </>
   );

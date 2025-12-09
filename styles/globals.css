@@ -536,7 +536,63 @@ html {
   height: 100%;
   object-fit: cover;
 }
+/* Add these styles to your globals.css */
 
+/* WhatsApp Button Fixes */
+.whatsapp-button {
+  z-index: 999999 !important;
+  position: fixed !important;
+}
+
+/* Ensure Hero video doesn't interfere */
+video {
+  position: absolute;
+  z-index: 1 !important;
+}
+
+/* Overlay layers should have higher z-index than video but lower than WhatsApp */
+div[style*="background-color: rgba(4, 57, 17, 0.39)"] {
+  z-index: 2 !important;
+}
+
+div[style*="background-color: rgba(50, 117, 12, 0.2)"] {
+  z-index: 2 !important;
+}
+
+/* Hero content should be above overlays */
+.position-relative.text-center.w-100 {
+  z-index: 3 !important;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  /* Make WhatsApp button more visible on mobile */
+  .whatsapp-button {
+    transform: scale(1.05); /* Slightly larger on mobile */
+  }
+  
+  /* Ensure video doesn't interfere with button */
+  video {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Ensure button is always clickable */
+.whatsapp-button {
+  pointer-events: auto !important;
+}
+
+/* Prevent other elements from covering the button */
+* {
+  pointer-events: none;
+}
+
+.whatsapp-button,
+.whatsapp-button * {
+  pointer-events: auto !important;
+}
 /* Accessibility Improvements */
 .visually-hidden {
   position: absolute;
@@ -605,4 +661,8 @@ img {
     color: black !important;
     text-decoration: underline !important;
   }
+
 }
+     .whatsapp-button {
+          z-index: 999999 !important;
+        }

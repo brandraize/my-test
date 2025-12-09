@@ -3,7 +3,6 @@
 .container {
   min-height: 100vh;
   background: #ffffff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -37,7 +36,8 @@
   margin-bottom: 16px;
   line-height: 1.2;
   letter-spacing: -0.5px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
+
 }
 
 .heroSubtitle {
@@ -47,7 +47,7 @@
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .heroDescription {
@@ -57,7 +57,7 @@
   max-width: 600px;
   margin: 0 auto;
   font-weight: 400;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Statistics Section */
@@ -92,7 +92,7 @@
   padding: 6px 16px;
   background: #d1fae5;
   border-radius: 20px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .statsTitle {
@@ -100,7 +100,7 @@
   font-weight: 700;
   color: #0f172a;
   margin-bottom: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   line-height: 1.3;
 }
 
@@ -160,14 +160,14 @@
   font-weight: 800;
   color: #0f172a;
   line-height: 1;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .statLabel {
   color: #64748b;
   font-size: 16px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Projects Section */
@@ -192,7 +192,7 @@
   font-weight: 700;
   color: #0f172a;
   margin-bottom: 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   line-height: 1.3;
 }
 
@@ -202,7 +202,7 @@
   line-height: 1.7;
   max-width: 600px;
   margin: 0 auto;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Filters */
@@ -218,7 +218,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .filterTitleIcon {
@@ -244,7 +244,7 @@
   align-items: center;
   gap: 8px;
   background: transparent;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   letter-spacing: 0.3px;
 }
 
@@ -310,7 +310,7 @@
   border-radius: 20px;
   font-size: 13px;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .categoryIcon {
@@ -328,7 +328,7 @@
   color: #64748b;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .projectContent {
@@ -342,7 +342,7 @@
   color: #0f172a;
   margin-bottom: 12px;
   line-height: 1.4;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .projectDescription {
@@ -350,7 +350,7 @@
   line-height: 1.6;
   margin-bottom: 20px;
   font-size: 15px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   flex: 1;
 }
 
@@ -367,7 +367,7 @@
   gap: 8px;
   color: #64748b;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .metaIcon {
@@ -392,7 +392,7 @@
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   letter-spacing: 0.2px;
 }
 
@@ -403,7 +403,7 @@
   font-weight: 500;
   background: #f1f5f9;
   color: #64748b;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .projectFooter {
@@ -423,7 +423,7 @@
   transition: all 0.3s ease;
   border: none;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   letter-spacing: 0.3px;
 }
 
@@ -467,7 +467,7 @@
   gap: 8px;
   transition: all 0.3s ease;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .pageButton:hover:not(:disabled) {
@@ -509,7 +509,7 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .pageNumber:hover {
@@ -543,13 +543,13 @@
   color: #64748b;
   margin-bottom: 12px;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .noProjectsMessage {
   color: #94a3b8;
   font-size: 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Project Details Modal */
@@ -579,7 +579,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .modalHeader {
@@ -608,14 +608,14 @@
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .modalYear {
   color: #64748b;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .modalTitle {
@@ -623,7 +623,7 @@
   font-weight: 700;
   color: #0f172a;
   line-height: 1.4;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   margin-bottom: 0;
 }
 
@@ -688,7 +688,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .detailTitleIcon {
@@ -700,7 +700,7 @@
   color: #475569;
   line-height: 1.7;
   font-size: 15px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .projectInfoGrid {
@@ -738,14 +738,14 @@
   font-weight: 600;
   color: #64748b;
   margin-bottom: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .infoContent p {
   color: #0f172a;
   font-weight: 500;
   font-size: 15px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .infoLabel {
@@ -753,14 +753,14 @@
   font-weight: 600;
   color: #64748b;
   margin-bottom: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .infoText {
   color: #0f172a;
   font-weight: 500;
   font-size: 15px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .servicesGrid {
@@ -775,7 +775,7 @@
   font-size: 13px;
   font-weight: 500;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   letter-spacing: 0.2px;
 }
 
@@ -793,7 +793,7 @@
   color: #475569;
   line-height: 1.6;
   font-size: 15px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .resultBullet {
@@ -827,7 +827,7 @@
   align-items: center;
   gap: 12px;
   transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   letter-spacing: 0.3px;
 }
 
@@ -894,7 +894,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .ctaSubtitle {
@@ -905,7 +905,7 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .ctaButton {
@@ -921,7 +921,7 @@
   align-items: center;
   gap: 12px;
   transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: 'somar', sans-serif !important;
   letter-spacing: 0.3px;
 }
 

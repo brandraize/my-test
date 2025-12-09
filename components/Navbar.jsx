@@ -60,30 +60,11 @@ export default function Navbar({ lang }) {
       label: lang === "ar" ? "الرئيسية" : "Home" 
     },
     { 
-      href: "/services", 
+      href: "/service", 
       label: lang === "ar" ? "خدماتنا" : "Our Services",
-      dropdown: true,
+      dropdown: false,
       type: "services",
-      items: [
-        {
-          title: { ar: "الخدمات الأساسية", en: "Basic Services" },
-          description: { ar: "خدماتنا الأساسية", en: "Our core services" },
-          icon: "🔧",
-          href: "/services/basic"
-        },
-        {
-          title: { ar: "خدمات متقدمة", en: "Advanced Services" },
-          description: { ar: "حلول متقدمة", en: "Advanced solutions" },
-          icon: "🚀",
-          href: "/services/advanced"
-        },
-        {
-          title: { ar: "خدمات خاصة", en: "Special Services" },
-          description: { ar: "حلول مخصصة", en: "Custom solutions" },
-          icon: "⭐",
-          href: "/services/special"
-        }
-      ]
+  
     },
     { 
       href: "/projects", 

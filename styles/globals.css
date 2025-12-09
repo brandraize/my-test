@@ -40,12 +40,12 @@ body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Apply Somar font to specific elements only */
 .somar-font {
-  font-family: "Somar", sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Bootstrap components should use system fonts */
@@ -55,7 +55,7 @@ body {
 .offcanvas *,
 .btn,
 .dropdown-menu {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'somar', sans-serif !important;
 }
 
 * {
@@ -212,7 +212,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Navbar - Fixed to ensure Bootstrap works */
 .navbar {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'somar', sans-serif !important;
 }
 
 #navbar a {
@@ -236,7 +236,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .primaryButton:hover {
@@ -256,7 +256,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'somar', sans-serif !important;
 }
 
 .secondaryButton:hover {
@@ -275,7 +275,8 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: 2px solid var(--primary-color);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  font-family: 'somar', sans-serif !important;
 }
 
 .green-outline-button:hover {
@@ -368,7 +369,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Fix for offcanvas */
 .offcanvas {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'somar', sans-serif !important;
 }
 
 .offcanvas.show {
@@ -435,7 +436,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Fix for Bootstrap dropdowns */
 .dropdown-menu {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'somar', sans-serif !important;
 }
 
 /* Ensure Bootstrap styles aren't overridden */

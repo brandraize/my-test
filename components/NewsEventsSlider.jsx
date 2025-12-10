@@ -252,17 +252,17 @@ export default function NewsEventsSlider({ lang = "en" }) {
           </Swiper>
 
           {/* Pagination Dots */}
-          <div className="swiper-pagination mt-8"></div>
+          {/* <div className="swiper-pagination mt-8"></div> */}
         </div>
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button 
+          {/* <button 
             className="NewsSlider_viewAllButton"
             onClick={handleViewAll}
           >
             {t.viewAll}
-          </button>
+          </button> */}
         </div>
       </div>
 

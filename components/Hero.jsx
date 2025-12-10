@@ -17,12 +17,11 @@ export default function HeroSection({
     <section
       className="position-relative w-100 d-flex align-items-center justify-content-center"
       style={{
-        // FIXED: Use min-height with fallback
-        minHeight: "calc(100vh - 56px)", // Account for navbar height
+        minHeight: "calc(100vh - 56px)",
         height: "auto",
         width: "100%",
         overflow: "hidden",
-        paddingTop: "56px", // Navbar height
+        paddingTop: "56px",
       }}
       aria-label="Hero section"
     >
@@ -77,7 +76,7 @@ export default function HeroSection({
         <motion.h1
           style={{
             color: "white",
-            fontSize: "clamp(1.75rem, 4vw, 3rem)", // Better scaling
+            fontSize: "clamp(1.75rem, 4vw, 3rem)",
             fontWeight: "bold",
             lineHeight: 1.2,
             marginBottom: "1rem",
@@ -95,7 +94,7 @@ export default function HeroSection({
           className="lead w-100"
           style={{
             color: "white",
-            fontSize: "clamp(0.95rem, 2vw, 1.3rem)", // Better scaling
+            fontSize: "clamp(0.95rem, 2vw, 1.3rem)",
             lineHeight: 1.5,
             margin: "0 auto",
             paddingBottom: "20px",
@@ -115,8 +114,11 @@ export default function HeroSection({
           className="d-flex flex-wrap justify-content-center align-items-center gap-3"
           style={{ padding: "0 10px" }}
         >
-          {/* Contact Us Button */}
-          <Link href="/contact-us" style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}>
+          {/* Contact Us Button - FIXED: Include lang parameter */}
+          <Link 
+            href={`/${lang}/contact`} 
+            style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
+          >
             <button
               onMouseEnter={() => setHoverContact(true)}
               onMouseLeave={() => setHoverContact(false)}
@@ -144,7 +146,7 @@ export default function HeroSection({
                   display: "inline-block",
                   marginLeft: isRTL ? "0" : "6px",
                   marginRight: isRTL ? "6px" : "0",
-                  opacity: hoverContact ? 1 : 0.7, // Better visibility on mobile
+                  opacity: hoverContact ? 1 : 0.7,
                   transform: hoverContact
                     ? "translateX(0)"
                     : isRTL
@@ -159,8 +161,11 @@ export default function HeroSection({
             </button>
           </Link>
 
-          {/* Learn More Button */}
-          <Link href="/about" style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}>
+          {/* Learn More Button - FIXED: Include lang parameter */}
+          <Link 
+            href={`/${lang}/about`} 
+            style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
+          >
             <button
               onMouseEnter={() => setHoverLearnMore(true)}
               onMouseLeave={() => setHoverLearnMore(false)}
@@ -188,7 +193,7 @@ export default function HeroSection({
                   display: "inline-block",
                   marginLeft: isRTL ? "0" : "6px",
                   marginRight: isRTL ? "6px" : "0",
-                  opacity: hoverLearnMore ? 1 : 0.7, // Better visibility on mobile
+                  opacity: hoverLearnMore ? 1 : 0.7,
                   transform: hoverLearnMore
                     ? "translateX(0)"
                     : isRTL
@@ -206,7 +211,6 @@ export default function HeroSection({
       </div>
 
       <style jsx>{`
-        /* Mobile-specific fixes */
         @media (max-width: 768px) {
           section {
             min-height: calc(100vh - 56px) !important;
@@ -256,7 +260,6 @@ export default function HeroSection({
           }
         }
         
-        /* Fix for very small screens */
         @media (max-width: 320px) {
           section {
             padding-top: 60px !important;

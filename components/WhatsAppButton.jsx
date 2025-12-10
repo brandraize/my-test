@@ -13,7 +13,6 @@ const WhatsAppButton = ({ lang = "en" }) => {
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
-  // Position based on language
   const position = lang === "ar" ? { left: "20px" } : { right: "20px" };
 
   return (
@@ -23,47 +22,34 @@ const WhatsAppButton = ({ lang = "en" }) => {
         onClick={handleClick}
         style={{
           position: "fixed",
-          bottom: "30px", // Increased from 80px to be more accessible
+          bottom: "30px",
           ...position,
-          zIndex: 999999,
+          zIndex: 999999, // Very high z-index
           cursor: "pointer",
           backgroundColor: "#25D366",
-          width: "70px", // Increased size
-          height: "70px", // Increased size
+          width: "70px",
+          height: "70px",
           borderRadius: "50%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 6px 20px rgba(0,0,0,0.4)", // Stronger shadow
+          boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
           transition: "all 0.3s ease",
           animation: "pulse 2s infinite",
-          border: "3px solid white", // Added white border for contrast
+          border: "3px solid white",
+          // Add this to ensure it's on top of everything
+          willChange: "transform",
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.15)";
-          e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.5)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.4)";
-        }}
-        role="button"
-        aria-label={lang === "ar" ? "تواصل عبر واتساب" : "Contact via WhatsApp"}
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleClick();
-          }
-        }}
+        // ... rest of your event handlers ...
       >
         <FaWhatsapp 
           style={{ 
             color: "white", 
-            fontSize: "38px", // Increased icon size
+            fontSize: "38px",
           }} 
         />
         
-        {/* Tooltip/Text label */}
+        {/* Tooltip */}
         <div 
           className="whatsapp-tooltip"
           style={{
@@ -71,7 +57,7 @@ const WhatsAppButton = ({ lang = "en" }) => {
             bottom: "100%",
             [lang === "ar" ? "right" : "left"]: "50%",
             transform: lang === "ar" ? "translateX(50%)" : "translateX(-50%)",
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
             color: "white",
             padding: "8px 12px",
             borderRadius: "8px",
@@ -82,6 +68,7 @@ const WhatsAppButton = ({ lang = "en" }) => {
             visibility: "hidden",
             transition: "all 0.3s ease",
             pointerEvents: "none",
+            zIndex: 999999, // Same high z-index
           }}
         >
           {lang === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
@@ -93,7 +80,7 @@ const WhatsAppButton = ({ lang = "en" }) => {
               transform: lang === "ar" ? "translateX(50%)" : "translateX(-50%)",
               borderLeft: "6px solid transparent",
               borderRight: "6px solid transparent",
-              borderTop: "6px solid rgba(0, 0, 0, 0.8)",
+              borderTop: "6px solid rgba(0, 0, 0, 0.9)",
             }}
           />
         </div>
@@ -105,11 +92,17 @@ const WhatsAppButton = ({ lang = "en" }) => {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
           }
           70% {
-            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); /* Larger pulse */
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
           }
           100% {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
           }
+        }
+        
+        /* IMPORTANT: Force WhatsApp button on top */
+        .whatsapp-button {
+          z-index: 99999222233333333333339 !important;
+          transform: translateZ(0); /* Force hardware acceleration */
         }
         
         /* Show tooltip on hover */
@@ -118,9 +111,14 @@ const WhatsAppButton = ({ lang = "en" }) => {
           visibility: visible;
         }
         
-        /* Ensure nothing covers the button */
-        .whatsapp-button {
-          z-index: 999999 !important;
+        /* Reset any stacking contexts that might interfere */
+        body > div, 
+        body > section,
+        main,
+        .container,
+        .row,
+        .col-lg-6 {
+          transform-style: flat !important;
         }
         
         /* Mobile optimizations */
@@ -129,6 +127,7 @@ const WhatsAppButton = ({ lang = "en" }) => {
             width: 65px !important;
             height: 65px !important;
             bottom: 25px !important;
+            z-index: 999999 !important;
           }
           
           .whatsapp-button svg {
@@ -136,7 +135,7 @@ const WhatsAppButton = ({ lang = "en" }) => {
           }
           
           .whatsapp-tooltip {
-            display: none; /* Hide tooltip on mobile */
+            display: none;
           }
         }
         
@@ -145,6 +144,7 @@ const WhatsAppButton = ({ lang = "en" }) => {
             width: 60px !important;
             height: 60px !important;
             bottom: 20px !important;
+            z-index: 999999 !important;
           }
           
           .whatsapp-button svg {

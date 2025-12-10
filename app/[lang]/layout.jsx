@@ -77,6 +77,7 @@ export default async function RootLayout({ children, params }) {
       <body style={{ position: "relative" }}>
         <ContextProvider>
           <Navbar lang={lang} />
+           <WhatsAppButton lang={lang} />
           <ToastContainer position="top-center" autoClose={3000} />
           
           <main
@@ -87,7 +88,7 @@ export default async function RootLayout({ children, params }) {
           </main>
           
           {/* WhatsApp Button - Ensure it has high z-index */}
-          <WhatsAppButton lang={lang} />
+         
           
           <BackToTopButton />
           <Footer lang={lang} />

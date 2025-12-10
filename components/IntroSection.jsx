@@ -1,25 +1,25 @@
 "use client";
 import { motion } from "framer-motion";
-import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect, useState } from 'react'; // Added import
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function IntroSection({ lang = "en" }) {
   const isRTL = lang === "ar";
-  const [isMounted, setIsMounted] = useState(false); // Track if component is mounted on client
-  
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
-    setIsMounted(true); // Component is now mounted on client
+    setIsMounted(true);
   }, []);
 
   // Image paths - assuming images are in the public folder
   const imagePaths = {
-    circle: '/circel.png',
-    mountain: '/moutain.png',
-    leaf: '/leaf.png',
-    flight: '/flight.png'
+    circle: "/circel.png",
+    mountain: "/moutain.png",
+    leaf: "/leaf.png",
+    flight: "/flight.png",
   };
-  
+
   // Color scheme
   const colors = {
     primary: "#10b981",
@@ -31,33 +31,28 @@ export default function IntroSection({ lang = "en" }) {
     white: "#ffffff",
     lightBg: "#f0fdf4",
   };
-  
+
   // Content based on language
   const content = {
-    title: isRTL ? "  لدينا ما تحتاجه!" : "We've got what you need!",
-    description: isRTL 
-      ? ` "              في "سينسينغ نيتشر"، نلتزم بتقديم خدمات متخصصة وموثوقة ومبتكرة في مختلف التخصصات الجيولوجية والجيوفيزيائية والبيئية والأرصاد الجوية. بفضل فريق من المتخصصين ذوي الخبرة والتقنيات الحديثة، نقدم رؤى شاملة لدعم الاستكشاف والتطوير والمحافظة على البيئة وإدارة المخاطر في جميع أنحاء العالم.        .`
+    title: isRTL ? "لدينا ما تحتاجه!" : "We've got what you need!",
+    description: isRTL
+      ? `في "سينسينغ نيتشر"، نلتزم بتقديم خدمات متخصصة وموثوقة ومبتكرة في مختلف التخصصات الجيولوجية والجيوفيزيائية والبيئية والأرصاد الجوية. بفضل فريق من المتخصصين ذوي الخبرة والتقنيات الحديثة، نقدم رؤى شاملة لدعم الاستكشاف والتطوير والمحافظة على البيئة وإدارة المخاطر في جميع أنحاء العالم.`
       : `At "Sensing Nature" we are committed to delivering expert, reliable, and innovative services across geological, geophysical, environmental, and meteorological disciplines. With a team of experienced professionals and state-of-the-art technologies, we provide comprehensive insights to support exploration, development, environmental stewardship, and risk management worldwide.`,
-    
     missionTitle: isRTL ? "مهمتنا" : "Our Mission",
-    missionText: isRTL 
+    missionText: isRTL
       ? "تقديم خدمات استشارية وتطويرية وهندسية وأرصاد جوية وبيئية متميزة ودقيقة من خلال توفير حلول مبتكرة للتحديات المعقدة باستخدام أفضل الكفاءات والطرق والوسائل العلمية من أجل تحقيق القيادة والتميز في المملكة العربية السعودية ودول الخليج العربي والشرق الأوسط."
       : "At Sensing Nature we are committed to delivering expert, reliable, and innovative services across geological, geophysical, environmental, and meteorological disciplines. With a team of experienced professionals and state-of-the-art technologies, we provide comprehensive insights to support exploration, development, environmental stewardship, and risk management worldwide.",
-    
     visionTitle: isRTL ? "رؤيتنا" : "Our Vision",
-    visionText: isRTL 
+    visionText: isRTL
       ? "تسهيل عملية اتخاذ القرار للجهات والأفراد من خلال توفير معلومات دقيقة وموثوقة."
-      : "Facilitate decision-making for entities and individuals by providing accurate and reliable information."
+      : "Facilitate decision-making for entities and individuals by providing accurate and reliable information.",
   };
-
 
   const getStableValue = (index, seed = 0) => {
-    // Simple deterministic pseudo-random function
     const x = Math.sin(index + seed) * 10000;
-    return x - Math.floor(x); // Returns value between 0 and 1
+    return x - Math.floor(x);
   };
 
-  // Fixed: Use deterministic values for animations
   const getSize = (index, base = 50, variation = 30) => {
     return base + getStableValue(index, 100) * variation;
   };
@@ -66,9 +61,13 @@ export default function IntroSection({ lang = "en" }) {
     return getStableValue(index, seed) * 100;
   };
 
-  // Fixed: Get image based on index, not random
   const getImage = (index) => {
-    const images = [imagePaths.circle, imagePaths.mountain, imagePaths.leaf, imagePaths.flight];
+    const images = [
+      imagePaths.circle,
+      imagePaths.mountain,
+      imagePaths.leaf,
+      imagePaths.flight,
+    ];
     return images[index % 4];
   };
 
@@ -76,12 +75,12 @@ export default function IntroSection({ lang = "en" }) {
   const ProfessionalLogo = () => (
     <div className="position-relative w-100 h-100 d-flex align-items-center justify-content-center">
       {/* Animated Background Grid */}
-      <div className="position-absolute w-100 h-100">
-        {/* Grid Circles - FIXED: Use deterministic sizes */}
+      <div className="position-absolute w-100 h-100" style={{ zIndex: 1 }}>
+        {/* Grid Circles */}
         {[...Array(16)].map((_, i) => {
           const row = Math.floor(i / 4);
           const col = i % 4;
-          const size = getSize(i, 50, 30); // Fixed: deterministic size
+          const size = getSize(i, 50, 30);
           return (
             <motion.div
               key={`grid-circle-${i}`}
@@ -92,16 +91,17 @@ export default function IntroSection({ lang = "en" }) {
                 left: `${col * 25}%`,
                 top: `${row * 25}%`,
                 opacity: 0.05,
+                zIndex: 1,
               }}
               animate={{
                 scale: [1, 1.2, 1],
                 rotate: [0, 180, 360],
               }}
               transition={{
-                duration: 15 + (i % 10), // Fixed: deterministic duration
+                duration: 15 + (i % 10),
                 repeat: Infinity,
                 ease: "linear",
-                delay: i % 5, // Fixed: deterministic delay
+                delay: i % 5,
               }}
             >
               <Image
@@ -114,14 +114,14 @@ export default function IntroSection({ lang = "en" }) {
           );
         })}
       </div>
-      
+
       {/* Main Logo Container */}
       <motion.div
-        className="position-relative z-2"
+        className="position-relative"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        style={{ width: "320px", height: "320px" }}
+        style={{ width: "320px", height: "320px", zIndex: 2 }}
       >
         {/* Central Main Circle */}
         <motion.div
@@ -133,6 +133,7 @@ export default function IntroSection({ lang = "en" }) {
             top: "20px",
             backgroundColor: `${colors.primary}10`,
             border: `2px solid ${colors.primary}20`,
+            zIndex: 1,
           }}
           animate={{
             scale: [1, 1.05, 1],
@@ -143,13 +144,14 @@ export default function IntroSection({ lang = "en" }) {
             ease: "easeInOut",
           }}
         />
-        
+
         {/* Orbit 1 - Large Floating Elements */}
         <motion.div
           className="position-absolute"
           style={{
             width: "320px",
             height: "320px",
+            zIndex: 1,
           }}
           animate={{ rotate: 360 }}
           transition={{
@@ -166,6 +168,7 @@ export default function IntroSection({ lang = "en" }) {
               height: "100px",
               top: "0px",
               left: "220px",
+              zIndex: 1,
             }}
             animate={{
               y: [0, -15, 0],
@@ -183,77 +186,20 @@ export default function IntroSection({ lang = "en" }) {
                 ease: "easeInOut",
               },
             }}
-          >
-            {/* <div className="w-100 h-100 position-relative">
-              <Image
-                src={imagePaths.mountain}
-                alt="Mountain Element"
-                fill
-                className="object-contain"
-                style={{ filter: "drop-shadow(0 4px 8px rgba(16, 185, 129, 0.4))" }}
-              />
-            </div> */}
-          </motion.div>
-          
-          {/* Position 2: Bottom Left - Flight/Bird */}
-          {/* <motion.div
-            className="position-absolute"
-            style={{
-              width: "90px",
-              height: "90px",
-              top: "230px",
-              left: "10px",
-            }}
-            animate={{
-              x: [0, 10, 0],
-              y: [0, -20, 0],
-              rotate: [0, 10, 0, -10, 0],
-            }}
-            transition={{
-              x: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              },
-              y: {
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              rotate: {
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              },
-            }}
-          >
-            <div className="w-100 h-100 position-relative">
-              <Image
-                src={imagePaths.flight}
-                alt="Flight Element"
-                fill
-                className="object-contain"
-                style={{ filter: "drop-shadow(0 4px 8px rgba(14, 165, 233, 0.4))" }}
-              />
-            </div>
-          </motion.div> */}
+          ></motion.div>
         </motion.div>
-        
-        {/* Orbit 2 - Medium Floating Elements */}
-     
-        
+
         {/* Static Center Elements */}
-        <div className="position-absolute" style={{
-          width: "160px",
-          height: "160px",
-          left: "80px",
-          top: "80px",
-        }}>
-          {/* Center Mountain */}
-      
-          
+        <div
+          className="position-absolute"
+          style={{
+            width: "160px",
+            height: "160px",
+            left: "80px",
+            top: "80px",
+            zIndex: 2,
+          }}
+        >
           {/* Center Leaf Cluster */}
           <motion.div
             className="position-absolute"
@@ -262,6 +208,7 @@ export default function IntroSection({ lang = "en" }) {
               height: "40px",
               left: "10px",
               top: "10px",
+              zIndex: 2,
             }}
             animate={{
               rotate: [0, 360],
@@ -289,7 +236,7 @@ export default function IntroSection({ lang = "en" }) {
               />
             </div>
           </motion.div>
-          
+
           <motion.div
             className="position-absolute"
             style={{
@@ -297,6 +244,7 @@ export default function IntroSection({ lang = "en" }) {
               height: "30px",
               right: "10px",
               bottom: "10px",
+              zIndex: 2,
             }}
             animate={{
               rotate: [360, 0],
@@ -325,7 +273,7 @@ export default function IntroSection({ lang = "en" }) {
               />
             </div>
           </motion.div>
-          
+
           {/* Flying Bird near Center */}
           <motion.div
             className="position-absolute"
@@ -334,6 +282,7 @@ export default function IntroSection({ lang = "en" }) {
               height: "50px",
               right: "5px",
               top: "55px",
+              zIndex: 2,
             }}
             animate={{
               x: [0, 15, 0],
@@ -355,9 +304,10 @@ export default function IntroSection({ lang = "en" }) {
               />
             </div>
           </motion.div>
-          
+
           {/* Central Glow Effect */}
-          <div className="position-absolute rounded-circle"
+          <div
+            className="position-absolute rounded-circle"
             style={{
               width: "140px",
               height: "140px",
@@ -366,10 +316,11 @@ export default function IntroSection({ lang = "en" }) {
               background: `radial-gradient(circle, ${colors.primary}20 0%, transparent 70%)`,
               filter: "blur(10px)",
               animation: "pulse 4s ease-in-out infinite",
+              zIndex: 1,
             }}
           />
         </div>
-        
+
         {/* Floating Independent Elements */}
         {/* Independent Leaf - Top Left Corner */}
         <motion.div
@@ -379,6 +330,7 @@ export default function IntroSection({ lang = "en" }) {
             height: "45px",
             left: "0px",
             top: "40px",
+            zIndex: 2,
           }}
           animate={{
             x: [0, 20, 0],
@@ -401,7 +353,7 @@ export default function IntroSection({ lang = "en" }) {
             />
           </div>
         </motion.div>
-        
+
         {/* Independent Circle - Bottom Right Corner */}
         <motion.div
           className="position-absolute"
@@ -410,6 +362,7 @@ export default function IntroSection({ lang = "en" }) {
             height: "60px",
             right: "0px",
             bottom: "60px",
+            zIndex: 2,
           }}
           animate={{
             scale: [1, 1.5, 1],
@@ -438,7 +391,7 @@ export default function IntroSection({ lang = "en" }) {
             />
           </div>
         </motion.div>
-        
+
         {/* Independent Bird - Top Right Flying */}
         <motion.div
           className="position-absolute"
@@ -447,6 +400,7 @@ export default function IntroSection({ lang = "en" }) {
             height: "40px",
             right: "20px",
             top: "0px",
+            zIndex: 2,
           }}
           animate={{
             x: [0, 25, 0],
@@ -470,7 +424,7 @@ export default function IntroSection({ lang = "en" }) {
           </div>
         </motion.div>
       </motion.div>
-      
+
       {/* Company Name */}
       <motion.div
         className="text-center mt-4 position-absolute"
@@ -484,7 +438,7 @@ export default function IntroSection({ lang = "en" }) {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
       >
-        <h2 
+        <h2
           className="mb-2"
           style={{
             color: colors.accent,
@@ -497,7 +451,7 @@ export default function IntroSection({ lang = "en" }) {
           Sensing Nature
         </h2>
         {isRTL && (
-          <h3 
+          <h3
             className="mb-3"
             style={{
               color: colors.accent,
@@ -509,7 +463,7 @@ export default function IntroSection({ lang = "en" }) {
             استشعار الطبيعة
           </h3>
         )}
-        <div 
+        <div
           className="mx-auto"
           style={{
             width: "100px",
@@ -518,7 +472,7 @@ export default function IntroSection({ lang = "en" }) {
             margin: "0.5rem 0",
           }}
         />
-        <p 
+        <p
           style={{
             color: colors.textDark,
             fontSize: "0.9rem",
@@ -529,19 +483,21 @@ export default function IntroSection({ lang = "en" }) {
             margin: "0 auto",
           }}
         >
-          {isRTL 
-            ? "حلول بيئية مبتكرة ومستدامة" 
-            : "Innovative & Sustainable Environmental Solutions"
-          }
+          {isRTL
+            ? "حلول بيئية مبتكرة ومستدامة"
+            : "Innovative & Sustainable Environmental Solutions"}
         </p>
       </motion.div>
-      
-      {/* Background Floating Particles - FIXED: Use deterministic values */}
-      <div className="position-absolute w-100 h-100" style={{ pointerEvents: "none", zIndex: 0 }}>
+
+      {/* Background Floating Particles */}
+      <div
+        className="position-absolute w-100 h-100"
+        style={{ pointerEvents: "none", zIndex: 0 }}
+      >
         {[...Array(12)].map((_, i) => {
-          const size = 4 + (i % 8); // Fixed: deterministic size
-          const img = getImage(i); // Fixed: deterministic image
-          
+          const size = 4 + (i % 8);
+          const img = getImage(i);
+
           return (
             <motion.div
               key={`particle-${i}`}
@@ -549,29 +505,25 @@ export default function IntroSection({ lang = "en" }) {
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
-                left: `${(i * 7) % 100}%`, // Fixed: deterministic position
-                top: `${(i * 11) % 100}%`, // Fixed: deterministic position
+                left: `${(i * 7) % 100}%`,
+                top: `${(i * 11) % 100}%`,
                 opacity: 0.1,
+                zIndex: 0,
               }}
               animate={{
-                x: [0, ((i * 3) % 100) - 50, 0], // Fixed: deterministic animation
-                y: [0, ((i * 5) % 100) - 50, 0], // Fixed: deterministic animation
+                x: [0, ((i * 3) % 100) - 50, 0],
+                y: [0, ((i * 5) % 100) - 50, 0],
                 rotate: [0, 180, 360],
               }}
               transition={{
-                duration: 10 + (i % 20), // Fixed: deterministic duration
+                duration: 10 + (i % 20),
                 repeat: Infinity,
                 ease: "linear",
-                delay: i % 5, // Fixed: deterministic delay
+                delay: i % 5,
               }}
             >
               <div className="w-100 h-100 position-relative">
-                <Image
-                  src={img}
-                  alt=""
-                  fill
-                  className="object-contain"
-                />
+                <Image src={img} alt="" fill className="object-contain" />
               </div>
             </motion.div>
           );
@@ -583,12 +535,13 @@ export default function IntroSection({ lang = "en" }) {
   // Don't render animations until mounted to avoid hydration mismatch
   if (!isMounted) {
     return (
-      <section 
-        className="py-5"
+      <section
+        className="py-5 position-relative"
         style={{
           backgroundColor: colors.lightBg,
           direction: isRTL ? "rtl" : "ltr",
           overflow: "hidden",
+          zIndex: 1,
         }}
         aria-labelledby="intro-title"
       >
@@ -596,7 +549,11 @@ export default function IntroSection({ lang = "en" }) {
           <div className="row align-items-center">
             {/* Simplified version for SSR */}
             <div className="col-lg-6 mb-5 mb-lg-0">
-              <h2 id="intro-title" className="mb-4" style={{ color: colors.accent }}>
+              <h2
+                id="intro-title"
+                className="mb-4"
+                style={{ color: colors.accent }}
+              >
                 {content.title}
               </h2>
               <p className="mb-4 lead" style={{ color: colors.textDark }}>
@@ -615,31 +572,41 @@ export default function IntroSection({ lang = "en" }) {
   return (
     <>
       <Head>
-        <title>{isRTL ? "عن شركتنا - سينسينغ نيتشر" : "About Us - Sensing Nature"}</title>
-        <meta name="description" content={content.description.substring(0, 160)} />
+        <title>
+          {isRTL ? "عن شركتنا - سينسينغ نيتشر" : "About Us - Sensing Nature"}
+        </title>
+        <meta
+          name="description"
+          content={content.description.substring(0, 160)}
+        />
       </Head>
 
-      <section 
+      <section
         className="py-5"
         style={{
           backgroundColor: colors.lightBg,
           direction: isRTL ? "rtl" : "ltr",
           overflow: "hidden",
+          position: "relative",
+          zIndex: 1,
         }}
         aria-labelledby="intro-title"
       >
-        {/* Background Decorative Elements - FIXED: Use deterministic values */}
-        <div className="position-absolute w-100 h-100" style={{ 
-          top: 0, 
-          left: 0,
-          pointerEvents: "none",
-          opacity: 0.03,
-          zIndex: 0
-        }}>
+        {/* Background Decorative Elements - FIXED: Added low z-index */}
+        <div
+          className="position-absolute w-100 h-100"
+          style={{
+            top: 0,
+            left: 0,
+            pointerEvents: "none",
+            opacity: 0.03,
+            zIndex: 0,
+          }}
+        >
           {[...Array(8)].map((_, i) => {
-            const size = 100 + (i * 20); // Fixed: deterministic size
-            const img = getImage(i); // Fixed: deterministic image
-            
+            const size = 100 + i * 20;
+            const img = getImage(i);
+
             return (
               <motion.div
                 key={`bg-deco-${i}`}
@@ -647,8 +614,9 @@ export default function IntroSection({ lang = "en" }) {
                 style={{
                   width: `${size}px`,
                   height: `${size}px`,
-                  left: `${(i * 12) % 100}%`, // Fixed: deterministic position
-                  top: `${(i * 15) % 100}%`, // Fixed: deterministic position
+                  left: `${(i * 12) % 100}%`,
+                  top: `${(i * 15) % 100}%`,
+                  zIndex: 0,
                 }}
                 animate={{
                   rotate: i % 2 === 0 ? [0, 360] : [360, 0],
@@ -656,24 +624,19 @@ export default function IntroSection({ lang = "en" }) {
                 }}
                 transition={{
                   rotate: {
-                    duration: 30 + (i * 5), // Fixed: deterministic duration
+                    duration: 30 + i * 5,
                     repeat: Infinity,
                     ease: "linear",
                   },
                   scale: {
-                    duration: 5 + (i % 5), // Fixed: deterministic duration
+                    duration: 5 + (i % 5),
                     repeat: Infinity,
                     ease: "easeInOut",
                   },
                 }}
               >
                 <div className="w-100 h-100 position-relative">
-                  <Image
-                    src={img}
-                    alt=""
-                    fill
-                    className="object-contain"
-                  />
+                  <Image src={img} alt="" fill className="object-contain" />
                 </div>
               </motion.div>
             );
@@ -683,12 +646,13 @@ export default function IntroSection({ lang = "en" }) {
         <div className="container position-relative" style={{ zIndex: 1 }}>
           <div className="row align-items-center">
             {/* Left Column - Text Content */}
-            <motion.div 
+            <motion.div
               className="col-lg-6 mb-5 mb-lg-0"
               initial={{ x: isRTL ? 100 : -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
+              style={{ zIndex: 1 }}
             >
               <motion.h2
                 id="intro-title"
@@ -729,6 +693,7 @@ export default function IntroSection({ lang = "en" }) {
                   borderLeft: isRTL ? "none" : `4px solid ${colors.primary}`,
                   borderRight: isRTL ? `4px solid ${colors.primary}` : "none",
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+                  zIndex: 1,
                 }}
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -746,9 +711,14 @@ export default function IntroSection({ lang = "en" }) {
                     left: isRTL ? "auto" : "10px",
                     top: "10px",
                     opacity: 0.1,
+                    zIndex: 1,
                   }}
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                 >
                   <div className="w-100 h-100 position-relative">
                     <Image
@@ -759,8 +729,8 @@ export default function IntroSection({ lang = "en" }) {
                     />
                   </div>
                 </motion.div>
-                
-                <h3 
+
+                <h3
                   id="mission-title"
                   className="mb-3"
                   style={{
@@ -771,7 +741,7 @@ export default function IntroSection({ lang = "en" }) {
                 >
                   {content.missionTitle}
                 </h3>
-                <p 
+                <p
                   style={{
                     color: colors.textDark,
                     lineHeight: 1.7,
@@ -790,6 +760,7 @@ export default function IntroSection({ lang = "en" }) {
                   borderLeft: isRTL ? "none" : `4px solid ${colors.primaryDark}`,
                   borderRight: isRTL ? `4px solid ${colors.primaryDark}` : "none",
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+                  zIndex: 1,
                 }}
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -807,14 +778,15 @@ export default function IntroSection({ lang = "en" }) {
                     left: isRTL ? "auto" : "10px",
                     bottom: "10px",
                     opacity: 0.1,
+                    zIndex: 1,
                   }}
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
+                    rotate: [0, 180, 360],
                   }}
-                  transition={{ 
+                  transition={{
                     scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 15, repeat: Infinity, ease: "linear" }
+                    rotate: { duration: 15, repeat: Infinity, ease: "linear" },
                   }}
                 >
                   <div className="w-100 h-100 position-relative">
@@ -826,8 +798,8 @@ export default function IntroSection({ lang = "en" }) {
                     />
                   </div>
                 </motion.div>
-                
-                <h3 
+
+                <h3
                   id="vision-title"
                   className="mb-3"
                   style={{
@@ -838,7 +810,7 @@ export default function IntroSection({ lang = "en" }) {
                 >
                   {content.visionTitle}
                 </h3>
-                <p 
+                <p
                   style={{
                     color: colors.textDark,
                     lineHeight: 1.7,
@@ -851,23 +823,27 @@ export default function IntroSection({ lang = "en" }) {
             </motion.div>
 
             {/* Right Column - Professional Logo */}
-            <motion.div 
+            <motion.div
               className="col-lg-6"
               initial={{ x: isRTL ? -100 : 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
+              style={{ zIndex: 1 }}
             >
-              <div className="position-relative rounded-4 overflow-hidden shadow-lg" 
+              <div
+                className="position-relative rounded-4 overflow-hidden"
                 style={{
                   height: "500px",
                   border: `3px solid ${colors.secondary}`,
                   backgroundColor: colors.white,
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                  zIndex: 1,
                 }}
               >
                 <ProfessionalLogo />
               </div>
-              
+
               <motion.p
                 className="text-center mt-3"
                 style={{
@@ -880,27 +856,28 @@ export default function IntroSection({ lang = "en" }) {
                 transition={{ duration: 0.5, delay: 0.8 }}
                 viewport={{ once: true }}
               >
-                {isRTL 
-                  ? "نحن نوفر حلولاً شاملة تجمع بين العلم المتقدم والبيئة المستدامة" 
-                  : "We provide comprehensive solutions combining advanced science and sustainable environment"
-                }
+                {isRTL
+                  ? "نحن نوفر حلولاً شاملة تجمع بين العلم المتقدم والبيئة المستدامة"
+                  : "We provide comprehensive solutions combining advanced science and sustainable environment"}
               </motion.p>
             </motion.div>
           </div>
         </div>
 
         {/* Separator Line with Animated Elements */}
-        <div className="container mt-5 pt-5 position-relative">
-          <div style={{ 
-            height: "2px",
-            background: `linear-gradient(90deg, ${colors.secondary}, ${colors.primary}, ${colors.secondary})`,
-            margin: "0 auto",
-            maxWidth: "80%",
-            borderRadius: "1px",
-            opacity: 0.6,
-            position: "relative",
-          }} />
-          
+        <div className="container mt-5 pt-5 position-relative" style={{ zIndex: 1 }}>
+          <div
+            style={{
+              height: "2px",
+              background: `linear-gradient(90deg, ${colors.secondary}, ${colors.primary}, ${colors.secondary})`,
+              margin: "0 auto",
+              maxWidth: "80%",
+              borderRadius: "1px",
+              opacity: 0.6,
+              position: "relative",
+            }}
+          />
+
           {/* Animated Icons on Separator */}
           <motion.div
             className="position-absolute"
@@ -910,6 +887,7 @@ export default function IntroSection({ lang = "en" }) {
               transform: "translateY(-50%)",
               width: "30px",
               height: "30px",
+              zIndex: 1,
             }}
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -924,7 +902,7 @@ export default function IntroSection({ lang = "en" }) {
               />
             </div>
           </motion.div>
-          
+
           <motion.div
             className="position-absolute"
             style={{
@@ -933,9 +911,15 @@ export default function IntroSection({ lang = "en" }) {
               transform: "translate(-50%, -50%)",
               width: "25px",
               height: "25px",
+              zIndex: 1,
             }}
             animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
           >
             <div className="w-100 h-100 position-relative">
               <Image
@@ -947,7 +931,7 @@ export default function IntroSection({ lang = "en" }) {
               />
             </div>
           </motion.div>
-          
+
           <motion.div
             className="position-absolute"
             style={{
@@ -956,9 +940,15 @@ export default function IntroSection({ lang = "en" }) {
               transform: "translateY(-50%)",
               width: "30px",
               height: "30px",
+              zIndex: 1,
             }}
             animate={{ x: [0, 5, 0], y: [0, -3, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           >
             <div className="w-100 h-100 position-relative">
               <Image
@@ -975,8 +965,18 @@ export default function IntroSection({ lang = "en" }) {
 
       <style jsx global>{`
         @keyframes pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.4; }
+          0%,
+          100% {
+            opacity: 0.2;
+          }
+          50% {
+            opacity: 0.4;
+          }
+        }
+        
+        /* CRITICAL FIX: Ensure WhatsApp button is always on top */
+        .whatsapp-button {
+          z-index: 999999 !important;
         }
       `}</style>
     </>

@@ -13,23 +13,24 @@
   --green-gradient: linear-gradient(135deg, #1bac0d 0%, #4CAF50 100%);
   --green-gradient-dark: linear-gradient(135deg, #158a0a 0%, #388E3C 100%);
 }
+
+/* UPDATED FONT FACE DECLARATIONS */
 @font-face {
-  font-family: 'Somar' !important;
-  src: url('/fonts/somar/Somar-Regular.woff2') format('woff2'),
-       url('/fonts/somar/Somar-Regular.woff') format('woff');
+  font-family: 'Somar';
+  src: url('/fonts/somar/Somar-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Somar' !important;
-  src: url('/fonts/somar/Somar-Bold.woff2') format('woff2'),
-       url('/fonts/somar/Somar-Bold.woff') format('woff');
+  font-family: 'Somar';
+  src: url('/fonts/somar/Somar-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0f0a;
@@ -50,28 +51,40 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Apply Somar font only to specific elements, not body */
+/* Apply Somar font to specific elements only - REMOVED !important from body */
 body {
   color: var(--foreground);
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif; /* Removed !important */
 }
 
 /* Apply Somar font to specific elements only */
 .somar-font {
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif;
 }
 
-/* Bootstrap components should use system fonts */
+/* FORCE Somar font on all key elements - ADDED */
 .navbar,
 .navbar *,
+.nav-link,
+.navbar-brand,
+.btn,
+.dropdown-menu,
+.dropdown-item,
 .offcanvas,
 .offcanvas *,
-.btn,
-.dropdown-menu {
-  font-family: 'somar', sans-serif !important;
+.modal,
+.modal *,
+.card,
+.card *,
+h1, h2, h3, h4, h5, h6,
+p, span, div,
+input, textarea, select,
+button,
+a {
+  font-family: 'Somar', sans-serif !important;
 }
 
 * {
@@ -228,7 +241,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Navbar - Fixed to ensure Bootstrap works */
 .navbar {
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif !important;
 }
 
 #navbar a {
@@ -252,7 +265,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: none;
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif !important;
 }
 
 .primaryButton:hover {
@@ -272,7 +285,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: none;
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif !important;
 }
 
 .secondaryButton:hover {
@@ -291,8 +304,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   transition: all 0.3s ease;
   border: 2px solid var(--primary-color);
-
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif !important;
 }
 
 .green-outline-button:hover {
@@ -385,7 +397,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Fix for offcanvas */
 .offcanvas {
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif !important;
 }
 
 .offcanvas.show {
@@ -452,7 +464,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Fix for Bootstrap dropdowns */
 .dropdown-menu {
-  font-family: 'somar', sans-serif !important;
+  font-family: 'Somar', sans-serif !important;
 }
 
 /* Ensure Bootstrap styles aren't overridden */
@@ -514,3 +526,28 @@ input[type="search"]::-webkit-search-cancel-button {
     max-width: 320px;
   }
 }
+
+/* ===== CRITICAL MOBILE FONT FIX ===== */
+@media (max-width: 768px) {
+  /* Force font on mobile for all elements */
+  body,
+  body *,
+  .navbar,
+  .navbar *,
+  .mobile-sidebar,
+  .mobile-sidebar *,
+  .mobile-menu-link,
+  .mobile-dropdown-item,
+  .btn,
+  h1, h2, h3, h4, h5, h6,
+  p, span, div,
+  a {
+    font-family: 'Somar', sans-serif !important;
+  }
+  
+  /* Ensure font files are loaded before rendering */
+  body {
+    font-display: block !important;
+  }
+}
+

@@ -1,4 +1,4 @@
-import { Poppins, Domine } from "next/font/google";
+import { Tajawal } from "next/font/google";
 import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
@@ -10,6 +10,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
+
+// Configure Tajawal font
+const tajawal = Tajawal({
+  subsets: ['arabic', 'latin'],
+  weight: ['300', '400', '500', '700', '800', '900'],
+  variable: '--font-tajawal',
+  display: 'swap',
+});
 
 
 export async function generateStaticParams() {

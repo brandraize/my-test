@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// Define all news data in a separate file or here
 const allNewsData = {
   en: {
     "umt-acca-global-workshop-2024": {

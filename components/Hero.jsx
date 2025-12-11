@@ -46,7 +46,7 @@ export default function HeroSection({
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
-          backgroundColor: "rgba(4, 57, 17, 0.39)",
+          backgroundColor: "rgba(4, 57, 17, 0)",
           mixBlendMode: "multiply",
           zIndex: 2,
         }}
@@ -57,7 +57,7 @@ export default function HeroSection({
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
-          backgroundColor: "rgba(50, 117, 12, 0.2)",
+          backgroundColor: "rgba(51, 117, 12, 0)",
           zIndex: 2,
         }}
         aria-hidden="true"

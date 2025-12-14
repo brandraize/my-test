@@ -49,7 +49,7 @@ export default function ContactPage({ lang = "en" }) {
       contactDetails: {
         address:
           "Office #6248, Prince Turki Road, P.O. Box 34423, Al Khobar 2494, Kingdom of Saudi Arabia",
-        phone: "(+966) 13 887 5000",
+        phone: "(966) 13 887 5000",
         email: "info@estedamacom.sa",
       },
     },
@@ -84,7 +84,7 @@ export default function ContactPage({ lang = "en" }) {
       contactDetails: {
         address:
           "مكتب 6248، طريق الأمير تركي، ص.ب 34423، الخبر 2494، المملكة العربية السعودية",
-        phone: "+966 13 887 5000",
+        phone: "966 13 887 5000",
         email: "info@estedamacom.sa",
       },
     },

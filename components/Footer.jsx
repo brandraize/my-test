@@ -56,10 +56,10 @@ export default function Footer({ lang }) {
     },
     rightsReserved: "جميع الحقوق محفوظة.",
     address: "٦٩١٣ طريق الملك فهد الفرعي، ٣٧١٦ حي الربوة، المملكة العربية السعودية",
-    phone: "+966534161555",
+    phone: "966534161555",
     email: "info@sensingnatures.com",
     website: "sensingnatures.com",
-    googleMapsUrl: "https://maps.app.goo.gl/",
+    googleMapsUrl: "https://maps.app.goo.gl/TUX58BfsAfLpcxXX6",
   };
 
   const englishText = {
@@ -91,10 +91,10 @@ export default function Footer({ lang }) {
     },
     rightsReserved: "All Rights Reserved.",
     address: "6931 King Fahd Branch Rd, 3716 Ar Rabwa Dist, Saudi Arabia",
-    phone: "+966534161555",
+    phone: "966534161555",
     email: "info@sensingnatures.com",
     website: "sensingnatures.com",
-    googleMapsUrl: "https://maps.app.goo.gl/",
+    googleMapsUrl: "https://maps.app.goo.gl/TUX58BfsAfLpcxXX6",
   };
 
   const t = lang === "ar" ? arabicText : englishText;
@@ -106,7 +106,7 @@ export default function Footer({ lang }) {
     instagram: "https://www.instagram.com/sensingnature2025/",
     snapchat: "https://www.snapchat.com/@shrkstshrltby",
     tiktok: "https://www.tiktok.com/@sensingnature2025",
-    linkedin: "https://www.linkedin.com/company/sensingnature",
+  
     fiverr: "#",
   };
 
@@ -257,16 +257,7 @@ export default function Footer({ lang }) {
               >
                 <FaTiktok size={16} />
               </a>
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label="LinkedIn"
-                title="LinkedIn"
-              >
-                <FaLinkedin size={16} />
-              </a>
+             
             </div>
           </div>
 
@@ -303,7 +294,7 @@ export default function Footer({ lang }) {
               </div>
               <div className="mb-2">
                 <Link
-                  href={`/${lang}/services`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.links.services}
@@ -311,7 +302,7 @@ export default function Footer({ lang }) {
               </div>
               <div className="mb-2">
                 <Link
-                  href={`/${lang}/projects`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.links.projects}
@@ -319,7 +310,7 @@ export default function Footer({ lang }) {
               </div>
               <div className="mb-2">
                 <Link
-                  href={`/${lang}/training`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.links.training}
@@ -353,7 +344,7 @@ export default function Footer({ lang }) {
             <div className="d-flex flex-column">
               <div className="mb-2">
                 <Link
-                  href={`/${lang}/services/BasicServices`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.services.consulting}
@@ -361,7 +352,7 @@ export default function Footer({ lang }) {
               </div>
               <div className="mb-2">
                 <Link
-                  href={`/${lang}/services/BasicServices`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.services.development}
@@ -369,7 +360,7 @@ export default function Footer({ lang }) {
               </div>
               <div className="mb-2">
                 <Link
-                  href={`/${lang}/services/BasicServices`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.services.engineering}
@@ -377,7 +368,7 @@ export default function Footer({ lang }) {
               </div>
               <div>
                 <Link
-                  href={`/${lang}/services/BasicServices`}
+                  href={`/${lang}/service`}
                   className="text-decoration-none footer-link"
                 >
                   {t.services.environmental}
@@ -414,7 +405,7 @@ export default function Footer({ lang }) {
                   </div>
                   <div className="mb-2">
                     <Link
-                      href={`/${lang}/privacy`}
+                      href={`/${lang}/about`}
                       className="text-decoration-none footer-link"
                     >
                       {t.legal.privacy}

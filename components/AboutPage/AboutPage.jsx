@@ -51,7 +51,7 @@ export default function AboutPage({ lang = "en" }) {
     },
     ar: {
       hero: {
-        title: "عن سينسينج نيتشر",
+        title: "عن  إستشعار الطبيعة",
         subtitle: "حلول بيئية وجيولوجية وجيوفيزيائية وأرصادية مبتكرة",
         description: "رؤى دقيقة باستخدام أحدث التقنيات الجيولوجية والجيوفيزيائية.",
       },
@@ -471,7 +471,7 @@ export default function AboutPage({ lang = "en" }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={styles.secondaryButton}
-                onClick={() => router.push(`/${currentLang}/services`)}
+                onClick={() => router.push(`/${currentLang}/service`)}
               >
                 {t.contact.buttons.services}
               </motion.button>

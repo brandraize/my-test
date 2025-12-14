@@ -335,7 +335,7 @@ export default function ServicesPage({ lang = "en" }) {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className={styles.detailSecondaryButton}
-                        onClick={() => router.push(`/${currentLang}/services/${activeServiceData.id}`)}
+                        onClick={() => router.push(`/${currentLang}/service`)}
                         style={{ color: activeServiceData.color, borderColor: activeServiceData.color }}
                       >
                         {isRTL ? "اعرف المزيد" : "Learn More"}
@@ -483,7 +483,7 @@ export default function ServicesPage({ lang = "en" }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={styles.ctaSecondary}
-                onClick={() => router.push(`/${currentLang}/services`)}
+                onClick={() => router.push(`/${currentLang}/service`)}
               >
                 {t.cta.buttons.quote}
               </motion.button>

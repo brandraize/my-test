@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -15,9 +15,6 @@ import {
   FaUsers,
   FaIndustry,
   FaFilter,
-  FaTimes,
-  FaEye,
-  FaExternalLinkAlt,
   FaChevronLeft,
   FaChevronRight,
   FaGlobeAmericas,
@@ -45,9 +42,7 @@ export default function ProjectsPage({ lang = "en" }) {
   const isRTL = currentLang === "ar";
 
   const [activeFilter, setActiveFilter] = useState("all");
-  const [selectedProject, setSelectedProject] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
   const projectsPerPage = 6;
 
   // Complete content translations including project data
@@ -626,39 +621,11 @@ export default function ProjectsPage({ lang = "en" }) {
     setCurrentPage(1);
   };
 
-  // Handle project click
-  const handleProjectClick = (project) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setSelectedProject(project);
-      setIsLoading(false);
-      document.body.style.overflow = 'hidden';
-    }, 300);
-  };
-
-  // Close project details
-  const handleCloseDetails = () => {
-    setSelectedProject(null);
-    document.body.style.overflow = 'auto';
-  };
-
   // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 500, behavior: 'smooth' });
   };
-
-  // Handle keyboard navigation for project details
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && selectedProject) {
-        handleCloseDetails();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject]);
 
   return (
     <div className={styles.container} dir={isRTL ? "rtl" : "ltr"}>
@@ -685,8 +652,6 @@ export default function ProjectsPage({ lang = "en" }) {
           </div>
         </div>
       </section>
-
-
 
       {/* Projects Section */}
       <section className={styles.projectsSection}>
@@ -812,21 +777,7 @@ export default function ProjectsPage({ lang = "en" }) {
                       </div>
                     </div>
 
-                    <div className={styles.projectFooter}>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={styles.viewButton}
-                        onClick={() => handleProjectClick(project)}
-                        style={{ 
-                          backgroundColor: category.color,
-                          color: 'white'
-                        }}
-                      >
-                        <FaEye className={styles.buttonIcon} />
-                        <span className={styles.buttonText}>{t.projectDetails.viewDetails}</span>
-                      </motion.button>
-                    </div>
+                    {/* NO VIEW BUTTON HERE - MODAL REMOVED */}
                   </motion.div>
                 );
               })}
@@ -888,193 +839,6 @@ export default function ProjectsPage({ lang = "en" }) {
           )}
         </div>
       </section>
-
-      {/* Project Details Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className={styles.modalOverlay}
-              onClick={handleCloseDetails}
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className={styles.projectModal}
-            >
-              <div className={styles.modalHeader}>
-                <div className={styles.modalTitleSection}>
-                  <div className={styles.modalCategoryRow}>
-                    <span 
-                      className={styles.modalCategory}
-                      style={{ 
-                        backgroundColor: categories.find(c => c.id === selectedProject.category).lightColor,
-                        color: categories.find(c => c.id === selectedProject.category).color
-                      }}
-                    >
-                      {categories.find(c => c.id === selectedProject.category).name}
-                    </span>
-                    <span className={styles.modalYear}>
-                      {selectedProject.year}
-                    </span>
-                  </div>
-                  <h2 className={styles.modalTitle}>
-                    {selectedProject.title}
-                  </h2>
-                </div>
-                <button 
-                  className={styles.closeButton}
-                  onClick={handleCloseDetails}
-                  aria-label={t.projectDetails.close}
-                >
-                  <FaTimes className={styles.closeIcon} />
-                </button>
-              </div>
-
-              <div className={styles.modalContent}>
-                <div className={styles.modalGrid}>
-                  {/* Left Column */}
-                  <div className={styles.modalColumn}>
-                    <div className={styles.detailSection}>
-                      <h3 className={styles.detailTitle}>
-                        {t.projectDetails.description}
-                      </h3>
-                      <p className={styles.detailText}>
-                        {selectedProject.description}
-                      </p>
-                    </div>
-
-                    <div className={styles.detailSection}>
-                      <h3 className={styles.detailTitle}>
-                        {t.projectDetails.services}
-                      </h3>
-                      <div className={styles.servicesGrid}>
-                        {selectedProject.services.map((service, index) => (
-                          <div 
-                            key={index} 
-                            className={styles.serviceItem}
-                            style={{ 
-                              backgroundColor: categories.find(c => c.id === selectedProject.category).lightColor,
-                              color: categories.find(c => c.id === selectedProject.category).color
-                            }}
-                          >
-                            {service}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Column */}
-                  <div className={styles.modalColumn}>
-                    <div className={styles.projectInfoGrid}>
-                      <div className={styles.infoItem}>
-                        <div className={styles.infoIcon}>
-                          <FaMapMarkerAlt />
-                        </div>
-                        <div className={styles.infoContent}>
-                          <h4 className={styles.infoLabel}>{t.projectDetails.location}</h4>
-                          <p className={styles.infoText}>{selectedProject.location}</p>
-                        </div>
-                      </div>
-                      
-                      <div className={styles.infoItem}>
-                        <div className={styles.infoIcon}>
-                          <FaCalendarAlt />
-                        </div>
-                        <div className={styles.infoContent}>
-                          <h4 className={styles.infoLabel}>{t.projectDetails.duration}</h4>
-                          <p className={styles.infoText}>{selectedProject.duration}</p>
-                        </div>
-                      </div>
-                      
-                      <div className={styles.infoItem}>
-                        <div className={styles.infoIcon}>
-                          <FaUsers />
-                        </div>
-                        <div className={styles.infoContent}>
-                          <h4 className={styles.infoLabel}>{t.projectDetails.client}</h4>
-                          <p className={styles.infoText}>{selectedProject.client}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={styles.detailSection}>
-                      <h3 className={styles.detailTitle}>
-                        <FaSearch className={styles.detailTitleIcon} />
-                        {t.projectDetails.challenge}
-                      </h3>
-                      <p className={styles.detailText}>
-                        {selectedProject.challenge}
-                      </p>
-                    </div>
-
-                    <div className={styles.detailSection}>
-                      <h3 className={styles.detailTitle}>
-                        <FaToolbox className={styles.detailTitleIcon} />
-                        {t.projectDetails.solution}
-                      </h3>
-                      <p className={styles.detailText}>
-                        {selectedProject.solution}
-                      </p>
-                    </div>
-
-                    <div className={styles.detailSection}>
-                      <h3 className={styles.detailTitle}>
-                        <FaCheckCircle className={styles.detailTitleIcon} />
-                        {t.projectDetails.results}
-                      </h3>
-                      <ul className={styles.resultsList}>
-                        {selectedProject.results.map((result, index) => (
-                          <li key={index} className={styles.resultItem}>
-                            <span className={styles.resultBullet}>•</span>
-                            <span className={styles.resultText}>{result}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.modalFooter}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={styles.contactButton}
-                  onClick={() => {
-                    handleCloseDetails();
-                    router.push(`/${currentLang}/contact`);
-                  }}
-                >
-                  <span className={styles.contactButtonText}>
-                    {isRTL ? "ناقش مشروعًا مماثلًا" : "Discuss a Similar Project"}
-                  </span>
-                  <FaArrowRight className={styles.buttonIcon} />
-                </motion.button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* Loading Overlay */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={styles.loadingOverlay}
-          >
-            <div className={styles.loadingSpinner} />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* CTA Section */}
       <section className={styles.ctaSection}>

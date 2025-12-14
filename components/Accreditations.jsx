@@ -17,7 +17,6 @@ export default function Accreditations({ lang = "en" }) {
     { id: 5, src: "/logos/logo5.png", alt: "Logo 5" },
     { id: 6, src: "/logos/logo6.png", alt: "Logo 6" },
     { id: 7, src: "/logos/logo7.png", alt: "Logo 7" },
-    { id: 8, src: "/logos/logo8.png", alt: "Logo 8" },
   ];
 
   const CustomNextArrow = ({ onClick }) => {

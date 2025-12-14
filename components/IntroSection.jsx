@@ -35,7 +35,7 @@ export default function IntroSection({ lang = "en" }) {
   const content = {
     title: isRTL ? "لدينا ما تحتاجه!" : "We've got what you need!",
     description: isRTL
-      ? `في "سينسينغ نيتشر"، نلتزم بتقديم خدمات متخصصة وموثوقة ومبتكرة في مختلف التخصصات الجيولوجية والجيوفيزيائية والبيئية والأرصاد الجوية. بفضل فريق من المتخصصين ذوي الخبرة والتقنيات الحديثة، نقدم رؤى شاملة لدعم الاستكشاف والتطوير والمحافظة على البيئة وإدارة المخاطر في جميع أنحاء العالم.`
+      ? `في " إستشعار الطبيعة"، نلتزم بتقديم خدمات متخصصة وموثوقة ومبتكرة في مختلف التخصصات الجيولوجية والجيوفيزيائية والبيئية والأرصاد الجوية. بفضل فريق من المتخصصين ذوي الخبرة والتقنيات الحديثة، نقدم رؤى شاملة لدعم الاستكشاف والتطوير والمحافظة على البيئة وإدارة المخاطر في جميع أنحاء العالم.`
       : `At "Sensing Nature" we are committed to delivering expert, reliable, and innovative services across geological, geophysical, environmental, and meteorological disciplines. With a team of experienced professionals and state-of-the-art technologies, we provide comprehensive insights to support exploration, development, environmental stewardship, and risk management worldwide.`,
     missionTitle: isRTL ? "مهمتنا" : "Our Mission",
     missionText: isRTL
@@ -86,7 +86,7 @@ export default function IntroSection({ lang = "en" }) {
     <>
       <Head>
         <title>
-          {isRTL ? "عن شركتنا - سينسينغ نيتشر" : "About Us - Sensing Nature"}
+          {isRTL ? "عن شركتنا -  إستشعار الطبيعة" : "About Us - Sensing Nature"}
         </title>
         <meta
           name="description"

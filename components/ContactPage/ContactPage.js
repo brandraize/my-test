@@ -59,7 +59,7 @@ export default function ContactPage({ lang = "en" }) {
       },
       phone: {
         title: "Phone Number",
-        number: "+966 53 416 1555",
+        number: "966534161555",
         whatsapp: "Chat on WhatsApp"
       },
       email: {
@@ -131,7 +131,7 @@ export default function ContactPage({ lang = "en" }) {
       },
       phone: {
         title: "رقم الهاتف",
-        number: "+966 53 416 1555",
+        number: "966534161555",
         whatsapp: "محادثة عبر واتساب"
       },
       email: {

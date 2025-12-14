@@ -446,7 +446,7 @@ export default function ServicesSection({ lang = "en" }) {
                   {/* Learn More Link with Arrow */}
                   <div className="mt-4 pt-3 border-top border-light">
                     <Link 
-                      href={`/services#${service.id}`} 
+                      href={`/service`} 
                       className="d-inline-flex align-items-center gap-2 text-decoration-none"
                       style={{
                         color: service.color,

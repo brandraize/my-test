@@ -133,7 +133,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
 
   // Handle Read More click
   const handleReadMore = (slug) => {
-    router.push(`/${lang}/news/${slug}`);
+    router.push(`service`);
   };
 
   // Handle View All click

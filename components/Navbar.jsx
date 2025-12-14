@@ -95,8 +95,8 @@ export default function Navbar({ lang }) {
 
   if (!pathname || pathname?.startsWith(`/${lang}/admin`)) return null;
 
-  const phoneNumber = "+966559931444";
-  const whatsappNumber = "+966559931444";
+  const phoneNumber = "+966534161555";
+  const whatsappNumber = "+966534161555";
 
   return (
     <>

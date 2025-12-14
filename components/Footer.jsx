@@ -124,7 +124,7 @@ export default function Footer({ lang }) {
     >
       <div className="container">
         <div className="row pt-4 pb-3">
-          {/* Company Info */}
+        
           <div
             className={`col-lg-4 col-md-6 mb-3 text-center ${
               isRTL ? "text-md-end" : "text-md-start"

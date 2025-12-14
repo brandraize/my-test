@@ -1,4 +1,4 @@
-"use client";
+
 import { use } from "react";
 import Hero from "../../components/Hero";
 import IntroSection from "../../components/IntroSection";

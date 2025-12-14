@@ -1,0 +1,15 @@
+/* TEAM */
+  CEO: Sensing Nature Team
+  Site: https://sensingnatures.com
+  Twitter: @Sensing2025
+  Location: Saudi Arabia
+
+/* THANKS */
+  Next.js - https://nextjs.org
+  React - https://reactjs.org
+  Bootstrap - https://getbootstrap.com
+
+/* SITE */
+  Last update: 2024-12-14
+  Language: English, Arabic
+  IDE: VS Code

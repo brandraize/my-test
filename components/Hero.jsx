@@ -22,43 +22,17 @@ export default function HeroSection({
         width: "100%",
         overflow: "hidden",
         paddingTop: "56px",
+        background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
       }}
       aria-label="Hero section"
     >
-      {/* Background video */}
-      <video
-        src="/coding.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
+      {/* Optional subtle pattern overlay */}
+      <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
-          objectFit: "cover",
+          backgroundImage: "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 2px, transparent 2px)",
+          backgroundSize: "40px 40px",
           zIndex: 1,
-        }}
-        aria-hidden="true"
-      >
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Green overlay - Layer 1 */}
-      <div
-        className="position-absolute top-0 start-0 w-100 h-100"
-        style={{
-          backgroundColor: "rgba(4, 57, 17, 0)",
-          mixBlendMode: "multiply",
-          zIndex: 2,
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Dark overlay - Layer 2 */}
-      <div
-        className="position-absolute top-0 start-0 w-100 h-100"
-        style={{
-          backgroundColor: "rgba(51, 117, 12, 0)",
-          zIndex: 2,
         }}
         aria-hidden="true"
       />
@@ -67,7 +41,7 @@ export default function HeroSection({
       <div
         className="position-relative text-center w-100"
         style={{
-          zIndex: 3,
+          zIndex: 2,
           maxWidth: "800px",
           margin: "0 auto",
           padding: "20px",
@@ -114,7 +88,7 @@ export default function HeroSection({
           className="d-flex flex-wrap justify-content-center align-items-center gap-3"
           style={{ padding: "0 10px" }}
         >
-          {/* Contact Us Button - FIXED: Include lang parameter */}
+          {/* Contact Us Button */}
           <Link 
             href={`/${lang}/contact`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
@@ -161,7 +135,7 @@ export default function HeroSection({
             </button>
           </Link>
 
-          {/* Learn More Button - FIXED: Include lang parameter */}
+          {/* Learn More Button */}
           <Link 
             href={`/${lang}/about`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}

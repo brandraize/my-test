@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Use webpack instead of Turbopack for stability
+  turbopack: {},
+  
   images: {
     remotePatterns: [
       {

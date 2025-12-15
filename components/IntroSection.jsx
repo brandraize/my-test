@@ -234,27 +234,33 @@ export default function IntroSection({ lang = "en" }) {
                   
                   {/* Static Images */}
                   <div className="position-relative d-flex flex-wrap justify-content-center align-items-center">
-                    <div style={{ width: "60px", height: "60px", margin: "10px" }}>
+                    <div style={{ width: "60px", height: "60px", margin: "10px", position: "relative" }}>
                       <Image
                         src={imagePaths.mountain}
                         alt="Mountain"
-                        fill
+                        width={60}
+                        height={60}
+                        loading="lazy"
                         className="object-contain"
                       />
                     </div>
-                    <div style={{ width: "50px", height: "50px", margin: "10px" }}>
+                    <div style={{ width: "50px", height: "50px", margin: "10px", position: "relative" }}>
                       <Image
                         src={imagePaths.leaf}
                         alt="Leaf"
-                        fill
+                        width={50}
+                        height={50}
+                        loading="lazy"
                         className="object-contain"
                       />
                     </div>
-                    <div style={{ width: "50px", height: "50px", margin: "10px" }}>
+                    <div style={{ width: "50px", height: "50px", margin: "10px", position: "relative" }}>
                       <Image
                         src={imagePaths.flight}
                         alt="Flight"
-                        fill
+                        width={50}
+                        height={50}
+                        loading="lazy"
                         className="object-contain"
                       />
                     </div>

@@ -2,12 +2,14 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from 'next/image';
+import { useState } from "react";
 import { FaMap, FaSearch, FaFlask, FaMountain, 
          FaWater, FaOilCan, FaIndustry, FaCloudSun, 
          FaLeaf, FaRecycle, FaWind, FaThermometerHalf } from "react-icons/fa";
 
 export default function ServicesSection({ lang = "en" }) {
   const isRTL = lang === "ar";
+  const [expandedService, setExpandedService] = useState(null);
   
   const colors = {
     primary: "#10b981",

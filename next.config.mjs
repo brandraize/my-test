@@ -27,7 +27,7 @@ const nextConfig = {
   
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['react-icons', '@mui/material', '@mui/icons-material', 'framer-motion'],
+    optimizePackageImports: ['react-icons', '@mui/material', '@mui/icons-material'],
   },
   
   headers: async () => [

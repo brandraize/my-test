@@ -125,23 +125,11 @@ export default async function RootLayout({ children, params }) {
         />
         <link rel="icon" href="/favicon.ico" />
         
-        {/* Resource hints (fonts served via next/font; external preconnects removed to avoid blocking) */}
+        {/* Resource hints */}
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
         
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
-        
-        {/* Inline critical CSS for hero section to eliminate render-blocking */}
-        <style dangerouslySetInnerHTML={{__html: `
-          html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-          html{scroll-behavior:smooth}body{color:#171717;background:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-          *{box-sizing:border-box;padding:0;margin:0}
-          .navbar{min-height:64px;position:relative}
-          section:first-of-type{min-height:calc(100vh - 64px)}
-          html.preload *,html.preload *::before,html.preload *::after{animation:none!important;transition:none!important}
-          img[width][height]:not([style*="aspect"]){aspect-ratio:attr(width)/attr(height)}
-          a{color:inherit;text-decoration:none}
-        `}} />
       </head>
       <body style={{ position: "relative" }}>
         <ContextProvider>

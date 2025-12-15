@@ -122,7 +122,6 @@ export default function ContactPage({ lang = "en" }) {
         message: "",
       });
     } catch (error) {
-      console.log("Failed to send message", error);
       toast.error(messages.error);
     } finally {
       setLoading(false);

@@ -22,22 +22,18 @@ export default function HeroSection({
         overflow: "hidden",
         paddingTop: "80px",
         background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
-        willChange: "auto",
-        contentVisibility: "auto",
-        transition: "none",
+        contain: "layout style paint",
       }}
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
       role="banner"
     >
-      {/* Pattern overlay - deferred with contentVisibility to reduce LCP */}
+      {/* Pattern overlay */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
           backgroundImage: "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 2px, transparent 2px)",
           backgroundSize: "40px 40px",
           zIndex: 1,
-          contentVisibility: "auto",
-          containIntrinsicSize: "auto 100vh",
         }}
         aria-hidden="true"
       />

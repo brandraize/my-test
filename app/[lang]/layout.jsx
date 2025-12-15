@@ -14,7 +14,7 @@ const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
   weight: ["400", "700"], 
   variable: "--font-tajawal",
-  display: "swap",
+  display: "optional",
   preload: true,
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
@@ -123,9 +123,19 @@ export default async function RootLayout({ children, params }) {
         />
         <link rel="icon" href="/favicon.ico" />
         
-        {/* Resource hints */}
+        {/* Resource hints - Critical for LCP */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        
+        {/* Preload hero font for immediate render */}
+        <link
+          rel="preload"
+          href="/_next/static/media/tajawal-latin-400-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         
         {/* Critical CSS inline for instant render */}
         <CriticalCSS />

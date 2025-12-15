@@ -24,10 +24,10 @@ export default function ServicesSection({ lang = "en" }) {
 
   // Image paths
   const imagePaths = {
-    circle: '/circel.png',
-    mountain: '/moutain.png',
-    leaf: '/leaf.png',
-    flight: '/flight.png'
+    circle: '/circel.webp',
+    mountain: '/moutain.webp',
+    leaf: '/leaf.webp',
+    flight: '/flight.webp'
   };
 
   const services = [
@@ -153,6 +153,7 @@ export default function ServicesSection({ lang = "en" }) {
             alt="Meteorological Services"
             fill
             className="object-contain"
+            quality={50}
             sizes="60px"
             style={{ filter: "drop-shadow(0 2px 4px rgba(14, 165, 233, 0.3))" }}
           />

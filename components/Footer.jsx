@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import {
   FaTiktok,
   FaSnapchat,
@@ -131,24 +132,20 @@ export default function Footer({ lang }) {
             }`}
           >
             <Link href={`/${lang}`} aria-label={t.companyName}>
-              <picture>
-                {/* AVIF/WebP sources if available under public */}
-                <source srcSet="/logo.avif" type="image/avif" />
-                <source srcSet="/logo.webp" type="image/webp" />
-                <img
-                  src="/logo.png"
-                  alt={`${t.companyName} logo`}
-                  width="160"
-                  height="48"
-                  style={{
-                    width: "160px",
-                    height: "auto",
-                    marginBottom: "1rem",
-                  }}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
+              <Image
+                src="/logo.png"
+                alt={`${t.companyName} logo`}
+                width={160}
+                height={48}
+                quality={50}
+                sizes="160px"
+                style={{
+                  width: "160px",
+                  height: "auto",
+                  marginBottom: "1rem",
+                }}
+                loading="lazy"
+              />
             </Link>
             <p
               className="mt-2"

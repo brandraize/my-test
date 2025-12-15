@@ -18,10 +18,10 @@ export default function AboutPage({ lang = "en" }) {
 
   // Logo image paths
   const logoParts = {
-    circle: '/circel.png',
-    mountain: '/moutain.png',
-    leaf: '/leaf.png',
-    flight: '/flight.png'
+    circle: '/circel.webp',
+    mountain: '/moutain.webp',
+    leaf: '/leaf.webp',
+    flight: '/flight.webp'
   };
 
   // Content translations (keep your existing content object)
@@ -113,6 +113,8 @@ export default function AboutPage({ lang = "en" }) {
               src={logoParts.circle}
               alt="Circle"
               fill
+              quality={50}
+              sizes="150px"
               style={{ objectFit: 'contain', opacity: 0.3 }}
             />
           </motion.div>
@@ -148,6 +150,8 @@ export default function AboutPage({ lang = "en" }) {
               src={logoParts.mountain}
               alt="Mountain"
               fill
+              quality={50}
+              sizes="120px"
               style={{ objectFit: 'contain', opacity: 0.3 }}
             />
           </motion.div>
@@ -183,6 +187,8 @@ export default function AboutPage({ lang = "en" }) {
               src={logoParts.leaf}
               alt="Leaf"
               fill
+              quality={50}
+              sizes="80px"
               style={{ objectFit: 'contain', opacity: 0.3 }}
             />
           </motion.div>
@@ -211,6 +217,8 @@ export default function AboutPage({ lang = "en" }) {
               src={logoParts.flight}
               alt="Flight"
               fill
+              quality={50}
+              sizes="100px"
               style={{ objectFit: 'contain', opacity: 0.3 }}
             />
           </motion.div>
@@ -334,6 +342,8 @@ export default function AboutPage({ lang = "en" }) {
                       src={logoParts.circle}
                       alt="Circle"
                       fill
+                      quality={50}
+                      sizes="60px"
                       style={{ objectFit: 'contain' }}
                     />
                   </motion.div>
@@ -370,6 +380,8 @@ export default function AboutPage({ lang = "en" }) {
                       src={logoParts.leaf}
                       alt="Leaf"
                       fill
+                      quality={50}
+                      sizes="50px"
                       style={{ objectFit: 'contain' }}
                     />
                   </motion.div>
@@ -414,6 +426,8 @@ export default function AboutPage({ lang = "en" }) {
               src={logoParts.circle}
               alt="Circle"
               fill
+              quality={50}
+              sizes="100px"
               style={{ objectFit: 'contain', opacity: 0.1 }}
             />
           </motion.div>
@@ -440,6 +454,8 @@ export default function AboutPage({ lang = "en" }) {
               src={logoParts.flight}
               alt="Flight"
               fill
+              quality={50}
+              sizes="80px"
               style={{ objectFit: 'contain', opacity: 0.1 }}
             />
           </motion.div>

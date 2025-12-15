@@ -13,10 +13,10 @@ export default function IntroSection({ lang = "en" }) {
 
   // Image paths - assuming images are in the public folder
   const imagePaths = {
-    circle: "/flight.png",
-    mountain: "/flight.png",
-    leaf: "/flight.png",
-    flight: "/flight.png",
+    circle: "/flight.webp",
+    mountain: "/flight.webp",
+    leaf: "/flight.webp",
+    flight: "/flight.webp",
   };
 
   // Color scheme

@@ -116,7 +116,7 @@ export default function Navbar({ lang }) {
           {/* Logo */}
           <Link href={`/${lang}`} className="navbar-brand" aria-label="Sensing Nature home">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="Sensing Nature logo"
               width={160}
               height={48}
@@ -300,6 +300,8 @@ export default function Navbar({ lang }) {
               width={140}
               height={42}
               priority={false}
+              quality={50}
+              sizes="140px"
               style={{ width: "140px", height: "auto" }}
             />
           </Link>

@@ -145,8 +145,7 @@ export default async function RootLayout({ children, params }) {
             className="d-flex flex-column flex-grow-1 bg-white"
             style={{
               minHeight: "100vh",
-              paddingTop: "var(--navbar-h, 64px)",
-              paddingBottom: "64px", // Reserve footer space for CLS prevention
+              paddingTop: 0, // keep hero snug under fixed navbar
             }}
           >
             {children}

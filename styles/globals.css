@@ -97,9 +97,9 @@ html {
   position: relative;
 }
 
-/* Hero section – reserve viewport height to prevent content shift */
-.hero, [class*="hero"], section:first-of-type {
-  min-height: calc(100vh - var(--navbar-h, 64px));
+/* Hero section – don't force height on first section */
+.hero, [class*="hero"] {
+  /* Allow natural height for responsive layouts */
 }
 
 /* Images with aspect ratio reserves – prevent reflow */

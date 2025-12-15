@@ -376,7 +376,7 @@ export default function AboutPage({ lang = "en" }) {
                 </div>
                 
                 <Image
-                  src="/bg-masthead.png"
+                  src="/bg-masthead.webp"
                   alt={t.missionVision.title}
                   fill
                   className={styles.missionImage}

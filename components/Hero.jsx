@@ -16,11 +16,11 @@ export default function HeroSection({
     <section
       className="position-relative w-100 d-flex align-items-center justify-content-center"
       style={{
-        minHeight: "calc(100vh - var(--navbar-h, 64px))",
+        minHeight: "calc(100vh - 64px)",
         height: "auto",
         width: "100%",
         overflow: "hidden",
-        paddingTop: 0,
+        paddingTop: "80px", // offset fixed navbar without adding page-level gap
         background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
         willChange: "auto",
         contentVisibility: "auto",

@@ -26,7 +26,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "UMT ACCA Global Workshop 2024",
           description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards.",
           category: "Announcements",
-          image: "/5.jpg",
+          image: "/5.webp",
         },
         {
           id: "umt-wins-academic-excellence-award",
@@ -34,7 +34,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "UMT Wins Academic Excellence Award",
           description: "UMT received national recognition for academic excellence and research innovation.",
           category: "University News",
-          image: "/55.jpg",
+          image: "/55.webp",
         },
         {
           id: "student-achieves-top-national-rank",
@@ -50,7 +50,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "New Research Center Launch",
           description: "UMT launches state-of-the-art research center for sustainable technologies.",
           category: "Research",
-          image: "/5.jpg",
+          image: "/5.webp",
         },
         {
           id: "international-collaboration",
@@ -58,7 +58,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "International Collaboration",
           description: "UMT signs partnership with leading European university.",
           category: "Partnerships",
-          image: "/55.jpg",
+          image: "/55.webp",
         },
         {
           id: "annual-career-fair-2024",
@@ -82,7 +82,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "ورشة عمل UMT ACCA العالمية 2024",
           description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية.",
           category: "الإعلانات",
-          image: "/5.jpg",
+          image: "/5.webp",
         },
         {
           id: "umt-wins-academic-excellence-award",
@@ -90,7 +90,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "UMT تفوز بجائزة التميز الأكاديمي",
           description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي.",
           category: "أخبار الجامعة",
-          image: "/55.jpg",
+          image: "/55.webp",
         },
         {
           id: "student-achieves-top-national-rank",
@@ -106,7 +106,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "إطلاق مركز بحثي جديد",
           description: "تطلق UMT مركزًا بحثيًا حديثًا للتقنيات المستدامة.",
           category: "البحث",
-          image: "/5.jpg",
+          image: "/5.webp",
         },
         {
           id: "international-collaboration",
@@ -114,7 +114,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
           title: "تعاون دولي",
           description: "توقع UMT شراكة مع جامعة أوروبية رائدة.",
           category: "الشراكات",
-          image: "/55.jpg",
+          image: "/55.webp",
         },
         {
           id: "annual-career-fair-2024",

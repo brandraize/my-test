@@ -1,15 +1,15 @@
 import { Tajawal } from "next/font/google";
 import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "font-awesome/css/font-awesome.css";
+// Moved slick-carousel CSS into the slider component to avoid render-blocking
+// Removed font-awesome global CSS (unused) to reduce blocking CSS
 import { ToastContainer } from "react-toastify";
 import ContextProvider from "@/providers/ContextProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PerformanceBoot from "@/components/PerformanceBoot";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -140,6 +140,8 @@ export default async function RootLayout({ children, params }) {
       </head>
       <body style={{ position: "relative" }}>
         <ContextProvider>
+          {/* Disable animations/transitions during first paint for better LCP */}
+          <PerformanceBoot />
           <Navbar lang={lang} />
           <WhatsAppButton lang={lang} />
           <ToastContainer position="top-center" autoClose={3000} />

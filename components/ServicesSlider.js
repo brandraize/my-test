@@ -2,6 +2,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import Slider from "react-slick";
 
 // STEP 2: Import the required CSS
@@ -40,11 +41,12 @@ const ServicesSlider = ({ lang, servicesData, sectionTitle, sectionDescription }
     slide: {
       padding: '15px'
     },
-    image: {
+    imageWrapper: {
+      position: 'relative',
       width: '100%',
       height: '220px',
-      objectFit: 'cover',
       borderRadius: '8px',
+      overflow: 'hidden',
       marginBottom: '15px',
     },
     content: {
@@ -64,7 +66,16 @@ const ServicesSlider = ({ lang, servicesData, sectionTitle, sectionDescription }
         <Slider {...settings}>
           {servicesData.map((service) => (
             <div key={service.title} style={sliderStyles.slide}>
-              <img src={service.image} alt={service.title} style={sliderStyles.image} />
+              <div style={sliderStyles.imageWrapper}>
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  style={{ objectFit: 'cover' }}
+                  priority={false}
+                />
+              </div>
               <div style={sliderStyles.content}>
                 <h3 style={sliderStyles.title}>{service.title}</h3>
                 <p>{service.description}</p>

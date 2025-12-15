@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Slider from "react-slick";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -203,20 +204,21 @@ export default function Accreditations({ lang = "en" }) {
             <div className="p-3" key={logo.id}>
               <div className="logo-slide">
                 <div className="d-flex align-items-center justify-content-center h-100 p-3">
-                  <img
+                  <Image
                     src={logo.src}
                     alt={logo.alt}
+                    width={180}
+                    height={120}
                     style={{
-                      maxWidth: "180px",
-                      maxHeight: "120px",
                       width: "auto",
                       height: "auto",
+                      maxWidth: "180px",
+                      maxHeight: "120px",
                       objectFit: "contain",
                       filter: "grayscale(20%)",
                       opacity: "0.9",
                       transition: "all 0.4s ease",
                     }}
-                    className="img-fluid"
                     onMouseEnter={(e) => {
                       e.currentTarget.style.filter = "grayscale(0%)";
                       e.currentTarget.style.opacity = "1";

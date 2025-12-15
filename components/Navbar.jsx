@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaPhone, FaWhatsapp, FaChevronDown, FaTimes, FaChevronUp } from "react-icons/fa";
@@ -113,15 +114,14 @@ export default function Navbar({ lang }) {
       >
         <div className="container d-flex align-items-center justify-content-between">
           {/* Logo */}
-          <Link href={`/${lang}`} className="navbar-brand">
-            <img 
-              src="/logo.png" 
-              alt="Logo" 
-              style={{ 
-                width: "160px",
-                height: "auto",
-                transition: "all 0.3s ease"
-              }} 
+          <Link href={`/${lang}`} className="navbar-brand" aria-label="Home">
+            <Image
+              src="/logo.png"
+              alt="Sensing Nature logo"
+              width={160}
+              height={48}
+              priority={false}
+              style={{ height: "auto", width: "160px", transition: "all 0.3s ease" }}
             />
           </Link>
 
@@ -291,11 +291,14 @@ export default function Navbar({ lang }) {
         dir={lang === "ar" ? "rtl" : "ltr"}
       >
         <div className="mobile-sidebar-header">
-          <Link href={`/${lang}`} className="navbar-brand" onClick={handleLinkClick}>
-            <img 
-              src="/logo.png" 
-              alt="Logo" 
-              style={{ width: "140px", height: "auto" }} 
+          <Link href={`/${lang}`} className="navbar-brand" onClick={handleLinkClick} aria-label="Home">
+            <Image
+              src="/logo.png"
+              alt="Sensing Nature logo"
+              width={140}
+              height={42}
+              priority={false}
+              style={{ width: "140px", height: "auto" }}
             />
           </Link>
           <button className="close-btn" onClick={toggleMobileMenu}>

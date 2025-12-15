@@ -271,19 +271,24 @@ export default function AllProjects({ lang, projects }) {
                               "_"
                             )}`}
                           >
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                              }}
-                              loading="lazy"
-                            />
+                            <picture>
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                width="800"
+                                height="600"
+                                style={{
+                                  position: "absolute",
+                                  top: 0,
+                                  left: 0,
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "cover",
+                                }}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </picture>
                           </Link>
                           <div className="position-absolute top-0 end-0 m-2">
                             {getStatusBadge(project.status)}

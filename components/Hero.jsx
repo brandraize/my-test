@@ -87,7 +87,7 @@ export default function HeroSection({
         >
           {/* Contact Us Button */}
           <Link 
-            href={`/${lang}/contact-us`} 
+            href={`/${lang}/contact`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
             aria-label={isRTL ? "انتقل إلى صفحة الاتصال" : "Navigate to contact page"}
           >
@@ -137,7 +137,7 @@ export default function HeroSection({
 
           {/* Learn More Button */}
           <Link 
-            href={`/${lang}/about-us`} 
+            href={`/${lang}/about`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
             aria-label={isRTL ? "تعرف على المزيد عن خدماتنا" : "Learn more about our services"}
           >

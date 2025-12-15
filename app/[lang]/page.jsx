@@ -5,22 +5,30 @@ import "@/styles/globals.css";
 
 // Lazy load ALL heavy components to optimize LCP
 const IntroSection = dynamic(() => import("../../components/IntroSection"), {
-  loading: () => null,
+  loading: () => (
+    <section style={{ minHeight: "620px", background: "#f7faf9" }} />
+  ),
   ssr: true,
 });
 
 const ServicesSection = dynamic(() => import("../../components/ServicesSection"), {
-  loading: () => null,
+  loading: () => (
+    <section style={{ minHeight: "820px", background: "#f7faf9" }} />
+  ),
   ssr: true,
 });
 
 const NewsEventsSlider = dynamic(() => import("../../components/NewsEventsSlider"), {
-  loading: () => null,
+  loading: () => (
+    <section style={{ minHeight: "560px", background: "#f7faf9" }} />
+  ),
   ssr: true,
 });
 
 const Accreditations = dynamic(() => import("../../components/Accreditations"), {
-  loading: () => null,
+  loading: () => (
+    <section style={{ minHeight: "320px", background: "#f7faf9" }} />
+  ),
   ssr: true,
 });
 

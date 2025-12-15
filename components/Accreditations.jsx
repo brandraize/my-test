@@ -1,16 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import Image from "next/image";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function Accreditations({ lang = "en" }) {
-  const [slidesToShow, setSlidesToShow] = useState(5);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Logo data - replace with your actual logo imports/images
   const logos = [
     { id: 1, src: "/logos/logo1.webp", alt: "Logo 1" },
     { id: 2, src: "/logos/logo2.webp", alt: "Logo 2" },
@@ -21,277 +17,79 @@ export default function Accreditations({ lang = "en" }) {
     { id: 7, src: "/logos/logo7.webp", alt: "Logo 7" },
   ];
 
-  const CustomNextArrow = ({ onClick }) => {
-    return (
-      <div
-        style={{
-          position: "absolute",
-          right: lang === "ar" ? "auto" : "-30px",
-          left: lang === "ar" ? "-30px" : "auto",
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 10,
-          width: "40px",
-          height: "40px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "50%",
-          cursor: "pointer",
-          background: "#f0f0f0",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-          transition: "all 0.3s ease",
-          opacity: isHovered ? 1 : 0,
-        }}
-        onClick={onClick}
-        className="arrow-hover"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {lang === "ar" ? (
-          <FaChevronLeft color="#333" />
-        ) : (
-          <FaChevronRight color="#333" />
-        )}
-      </div>
-    );
-  };
-
-  const CustomPrevArrow = ({ onClick }) => {
-    return (
-      <div
-        style={{
-          position: "absolute",
-          left: lang === "ar" ? "auto" : "-30px",
-          right: lang === "ar" ? "-30px" : "auto",
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 10,
-          width: "40px",
-          height: "40px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "50%",
-          cursor: "pointer",
-          background: "#f0f0f0",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-          transition: "all 0.3s ease",
-          opacity: isHovered ? 1 : 0,
-        }}
-        onClick={onClick}
-        className="arrow-hover"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {lang === "ar" ? (
-          <FaChevronRight color="#333" />
-        ) : (
-          <FaChevronLeft color="#333" />
-        )}
-      </div>
-    );
-  };
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 600, // Slightly slower for smoother feel
-    slidesToShow: slidesToShow,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500, // Smooth auto-rotation
-    arrows: true,
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />,
-    rtl: lang === "ar",
-    pauseOnHover: true, // Pause on hover for better UX
-    pauseOnFocus: true,
-    cssEase: "cubic-bezier(0.645, 0.045, 0.355, 1)", // Smooth easing
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  useEffect(() => {
-    const updateSlidesToShow = () => {
-      if (window.innerWidth < 576) {
-        setSlidesToShow(1);
-      } else if (window.innerWidth < 768) {
-        setSlidesToShow(2);
-      } else if (window.innerWidth < 992) {
-        setSlidesToShow(3);
-      } else if (window.innerWidth < 1200) {
-        setSlidesToShow(4);
-      } else {
-        setSlidesToShow(5);
-      }
-    };
-
-    updateSlidesToShow();
-    window.addEventListener("resize", updateSlidesToShow);
-    return () => window.removeEventListener("resize", updateSlidesToShow);
-  }, []);
-
   return (
-    <section className="container py-5">
-      <div className="d-flex flex-column align-items-center text-center mb-4">
-        <div 
-          className="fs-2 mb-3" 
-          style={{ 
-            fontWeight: "700",
-            color: "#2c3e50"
-          }}
+    <section
+      style={{
+        background: "linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%)",
+        padding: "60px 20px",
+      }}
+      dir={lang === "ar" ? "rtl" : "ltr"}
+    >
+      <div className="container">
+        <div
+          className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3 mb-4"
+          style={{ textAlign: lang === "ar" ? "right" : "left" }}
         >
-          {lang === "ar" ? "الاعتمادات" : "Accreditations"}
+          <div>
+            <h2
+              className="fw-bold mb-2"
+              style={{ fontSize: "clamp(24px, 4vw, 32px)", color: "#0f5132" }}
+            >
+              {lang === "ar" ? "الاعتمادات" : "Accreditations"}
+            </h2>
+            <p className="text-muted mb-0" style={{ maxWidth: "720px" }}>
+              {lang === "ar"
+                ? "شركاؤنا المعتمدون يضمنون أعلى معايير الجودة والمصداقية."
+                : "Our accredited partners ensure the highest standards of quality and credibility."}
+            </p>
+          </div>
         </div>
-        <p className="text-center w-md-75 text-muted">
-          {lang === "ar" 
-            ? "شركاؤنا ومعتمدونا الذين نثق بهم" 
-            : "Our trusted partners and accreditors"}
-        </p>
-      </div>
-      
-      {/* Optional subtitle like in the image */}
-      {lang === "ar" && (
-        <div className="text-center mb-4">
-          <h5 style={{ color: "#34495e", fontWeight: "600" }}>
-            ركائز النجاح في مكتب الأثر البيئي
-          </h5>
-        </div>
-      )}
 
-      <div 
-        className="px-3 px-sm-0"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <Slider {...settings}>
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          navigation
+          autoplay={{ delay: 2200, disableOnInteraction: false }}
+          loop
+          speed={550}
+          spaceBetween={16}
+          slidesPerView={5}
+          breakpoints={{
+            1400: { slidesPerView: 6 },
+            1200: { slidesPerView: 5 },
+            992: { slidesPerView: 4 },
+            768: { slidesPerView: 3 },
+            576: { slidesPerView: 2 },
+            0: { slidesPerView: 1.6 },
+          }}
+          dir={lang === "ar" ? "rtl" : "ltr"}
+        >
           {logos.map((logo) => (
-            <div className="p-3" key={logo.id}>
-              <div className="logo-slide">
-                <div className="d-flex align-items-center justify-content-center h-100 p-3">
+            <SwiperSlide key={logo.id}>
+              <div
+                className="d-flex align-items-center justify-content-center shadow-sm bg-white"
+                style={{
+                  borderRadius: "16px",
+                  padding: "18px",
+                  minHeight: "110px",
+                  border: "1px solid #e9ecef",
+                  height: "100%",
+                }}
+              >
+                <div style={{ position: "relative", width: "140px", height: "60px" }}>
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={180}
-                    height={120}
-                    style={{
-                      width: "auto",
-                      height: "auto",
-                      maxWidth: "180px",
-                      maxHeight: "120px",
-                      objectFit: "contain",
-                      filter: "grayscale(20%)",
-                      opacity: "0.9",
-                      transition: "all 0.4s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.filter = "grayscale(0%)";
-                      e.currentTarget.style.opacity = "1";
-                      e.currentTarget.style.transform = "scale(1.08)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.filter = "grayscale(20%)";
-                      e.currentTarget.style.opacity = "0.9";
-                      e.currentTarget.style.transform = "scale(1)";
-                    }}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    sizes="(min-width: 1400px) 140px, (min-width: 992px) 120px, (min-width: 768px) 140px, 120px"
+                    loading="lazy"
                   />
                 </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
-
-      <style jsx>{`
-        .logo-slide {
-          height: 150px;
-          background: #fff;
-          border-radius: 12px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-          border: 1px solid #eaeaea;
-          transition: all 0.4s ease;
-          overflow: hidden;
-        }
-        
-        .logo-slide:hover {
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-          border-color: #ddd;
-          transform: translateY(-3px);
-        }
-        
-        .arrow-hover:hover {
-          background: #e0e0e0 !important;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
-          transform: translateY(-50%) scale(1.1) !important;
-        }
-        
-        @media (max-width: 768px) {
-          .logo-slide {
-            height: 130px;
-            border-radius: 10px;
-          }
-          
-          .arrow-hover {
-            opacity: 1 !important;
-            background: rgba(240, 240, 240, 0.9) !important;
-          }
-        }
-        
-        @media (max-width: 576px) {
-          .logo-slide {
-            height: 120px;
-          }
-        }
-        
-        /* Smooth sliding animation */
-        .slick-slide {
-          transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-        
-        .slick-active {
-          opacity: 1;
-        }
-        
-        .slick-slide:not(.slick-active) {
-          opacity: 0.8;
-        }
-      `}</style>
     </section>
   );
 }

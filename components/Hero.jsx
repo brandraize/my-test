@@ -16,8 +16,7 @@ export default function HeroSection({
     <section
       className="position-relative w-100 d-flex align-items-center justify-content-center"
       style={{
-        minHeight: "720px",
-        height: "auto",
+        height: "720px",
         width: "100%",
         overflow: "hidden",
         paddingTop: "80px",
@@ -27,6 +26,24 @@ export default function HeroSection({
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
       role="banner"
     >
+      {/* ⭐ LCP Tracking - Tiny preload image */}
+      <img
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect width='1200' height='600' fill='%23043911'/%3E%3C/svg%3E"
+        alt=""
+        width="1200"
+        height="600"
+        style={{
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          opacity: 0,
+          pointerEvents: 'none',
+          top: 0,
+          left: 0,
+        }}
+        loading="eager"
+        fetchPriority="high"
+      />
       {/* Pattern overlay */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
@@ -57,6 +74,10 @@ export default function HeroSection({
               marginBottom: "1rem",
               textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
               padding: "0 10px",
+              minHeight: "72px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             {heroTitle}
@@ -72,6 +93,10 @@ export default function HeroSection({
               padding: "0 10px 20px",
               textShadow: "0 1px 5px rgba(0, 0, 0, 0.2)",
               width: "100%",
+              minHeight: "58px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             {heroDescription}
@@ -108,6 +133,8 @@ export default function HeroSection({
                     ? "0 6px 20px rgba(37, 162, 68, 0.5)"
                     : "0 4px 15px rgba(37, 162, 68, 0.4)",
                   minHeight: "48px",
+                  willChange: "background-color, box-shadow",
+                  transform: "translateZ(0)",
                 }}
                 aria-label={isRTL ? "تواصل معنا" : "Contact us button"}
               >
@@ -153,6 +180,8 @@ export default function HeroSection({
                     ? "0 6px 20px rgba(255, 165, 0, 0.4)"
                     : "0 4px 15px rgba(255, 255, 255, 0.2)",
                   minHeight: "48px",
+                  willChange: "background-color, border-color, box-shadow",
+                  transform: "translateZ(0)",
                 }}
                 aria-label={isRTL ? "اعرف المزيد" : "Learn More"}
               >

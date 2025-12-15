@@ -128,15 +128,6 @@ export default async function RootLayout({ children, params }) {
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         
-        {/* ⭐ PRELOAD LCP IMAGE - Critical for 92+ score */}
-        <link
-          rel="preload"
-          href="/logo.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
-        
         {/* Preload hero font for immediate render */}
         <link
           rel="preload"

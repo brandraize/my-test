@@ -309,11 +309,13 @@ input[type="search"]::-webkit-search-cancel-button {
   transition: all 0.3s ease;
   border: none;
   font-family: var(--font-tajawal) !important;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
 }
 
 .primaryButton:hover {
   background-color: var(--primary-hover-color);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
   box-shadow: 0 4px 12px rgba(27, 172, 13, 0.3);
 }
 
@@ -329,11 +331,13 @@ input[type="search"]::-webkit-search-cancel-button {
   transition: all 0.3s ease;
   border: none;
   font-family: var(--font-tajawal) !important;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .secondaryButton:hover {
   background-color: var(--secondary-hover-color);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
 }
 
 .green-outline-button {
@@ -348,12 +352,14 @@ input[type="search"]::-webkit-search-cancel-button {
   transition: all 0.3s ease;
   border: 2px solid var(--primary-color);
   font-family: var(--font-tajawal) !important;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .green-outline-button:hover {
   background: var(--primary-color);
   color: white;
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
 }
 
 .service-card img {
@@ -369,11 +375,13 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: 12px;
   border: 1px solid rgba(27, 172, 13, 0.1);
   transition: all 0.3s ease;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
 }
 
 .green-card:hover {
   border-color: rgba(27, 172, 13, 0.3);
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   box-shadow: 0 8px 24px rgba(27, 172, 13, 0.1);
 }
 
@@ -395,14 +403,16 @@ input[type="search"]::-webkit-search-cancel-button {
   z-index: 0;
 }
 
-/* Leaf icon animation */
+/* Leaf icon animation - GPU accelerated */
 .leaf-animation {
   animation: floatLeaf 3s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 @keyframes floatLeaf {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(5deg); }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -10px, 0) rotate(5deg); }
 }
 
 /* Progress bars with green */
@@ -469,21 +479,22 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Fix for mobile menu animation */
 .offcanvas-end {
-  transform: translateX(100%);
+  transform: translate3d(100%, 0, 0);
   transition: transform 0.3s ease-in-out !important;
+  will-change: transform;
 }
 
 .offcanvas-end.show {
-  transform: translateX(0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 /* RTL support for offcanvas */
 [dir="rtl"] .offcanvas-end {
-  transform: translateX(-100%);
+  transform: translate3d(-100%, 0, 0);
 }
 
 [dir="rtl"] .offcanvas-end.show {
-  transform: translateX(0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 /* Ensure buttons work on mobile */
@@ -549,11 +560,11 @@ input[type="search"]::-webkit-search-cancel-button {
 [dir="rtl"] .offcanvas-end {
   left: 0;
   right: auto;
-  transform: translateX(-100%);
+  transform: translate3d(-100%, 0, 0);
 }
 
 [dir="rtl"] .offcanvas-end.show {
-  transform: translateX(0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 /* Ensure proper z-index */

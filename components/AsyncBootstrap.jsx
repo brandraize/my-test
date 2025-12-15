@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 export default function AsyncBootstrap() {
   useEffect(() => {
-    // Load Bootstrap immediately after first paint for faster hydration
+    // Defer Bootstrap loading until after LCP
     const loadBootstrap = () => {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
@@ -15,10 +15,17 @@ export default function AsyncBootstrap() {
       document.head.appendChild(link);
     };
     
-    // Use double RAF for post-paint timing
-    requestAnimationFrame(() => {
-      requestAnimationFrame(loadBootstrap);
-    });
+    // Wait for LCP before loading Bootstrap
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadBootstrap, { timeout: 1000 });
+    } else {
+      // Use triple RAF for better timing
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(loadBootstrap);
+        });
+      });
+    }
   }, []);
   
   return null;

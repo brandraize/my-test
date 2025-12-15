@@ -136,14 +136,14 @@ export default function Navbar({ lang }) {
               alt="Sensing Nature logo"
               width={160}
               height={48}
-              quality={65}
-              priority={true} 
+              quality={50}
+              priority={true}
               fetchPriority="high"
-              sizes="(max-width: 767px) 140px, 160px"
+              loading="eager"
+              sizes="160px"
               style={{
                 height: "auto",
                 width: "160px",
-                transition: "all 0.3s ease",
               }}
             />
           </Link>

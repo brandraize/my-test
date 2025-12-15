@@ -58,6 +58,9 @@ export default function CriticalCSS() {
       img{vertical-align:middle;border-style:none}
       /* Prevent layout shift from framer-motion */
       [data-projection-id]{will-change:auto!important}
+      /* GPU acceleration for transforms */
+      .btn:hover{transform:translateZ(0)}
+      *{-webkit-backface-visibility:hidden;backface-visibility:hidden}
     `}} />
   );
 }

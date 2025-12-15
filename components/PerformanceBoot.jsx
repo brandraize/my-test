@@ -12,10 +12,10 @@ export default function PerformanceBoot() {
     };
 
     if ("requestIdleCallback" in window) {
-      // Give the browser a little time to render
-      requestIdleCallback(enable, { timeout: 2000 });
+      // Reduce timeout for faster interactivity
+      requestIdleCallback(enable, { timeout: 1000 });
     } else {
-      setTimeout(enable, 1500);
+      setTimeout(enable, 800);
     }
   }, []);
 

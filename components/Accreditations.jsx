@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function Accreditations({ lang = "en" }) {
   const [slidesToShow, setSlidesToShow] = useState(5);
@@ -48,9 +47,9 @@ export default function Accreditations({ lang = "en" }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         {lang === "ar" ? (
-          <ArrowBackIcon style={{ color: "#333" }} />
+          <FaChevronLeft color="#333" />
         ) : (
-          <ArrowForwardIcon style={{ color: "#333" }} />
+          <FaChevronRight color="#333" />
         )}
       </div>
     );
@@ -84,9 +83,9 @@ export default function Accreditations({ lang = "en" }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         {lang === "ar" ? (
-          <ArrowForwardIcon style={{ color: "#333" }} />
+          <FaChevronRight color="#333" />
         ) : (
-          <ArrowBackIcon style={{ color: "#333" }} />
+          <FaChevronLeft color="#333" />
         )}
       </div>
     );

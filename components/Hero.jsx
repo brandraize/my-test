@@ -26,6 +26,7 @@ export default function HeroSection({
         contentVisibility: "auto",
       }}
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
+      role="banner"
     >
       {/* Optional subtle pattern overlay */}
       <div

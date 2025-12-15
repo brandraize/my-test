@@ -62,8 +62,9 @@ export default function Accreditations({ lang = "en" }) {
             0: { slidesPerView: 1.6 },
           }}
           dir={lang === "ar" ? "rtl" : "ltr"}
+          aria-label={lang === "ar" ? "شركاؤنا المعتمدون" : "Our Accredited Partners"}
         >
-          {logos.map((logo) => (
+          {logos.map((logo, idx) => (
             <SwiperSlide key={logo.id}>
               <div
                 className="d-flex align-items-center justify-content-center shadow-sm bg-white"
@@ -83,6 +84,8 @@ export default function Accreditations({ lang = "en" }) {
                     style={{ objectFit: "contain" }}
                     sizes="(min-width: 1400px) 140px, (min-width: 992px) 120px, (min-width: 768px) 140px, 120px"
                     loading="lazy"
+                    quality={60}
+                    priority={idx === 0}
                   />
                 </div>
               </div>

@@ -200,6 +200,8 @@ export default function NewsEventsSlider({ lang = "en" }) {
                 <div 
                   className="NewsSlider_card cursor-pointer"
                   onClick={() => handleCardClick(slide.slug)}
+                  role="article"
+                  aria-label={slide.title}
                 >
                   {/* Image Section */}
                   <div className="NewsSlider_cardImageContainer">
@@ -208,7 +210,9 @@ export default function NewsEventsSlider({ lang = "en" }) {
                       alt={slide.title}
                       fill
                       className="NewsSlider_cardImage"
-                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                      sizes="(min-width:1024px) 30vw, (min-width:768px) 45vw, 90vw"
+                      quality={60}
+                      priority={index === 0}
                     />
                   </div>
 

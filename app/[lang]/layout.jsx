@@ -1,6 +1,6 @@
 import { Tajawal } from "next/font/google";
 import "@/styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap now async-loaded by BootstrapLoader to avoid render-blocking (730ms savings)
 // Moved slick-carousel CSS into the slider component to avoid render-blocking
 // Removed font-awesome global CSS (unused) to reduce blocking CSS
 import { ToastContainer } from "react-toastify";
@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import PerformanceBoot from "@/components/PerformanceBoot";
+import BootstrapLoader from "@/components/BootstrapLoader";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -132,6 +133,8 @@ export default async function RootLayout({ children, params }) {
       </head>
       <body style={{ position: "relative" }}>
         <ContextProvider>
+          {/* Async-load Bootstrap to avoid 730ms render-blocking */}
+          <BootstrapLoader />
           {/* Disable animations/transitions during first paint for better LCP */}
           <PerformanceBoot />
           <Navbar lang={lang} />
@@ -140,7 +143,11 @@ export default async function RootLayout({ children, params }) {
 
           <main
             className="d-flex flex-column flex-grow-1 bg-white"
-            style={{ minHeight: "100vh", paddingTop: "calc(var(--navbar-h, 64px))" }}
+            style={{
+              minHeight: "100vh",
+              paddingTop: "var(--navbar-h, 64px)",
+              paddingBottom: "64px", // Reserve footer space for CLS prevention
+            }}
           >
             {children}
           </main>

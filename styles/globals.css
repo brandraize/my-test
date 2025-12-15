@@ -86,6 +86,56 @@ html.preload *, html.preload *::before, html.preload *::after {
   transition: none !important;
 }
 
+/* Reserve space for critical sections to prevent CLS (0.374 → < 0.1) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar height reservation – prevent header shift */
+.navbar {
+  min-height: var(--navbar-h, 64px);
+  position: relative;
+}
+
+/* Hero section – reserve viewport height to prevent content shift */
+.hero, [class*="hero"], section:first-of-type {
+  min-height: calc(100vh - var(--navbar-h, 64px));
+}
+
+/* Images with aspect ratio reserves – prevent reflow */
+img[width][height]:not([style*="aspect"]) {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+picture {
+  display: block;
+}
+
+/* Prevent font-swap CLS by limiting nav items to single line */
+.nav-link {
+  white-space: nowrap;
+}
+
+/* Dropdown and form elements with consistent dimensions */
+.dropdown-menu {
+  min-width: 200px;
+}
+
+input, textarea, select, button {
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* Card components with fixed aspect ratio */
+.card {
+  position: relative;
+}
+
+/* Sections with padding reserves */
+section {
+  overflow-x: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;

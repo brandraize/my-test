@@ -122,7 +122,7 @@ export default function Navbar({ lang }) {
               height={48}
               priority
               sizes="(max-width: 767px) 140px, 160px"
-              quality={65}
+              quality={50}
               style={{ height: "auto", width: "160px", transition: "all 0.3s ease" }}
             />
           </Link>

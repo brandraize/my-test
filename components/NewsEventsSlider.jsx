@@ -211,7 +211,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
                       fill
                       className="NewsSlider_cardImage"
                       sizes="(min-width:1024px) 30vw, (min-width:768px) 45vw, 90vw"
-                      quality={60}
+                      quality={50}
                       priority={index === 0}
                     />
                   </div>

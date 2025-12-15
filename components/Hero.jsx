@@ -20,7 +20,7 @@ export default function HeroSection({
         height: "auto",
         width: "100%",
         overflow: "hidden",
-        paddingTop: "80px", // offset fixed navbar without adding page-level gap
+        paddingTop: "80px",
         background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
         willChange: "auto",
         contentVisibility: "auto",
@@ -28,13 +28,15 @@ export default function HeroSection({
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
       role="banner"
     >
-      {/* Optional subtle pattern overlay */}
+      {/* Pattern overlay - deferred with contentVisibility to reduce LCP */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
           backgroundImage: "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 2px, transparent 2px)",
           backgroundSize: "40px 40px",
           zIndex: 1,
+          contentVisibility: "auto",
+          containIntrinsicSize: "auto 100vh",
         }}
         aria-hidden="true"
       />
@@ -86,7 +88,7 @@ export default function HeroSection({
           role="group"
           aria-label={isRTL ? "أزرار الإجراءات الرئيسية" : "Primary action buttons"}
         >
-          {/* Contact Us Button */}
+          {/* Contact Us Button - Optimized for LCP */}
           <Link 
             href={`/${lang}/contact`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
@@ -98,18 +100,17 @@ export default function HeroSection({
               className="btn fw-semibold shadow rounded-pill d-flex align-items-center justify-content-center gap-2 w-100"
               style={{
                 fontSize: "clamp(14px, 2vw, 18px)",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                transform: hoverContact ? "scale(1.05)" : "scale(1)",
+                transition: "background-color 0.2s ease, box-shadow 0.2s ease",
                 padding: "12px 24px",
                 cursor: "pointer",
-                backgroundColor: "#25a244",
+                backgroundColor: hoverContact ? "#1f8636" : "#25a244",
                 color: "white",
                 border: "none",
                 boxShadow: hoverContact
                   ? "0 6px 20px rgba(37, 162, 68, 0.5)"
                   : "0 4px 15px rgba(37, 162, 68, 0.4)",
                 minHeight: "48px",
-                willChange: hoverContact ? "transform" : "auto",
+                willChange: "background-color",
               }}
               aria-label={isRTL ? "تواصل معنا" : "Contact us button"}
             >
@@ -121,12 +122,7 @@ export default function HeroSection({
                   marginLeft: isRTL ? "0" : "6px",
                   marginRight: isRTL ? "6px" : "0",
                   opacity: hoverContact ? 1 : 0.7,
-                  transform: hoverContact
-                    ? "translateX(0)"
-                    : isRTL
-                    ? "translateX(8px)"
-                    : "translateX(-8px)",
-                  transition: "all 0.2s ease",
+                  transition: "opacity 0.2s ease",
                   color: "white",
                 }}
                 aria-hidden="true"
@@ -136,7 +132,7 @@ export default function HeroSection({
             </button>
           </Link>
 
-          {/* Learn More Button */}
+          {/* Learn More Button - Optimized for LCP */}
           <Link 
             href={`/${lang}/about`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
@@ -148,17 +144,17 @@ export default function HeroSection({
               className="btn fw-semibold shadow rounded-pill d-flex align-items-center justify-content-center gap-2 w-100"
               style={{
                 fontSize: "clamp(14px, 2vw, 18px)",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                transform: hoverLearnMore ? "scale(1.05)" : "scale(1)",
+                transition: "background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
                 padding: "12px 24px",
                 cursor: "pointer",
-                backgroundColor: "transparent",
+                backgroundColor: hoverLearnMore ? "rgba(255, 165, 0, 0.2)" : "transparent",
                 color: "white",
-                border: "2px solid white",
+                border: hoverLearnMore ? "2px solid #ff8c00" : "2px solid white",
                 boxShadow: hoverLearnMore
-                  ? "0 6px 20px rgba(255, 255, 255, 0.3)"
+                  ? "0 6px 20px rgba(255, 165, 0, 0.4)"
                   : "0 4px 15px rgba(255, 255, 255, 0.2)",
                 minHeight: "48px",
+                willChange: "background-color, border-color",
               }}
               aria-label={isRTL ? "اعرف المزيد" : "Learn More"}
             >
@@ -170,14 +166,10 @@ export default function HeroSection({
                   marginLeft: isRTL ? "0" : "6px",
                   marginRight: isRTL ? "6px" : "0",
                   opacity: hoverLearnMore ? 1 : 0.7,
-                  transform: hoverLearnMore
-                    ? "translateX(0)"
-                    : isRTL
-                    ? "translateX(8px)"
-                    : "translateX(-8px)",
-                  transition: "all 0.2s ease",
+                  transition: "opacity 0.2s ease",
                   color: "white",
                 }}
+                aria-hidden="true"
               >
                 {isRTL ? "←" : "→"}
               </span>

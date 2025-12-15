@@ -10,13 +10,13 @@ export default function Accreditations({ lang = "en" }) {
 
   // Logo data - replace with your actual logo imports/images
   const logos = [
-    { id: 1, src: "/logos/logo1.png", alt: "Logo 1" },
-    { id: 2, src: "/logos/logo2.png", alt: "Logo 2" },
-    { id: 3, src: "/logos/logo3.png", alt: "Logo 3" },
-    { id: 4, src: "/logos/logo4.png", alt: "Logo 4" },
-    { id: 5, src: "/logos/logo5.png", alt: "Logo 5" },
-    { id: 6, src: "/logos/logo6.png", alt: "Logo 6" },
-    { id: 7, src: "/logos/logo7.png", alt: "Logo 7" },
+    { id: 1, src: "/logos/logo1.webp", alt: "Logo 1" },
+    { id: 2, src: "/logos/logo2.webp", alt: "Logo 2" },
+    { id: 3, src: "/logos/logo3.webp", alt: "Logo 3" },
+    { id: 4, src: "/logos/logo4.webp", alt: "Logo 4" },
+    { id: 5, src: "/logos/logo5.webp", alt: "Logo 5" },
+    { id: 6, src: "/logos/logo6.webp", alt: "Logo 6" },
+    { id: 7, src: "/logos/logo7.webp", alt: "Logo 7" },
   ];
 
   const CustomNextArrow = ({ onClick }) => {

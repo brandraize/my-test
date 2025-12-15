@@ -76,7 +76,7 @@ export async function generateMetadata({ params }) {
       locale: lang === 'ar' ? 'ar_SA' : 'en_US',
       images: [
         {
-          url: `${baseUrl}/og-image.jpg`,
+          url: `${baseUrl}/og.png`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
-      images: [`${baseUrl}/og-image.jpg`],
+      images: [`${baseUrl}/og.png`],
     },
     robots: {
       index: true,

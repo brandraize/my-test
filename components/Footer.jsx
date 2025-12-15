@@ -133,7 +133,7 @@ export default function Footer({ lang }) {
           >
             <Link href={`/${lang}`} aria-label={t.companyName}>
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt={`${t.companyName} logo`}
                 width={160}
                 height={48}

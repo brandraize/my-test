@@ -14,28 +14,26 @@ export default function Navbar({ lang }) {
   const mobileMenuRef = useRef(null);
   const dropdownRefs = useRef({});
 
-  // Ensure hydration consistency
   useEffect(() => {
     setMounted(true);
+
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-    
-    // Close menus when clicking outside
+
     const handleClickOutside = (event) => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target) && !event.target.closest(".navbar-toggler")) {
         setMobileMenuOpen(false);
       }
-      
-      // Close dropdowns when clicking outside
+
       if (openDropdown && !event.target.closest(`[data-dropdown="${openDropdown}"]`)) {
         setOpenDropdown(null);
       }
     };
-    
+
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("touchstart", handleClickOutside);
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
@@ -295,7 +293,7 @@ export default function Navbar({ lang }) {
         <div className="mobile-sidebar-header">
           <Link href={`/${lang}`} className="navbar-brand" onClick={handleLinkClick} aria-label="Home">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="Sensing Nature logo"
               width={140}
               height={42}

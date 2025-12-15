@@ -129,6 +129,12 @@ export default async function RootLayout({ children, params }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
         
+        {/* Preload critical fonts */}
+        <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" type="font/woff2" crossOrigin="anonymous" />
+        
+        {/* Preload hero background images if any */}
+        <link rel="preload" as="image" href="/flight.png" />
+        
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
       </head>

@@ -29,6 +29,18 @@ const nextConfig = {
     optimizeCss: true,
     optimizePackageImports: ['react-icons', '@mui/material', '@mui/icons-material'],
   },
+  webpack: (config, { isServer }) => {
+    // Defer framer-motion loading to separate chunk
+    if (!isServer) {
+      config.optimization.splitChunks.cacheGroups.framermotion = {
+        test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+        name: 'framer-motion',
+        chunks: 'async',
+        priority: -10,
+      };
+    }
+    return config;
+  },
   
   headers: async () => [
     {

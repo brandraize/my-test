@@ -1,0 +1,29 @@
+/* Performance optimization - Disable animations during initial page load */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Critical CSS - Must load first */
+html {
+  scroll-behavior: auto; /* Disable smooth scroll on initial load */
+}
+
+/* Only enable animations after page is interactive */
+html.animations-enabled * {
+  scroll-behavior: smooth;
+}
+
+html.animations-enabled .leaf-animation {
+  animation: floatLeaf 3s ease-in-out infinite;
+}
+
+html.animations-enabled @keyframes floatLeaf {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 1; }
+  25% { transform: translateY(-10px) translateX(5px); }
+  50% { transform: translateY(-20px) translateX(-5px); opacity: 0.8; }
+  75% { transform: translateY(-10px) translateX(5px); }
+}

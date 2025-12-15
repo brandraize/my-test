@@ -1,11 +1,24 @@
-
 import { use } from "react";
 import Hero from "../../components/Hero";
 import IntroSection from "../../components/IntroSection";
-import ServicesSection from "../../components/ServicesSection";
+import dynamic from "next/dynamic";
 import "@/styles/globals.css";
-import NewsEventsSlider from "../../components/NewsEventsSlider";
-import Accreditations from "../../components/Accreditations";
+
+// Lazy load heavy components below the fold
+const ServicesSection = dynamic(() => import("../../components/ServicesSection"), {
+  loading: () => null,
+  ssr: true,
+});
+
+const NewsEventsSlider = dynamic(() => import("../../components/NewsEventsSlider"), {
+  loading: () => null,
+  ssr: true,
+});
+
+const Accreditations = dynamic(() => import("../../components/Accreditations"), {
+  loading: () => null,
+  ssr: true,
+});
 
 export default function Home({ params }) {
   const resolvedParams = use(params);

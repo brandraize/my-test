@@ -83,7 +83,7 @@ export default function Accreditations({ lang = "en" }) {
                     fill
                     style={{ objectFit: "contain" }}
                     sizes="(min-width: 1400px) 140px, (min-width: 992px) 120px, (min-width: 768px) 140px, 120px"
-                    quality={50}
+                    quality={60}
                     priority={idx === 0}
                   />
                 </div>

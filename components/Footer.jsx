@@ -137,7 +137,7 @@ export default function Footer({ lang }) {
                 alt={`${t.companyName} logo`}
                 width={160}
                 height={48}
-                quality={75}
+                quality={60}
                 sizes="160px"
                 style={{
                   width: "160px",

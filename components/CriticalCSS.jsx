@@ -3,7 +3,10 @@ export default function CriticalCSS() {
     <style dangerouslySetInnerHTML={{__html: `
       /* Critical Bootstrap subset for initial render */
       *,::after,::before{box-sizing:border-box}
-      body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff}
+      body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;font-display:optional}
+      /* Prevent CLS from images */
+      img{vertical-align:middle;border-style:none;height:auto;max-width:100%}
+      img[width][height]{aspect-ratio:attr(width)/attr(height)}
       .container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
       @media (min-width:576px){.container{max-width:540px}}
       @media (min-width:768px){.container{max-width:720px}}

@@ -16,13 +16,14 @@ export default function HeroSection({
     <section
       className="position-relative w-100 d-flex align-items-center justify-content-center"
       style={{
-        minHeight: "calc(100vh - 56px)",
+        minHeight: "100vh",
         height: "auto",
         width: "100%",
         overflow: "hidden",
-        paddingTop: "56px",
+        paddingTop: "0",
         background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
         willChange: "auto",
+        contentVisibility: "auto",
       }}
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
     >

@@ -1,10 +1,14 @@
 import { use } from "react";
 import Hero from "../../components/Hero";
-import IntroSection from "../../components/IntroSection";
 import dynamic from "next/dynamic";
 import "@/styles/globals.css";
 
-// Lazy load heavy components below the fold
+// Lazy load ALL heavy components to optimize LCP
+const IntroSection = dynamic(() => import("../../components/IntroSection"), {
+  loading: () => null,
+  ssr: true,
+});
+
 const ServicesSection = dynamic(() => import("../../components/ServicesSection"), {
   loading: () => null,
   ssr: true,

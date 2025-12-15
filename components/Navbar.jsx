@@ -3,7 +3,13 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaPhone, FaWhatsapp, FaChevronDown, FaTimes, FaChevronUp } from "react-icons/fa";
+import {
+  FaPhone,
+  FaWhatsapp,
+  FaChevronDown,
+  FaTimes,
+  FaChevronUp,
+} from "react-icons/fa";
 
 export default function Navbar({ lang }) {
   const pathname = usePathname();
@@ -22,11 +28,18 @@ export default function Navbar({ lang }) {
     handleScroll();
 
     const handleClickOutside = (event) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target) && !event.target.closest(".navbar-toggler")) {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        !event.target.closest(".navbar-toggler")
+      ) {
         setMobileMenuOpen(false);
       }
 
-      if (openDropdown && !event.target.closest(`[data-dropdown="${openDropdown}"]`)) {
+      if (
+        openDropdown &&
+        !event.target.closest(`[data-dropdown="${openDropdown}"]`)
+      ) {
         setOpenDropdown(null);
       }
     };
@@ -54,28 +67,27 @@ export default function Navbar({ lang }) {
 
   // Menu items with dropdown support
   const menuItems = [
-    { 
-      href: "/", 
-      label: lang === "ar" ? "الرئيسية" : "Home" 
+    {
+      href: "/",
+      label: lang === "ar" ? "الرئيسية" : "Home",
     },
-    { 
-      href: "/service", 
+    {
+      href: "/service",
       label: lang === "ar" ? "خدماتنا" : "Our Services",
       dropdown: false,
       type: "services",
-  
     },
-    { 
-      href: "/projects", 
-      label: lang === "ar" ? "مشاريعنا" : "Projects" 
+    {
+      href: "/projects",
+      label: lang === "ar" ? "مشاريعنا" : "Projects",
     },
-    { 
-      href: "/about", 
-      label: lang === "ar" ? "من نحن" : "About Us" 
+    {
+      href: "/about",
+      label: lang === "ar" ? "من نحن" : "About Us",
     },
-    { 
-      href: "/contact", 
-      label: lang === "ar" ? "اتصل بنا" : "Contact Us" 
+    {
+      href: "/contact",
+      label: lang === "ar" ? "اتصل بنا" : "Contact Us",
     },
   ];
 
@@ -100,29 +112,39 @@ export default function Navbar({ lang }) {
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg fixed-top ${scrolled ? "navbar-scrolled" : ""}`}
+        className={`navbar navbar-expand-lg fixed-top ${
+          scrolled ? "navbar-scrolled" : ""
+        }`}
         style={{
           backgroundColor: scrolled ? "rgba(255, 255, 255, 0.98)" : "white",
           backdropFilter: "blur(10px)",
           transition: "all 0.3s ease-in-out",
           boxShadow: scrolled ? "0 2px 20px rgba(0, 0, 0, 0.1)" : "none",
-          zIndex: 1030
+          zIndex: 1030,
         }}
         dir={lang === "ar" ? "rtl" : "ltr"}
       >
         <div className="container d-flex align-items-center justify-content-between">
           {/* Logo */}
-          <Link href={`/${lang}`} className="navbar-brand" aria-label="Sensing Nature home">
+          <Link
+            href={`/${lang}`}
+            className="navbar-brand"
+            aria-label="Sensing Nature home"
+          >
             <Image
               src="/logo.webp"
               alt="Sensing Nature logo"
               width={160}
               height={48}
               quality={65}
-              priority
+              priority={true} 
               fetchPriority="high"
               sizes="(max-width: 767px) 140px, 160px"
-              style={{ height: "auto", width: "160px", transition: "all 0.3s ease" }}
+              style={{
+                height: "auto",
+                width: "160px",
+                transition: "all 0.3s ease",
+              }}
             />
           </Link>
 
@@ -130,15 +152,17 @@ export default function Navbar({ lang }) {
           <div className="d-none d-lg-flex align-items-center w-100">
             <ul className="navbar-nav mx-auto align-items-center">
               {menuItems.map((item, index) => (
-                <li 
-                  key={index} 
+                <li
+                  key={index}
                   className="nav-item mx-2 position-relative"
                   data-dropdown={item.type}
                 >
                   {item.dropdown ? (
                     <div className="dropdown-container">
                       <button
-                        className={`nav-link dropdown-toggle d-flex align-items-center ${isActive(item.href) ? "active" : ""}`}
+                        className={`nav-link dropdown-toggle d-flex align-items-center ${
+                          isActive(item.href) ? "active" : ""
+                        }`}
                         onClick={() => toggleDropdown(item.type)}
                         style={{
                           color: scrolled ? "#333" : "#333",
@@ -149,7 +173,7 @@ export default function Navbar({ lang }) {
                           transition: "all 0.3s ease",
                           background: "none",
                           border: "none",
-                          cursor: "pointer"
+                          cursor: "pointer",
                         }}
                       >
                         {item.label}
@@ -165,7 +189,11 @@ export default function Navbar({ lang }) {
                           <div className="dropdown-content">
                             <div className="dropdown-header">
                               <h6>{item.label}</h6>
-                              <p>{lang === "ar" ? "اختر الخدمة المناسبة" : "Choose the right service"}</p>
+                              <p>
+                                {lang === "ar"
+                                  ? "اختر الخدمة المناسبة"
+                                  : "Choose the right service"}
+                              </p>
                             </div>
                             <div className="dropdown-grid">
                               {item.items.map((dropdownItem, idx) => (
@@ -175,7 +203,9 @@ export default function Navbar({ lang }) {
                                   className="dropdown-item"
                                   onClick={handleLinkClick}
                                 >
-                                  <span className="dropdown-icon">{dropdownItem.icon}</span>
+                                  <span className="dropdown-icon">
+                                    {dropdownItem.icon}
+                                  </span>
                                   <div className="dropdown-text">
                                     <h6>{dropdownItem.title[lang]}</h6>
                                     <p>{dropdownItem.description[lang]}</p>
@@ -190,7 +220,9 @@ export default function Navbar({ lang }) {
                   ) : (
                     <Link
                       href={`/${lang}${item.href === "/" ? "" : item.href}`}
-                      className={`nav-link ${isActive(item.href) ? "active" : ""}`}
+                      className={`nav-link ${
+                        isActive(item.href) ? "active" : ""
+                      }`}
                       style={{
                         color: scrolled ? "#333" : "#333",
                         fontWeight: "500",
@@ -198,7 +230,7 @@ export default function Navbar({ lang }) {
                         padding: "8px 16px",
                         borderRadius: "6px",
                         transition: "all 0.3s ease",
-                        position: "relative"
+                        position: "relative",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = "#f8f9fa";
@@ -223,7 +255,12 @@ export default function Navbar({ lang }) {
             <div className="d-flex align-items-center gap-3">
               {/* Language Switcher */}
               <Link
-                href={pathname?.replace(`/${lang}`, lang === "ar" ? "/en" : "/ar") || "/"}
+                href={
+                  pathname?.replace(
+                    `/${lang}`,
+                    lang === "ar" ? "/en" : "/ar"
+                  ) || "/"
+                }
                 className="btn-language"
               >
                 {lang === "ar" ? "EN" : "ع"}
@@ -252,7 +289,10 @@ export default function Navbar({ lang }) {
           {/* Mobile Toggle */}
           <div className="d-lg-none d-flex align-items-center gap-3">
             <Link
-              href={pathname?.replace(`/${lang}`, lang === "ar" ? "/en" : "/ar") || "/"}
+              href={
+                pathname?.replace(`/${lang}`, lang === "ar" ? "/en" : "/ar") ||
+                "/"
+              }
               className="btn-language-mobile"
             >
               {lang === "ar" ? "EN" : "ع"}
@@ -268,7 +308,7 @@ export default function Navbar({ lang }) {
                 background: "none",
                 padding: "8px",
                 fontSize: "1.5rem",
-                color: "#333"
+                color: "#333",
               }}
             >
               {isMobileMenuOpen ? <FaTimes /> : "☰"}
@@ -279,10 +319,7 @@ export default function Navbar({ lang }) {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div 
-          className="mobile-overlay"
-          onClick={toggleMobileMenu}
-        />
+        <div className="mobile-overlay" onClick={toggleMobileMenu} />
       )}
 
       {/* Mobile Sidebar */}
@@ -292,7 +329,12 @@ export default function Navbar({ lang }) {
         dir={lang === "ar" ? "rtl" : "ltr"}
       >
         <div className="mobile-sidebar-header">
-          <Link href={`/${lang}`} className="navbar-brand" onClick={handleLinkClick} aria-label="Home">
+          <Link
+            href={`/${lang}`}
+            className="navbar-brand"
+            onClick={handleLinkClick}
+            aria-label="Home"
+          >
             <Image
               src="/logo.webp"
               alt="Sensing Nature logo"
@@ -304,7 +346,11 @@ export default function Navbar({ lang }) {
               style={{ width: "140px", height: "auto" }}
             />
           </Link>
-          <button className="close-btn" aria-label={lang === "ar" ? "إغلاق القائمة" : "Close menu"} onClick={toggleMobileMenu}>
+          <button
+            className="close-btn"
+            aria-label={lang === "ar" ? "إغلاق القائمة" : "Close menu"}
+            onClick={toggleMobileMenu}
+          >
             <FaTimes />
           </button>
         </div>
@@ -334,7 +380,9 @@ export default function Navbar({ lang }) {
                           className="mobile-dropdown-item"
                           onClick={handleLinkClick}
                         >
-                          <span className="mobile-icon">{dropdownItem.icon}</span>
+                          <span className="mobile-icon">
+                            {dropdownItem.icon}
+                          </span>
                           <div>
                             <div className="mobile-item-title">
                               {dropdownItem.title[lang]}
@@ -369,7 +417,7 @@ export default function Navbar({ lang }) {
             >
               <FaPhone /> {lang === "ar" ? "اتصال هاتفي" : "Call Now"}
             </a>
-            
+
             <a
               href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
@@ -377,7 +425,8 @@ export default function Navbar({ lang }) {
               className="btn-whatsapp-mobile d-flex align-items-center justify-content-center gap-2"
               onClick={handleLinkClick}
             >
-              <FaWhatsapp /> {lang === "ar" ? "محادثة واتساب" : "Chat on WhatsApp"}
+              <FaWhatsapp />{" "}
+              {lang === "ar" ? "محادثة واتساب" : "Chat on WhatsApp"}
             </a>
           </div>
 
@@ -386,10 +435,7 @@ export default function Navbar({ lang }) {
             <p className="text-center mb-2">
               {lang === "ar" ? "متاحون 24/7" : "Available 24/7"}
             </p>
-            <a 
-              href={`tel:${phoneNumber}`}
-              className="mobile-phone"
-            >
+            <a href={`tel:${phoneNumber}`} className="mobile-phone">
               {phoneNumber}
             </a>
           </div>
@@ -401,8 +447,8 @@ export default function Navbar({ lang }) {
         :root {
           --primary-color: #1eca14;
           --primary-dark: #17a90d;
-          --whatsapp-green: #25D366;
-          --whatsapp-dark: #128C7E;
+          --whatsapp-green: #25d366;
+          --whatsapp-dark: #128c7e;
           --dark-color: #333333;
           --light-color: #ffffff;
           --gray-light: #f8f9fa;
@@ -736,7 +782,8 @@ export default function Navbar({ lang }) {
           text-align: center;
         }
 
-        .btn-call-mobile, .btn-whatsapp-mobile {
+        .btn-call-mobile,
+        .btn-whatsapp-mobile {
           padding: 12px;
           border-radius: 8px;
           font-weight: 600;

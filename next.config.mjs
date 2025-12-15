@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Use webpack instead of Turbopack for stability
-  turbopack: {},
+  // REMOVE this line - it's slowing you down
+  // turbopack: {},
   
   images: {
     remotePatterns: [
@@ -31,7 +31,20 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['react-icons', '@mui/material', '@mui/icons-material'],
+    // ⭐ ADD THIS FOR RENDER OPTIMIZATION
+    serverComponentsExternalPackages: ['bootstrap'],
   },
+  
+  // ⭐ ADD THIS FOR PRELOADING
+  async rewrites() {
+    return [
+      {
+        source: '/preload-hero.css',
+        destination: '/api/preload-hero',
+      },
+    ];
+  },
+
   webpack: (config, { isServer, dev }) => {
     // Production optimizations only
     if (!dev && !isServer) {
@@ -58,12 +71,12 @@ const nextConfig = {
             minChunks: 1,
             reuseExistingChunk: true,
           },
-          // Bootstrap (separate chunk)
-          bootstrap: {
-            name: 'bootstrap',
-            test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
-            priority: 35,
-          },
+          // ⭐ REMOVE THIS - YOU DON'T USE BOOTSTRAP ENOUGH
+          // bootstrap: {
+          //   name: 'bootstrap',
+          //   test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
+          //   priority: 35,
+          // },
           // React Icons (separate chunk)
           icons: {
             name: 'icons',
@@ -129,7 +142,8 @@ const nextConfig = {
       headers: [
         {
           key: 'Link',
-          value: '</logo.webp>; rel=preload; as=image; type=image/webp',
+          // ⭐ CHANGE THIS TO PRELOAD HERO CSS
+          value: '</preload-hero.css>; rel=preload; as=style',
         },
       ],
     },

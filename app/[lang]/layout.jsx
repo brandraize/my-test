@@ -148,7 +148,7 @@ export default async function RootLayout({ children, params }) {
 
           <main
             className="d-flex flex-column flex-grow-1 bg-white"
-            style={{ minHeight: "100vh", paddingTop: "0" }}
+            style={{ minHeight: "100vh", paddingTop: "var(--navbar-h)" }}
           >
             {children}
           </main>

@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function HeroSection({
@@ -23,8 +22,9 @@ export default function HeroSection({
         overflow: "hidden",
         paddingTop: "56px",
         background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
+        willChange: "auto",
       }}
-      aria-label="Hero section"
+      aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
     >
       {/* Optional subtle pattern overlay */}
       <div
@@ -47,7 +47,7 @@ export default function HeroSection({
           padding: "20px",
         }}
       >
-        <motion.h1
+        <h1
           style={{
             color: "white",
             fontSize: "clamp(1.75rem, 4vw, 3rem)",
@@ -57,14 +57,11 @@ export default function HeroSection({
             textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
             padding: "0 10px",
           }}
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
         >
           {heroTitle}
-        </motion.h1>
+        </h1>
 
-        <motion.p
+        <p
           className="lead w-100"
           style={{
             color: "white",
@@ -76,22 +73,22 @@ export default function HeroSection({
             width: "100%",
             padding: "0 10px 20px",
           }}
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
         >
           {heroDescription}
-        </motion.p>
+        </p>
 
         {/* Two Buttons */}
         <div 
           className="d-flex flex-wrap justify-content-center align-items-center gap-3"
           style={{ padding: "0 10px" }}
+          role="group"
+          aria-label={isRTL ? "أزرار الإجراءات الرئيسية" : "Primary action buttons"}
         >
           {/* Contact Us Button */}
           <Link 
-            href={`/${lang}/contact`} 
+            href={`/${lang}/contact-us`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
+            aria-label={isRTL ? "انتقل إلى صفحة الاتصال" : "Navigate to contact page"}
           >
             <button
               onMouseEnter={() => setHoverContact(true)}
@@ -99,7 +96,7 @@ export default function HeroSection({
               className="btn fw-semibold shadow rounded-pill d-flex align-items-center justify-content-center gap-2 w-100"
               style={{
                 fontSize: "clamp(14px, 2vw, 18px)",
-                transition: "all 0.3s ease",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 transform: hoverContact ? "scale(1.05)" : "scale(1)",
                 padding: "12px 24px",
                 cursor: "pointer",
@@ -110,6 +107,7 @@ export default function HeroSection({
                   ? "0 6px 20px rgba(37, 162, 68, 0.5)"
                   : "0 4px 15px rgba(37, 162, 68, 0.4)",
                 minHeight: "48px",
+                willChange: hoverContact ? "transform" : "auto",
               }}
               aria-label={isRTL ? "تواصل معنا" : "Contact Us"}
             >
@@ -129,6 +127,7 @@ export default function HeroSection({
                   transition: "all 0.2s ease",
                   color: "white",
                 }}
+                aria-hidden="true"
               >
                 {isRTL ? "←" : "→"}
               </span>
@@ -137,8 +136,9 @@ export default function HeroSection({
 
           {/* Learn More Button */}
           <Link 
-            href={`/${lang}/about`} 
+            href={`/${lang}/about-us`} 
             style={{ textDecoration: "none", width: "100%", maxWidth: "280px" }}
+            aria-label={isRTL ? "تعرف على المزيد عن خدماتنا" : "Learn more about our services"}
           >
             <button
               onMouseEnter={() => setHoverLearnMore(true)}
@@ -146,7 +146,7 @@ export default function HeroSection({
               className="btn fw-semibold shadow rounded-pill d-flex align-items-center justify-content-center gap-2 w-100"
               style={{
                 fontSize: "clamp(14px, 2vw, 18px)",
-                transition: "all 0.3s ease",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 transform: hoverLearnMore ? "scale(1.05)" : "scale(1)",
                 padding: "12px 24px",
                 cursor: "pointer",

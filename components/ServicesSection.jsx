@@ -181,6 +181,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="120px"
               />
             </div>
           </motion.div>
@@ -197,6 +198,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="80px"
                 style={{ opacity: 0.7 }}
               />
             </div>
@@ -215,6 +217,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="100px"
                 style={{ opacity: 0.3 }}
               />
             </div>
@@ -236,6 +239,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="60px"
                 style={{ opacity: 0.3 }}
               />
             </div>
@@ -257,6 +261,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="70px"
                 style={{ opacity: 0.3 }}
               />
             </div>
@@ -280,6 +285,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="40px"
                 style={{ filter: `drop-shadow(0 2px 4px ${colors.primary}40)` }}
               />
             </div>
@@ -289,6 +295,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="30px"
                 style={{ filter: `drop-shadow(0 2px 4px ${colors.primary}40)` }}
               />
             </div>
@@ -298,6 +305,7 @@ export default function ServicesSection({ lang = "en" }) {
                 alt=""
                 fill
                 className="object-contain"
+                sizes="40px"
                 style={{ filter: `drop-shadow(0 2px 4px ${colors.primary}40)` }}
               />
             </div>

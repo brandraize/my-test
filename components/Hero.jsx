@@ -16,7 +16,7 @@ export default function HeroSection({
     <section
       className="position-relative w-100 d-flex align-items-center justify-content-center"
       style={{
-        minHeight: "calc(100vh - var(--navbar-h))",
+        minHeight: "calc(100vh - var(--navbar-h, 64px))",
         height: "auto",
         width: "100%",
         overflow: "hidden",

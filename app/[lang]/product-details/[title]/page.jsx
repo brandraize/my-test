@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Loading from "@/components/Loading";
+import Image from "next/image";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -74,18 +75,14 @@ export default async function ProductDetailsPage({ params }) {
             }}
             className="rounded"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.title[lang]}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-              }}
+              fill
+              sizes="(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw"
+              style={{ objectFit: "cover" }}
               className="rounded shadow"
-              loading="lazy"
+              priority={false}
             />
           </div>
         </div>

@@ -301,7 +301,7 @@ export default function Navbar({ lang }) {
               style={{ width: "140px", height: "auto" }}
             />
           </Link>
-          <button className="close-btn" onClick={toggleMobileMenu}>
+          <button className="close-btn" aria-label={lang === "ar" ? "إغلاق القائمة" : "Close menu"} onClick={toggleMobileMenu}>
             <FaTimes />
           </button>
         </div>

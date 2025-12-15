@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Pagination from "@mui/material/Pagination";
 import usePagination from "@/hooks/UsePagination";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AllProjects({ lang, projects }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -52,26 +53,14 @@ export default function AllProjects({ lang, projects }) {
     notFound, 
     noProjects,
     status,
-    completed,
-    inProgress,
-    upcoming,
-    location,
-    duration,
-    client
-  } = content[lang] || content.en;
-
-  const categories = [...new Set((projects || []).map((p) => p.category))];
-
-  const projectsToDisplay =
-    searchResult.length > 0 && filteredProjects.length > 0
-      ? searchResult
-      : filteredProjects.length > 0
-      ? filteredProjects
-      : searchResult.length > 0
-      ? searchResult
-      : projects || [];
-
-  const {
+                            <Image
+                              src={project.image}
+                              alt={project.title}
+                              fill
+                              sizes="(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw"
+                              style={{ objectFit: "cover" }}
+                              priority={false}
+                            />
     totalPages,
     startPageIndex,
     endPageIndex,

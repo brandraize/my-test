@@ -1,6 +1,5 @@
 import { Tajawal } from "next/font/google";
 import "@/styles/globals.css";
-// Bootstrap now async-loaded by BootstrapLoader to avoid render-blocking (730ms savings)
 // Moved slick-carousel CSS into the slider component to avoid render-blocking
 // Removed font-awesome global CSS (unused) to reduce blocking CSS
 import { ToastContainer } from "react-toastify";
@@ -10,7 +9,6 @@ import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import PerformanceBoot from "@/components/PerformanceBoot";
-import BootstrapLoader from "@/components/BootstrapLoader";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -127,14 +125,24 @@ export default async function RootLayout({ children, params }) {
         
         {/* Resource hints */}
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
+
+        {/* Bootstrap CSS - load early to prevent layout shifts */}
+        <link
+          rel="preload"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          as="style"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          crossOrigin="anonymous"
+        />
         
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
       </head>
       <body style={{ position: "relative" }}>
         <ContextProvider>
-          {/* Async-load Bootstrap to avoid 730ms render-blocking */}
-          <BootstrapLoader />
           {/* Disable animations/transitions during first paint for better LCP */}
           <PerformanceBoot />
           <Navbar lang={lang} />

@@ -1,15 +1,9 @@
 "use client";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export default function IntroSection({ lang = "en" }) {
   const isRTL = lang === "ar";
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Image paths - assuming images are in the public folder
   const imagePaths = {
@@ -46,41 +40,6 @@ export default function IntroSection({ lang = "en" }) {
       ? "تسهيل عملية اتخاذ القرار للجهات والأفراد من خلال توفير معلومات دقيقة وموثوقة."
       : "Facilitate decision-making for entities and individuals by providing accurate and reliable information.",
   };
-
-  if (!isMounted) {
-    return (
-      <section
-        className="py-5 position-relative"
-        style={{
-          backgroundColor: colors.lightBg,
-          direction: isRTL ? "rtl" : "ltr",
-          overflow: "hidden",
-        }}
-        aria-labelledby="intro-title"
-      >
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Simplified version for SSR */}
-            <div className="col-lg-6 mb-5 mb-lg-0">
-              <h2
-                id="intro-title"
-                className="mb-4"
-                style={{ color: colors.accent }}
-              >
-                {content.title}
-              </h2>
-              <p className="mb-4 lead" style={{ color: colors.textDark }}>
-                {content.description}
-              </p>
-            </div>
-            <div className="col-lg-6">
-              <div style={{ height: "500px", backgroundColor: colors.white }} />
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <>

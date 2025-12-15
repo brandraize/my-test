@@ -118,9 +118,9 @@ export default function Navbar({ lang }) {
               alt="Sensing Nature logo"
               width={160}
               height={48}
+              quality={75}
               priority
               sizes="(max-width: 767px) 140px, 160px"
-              quality={50}
               style={{ height: "auto", width: "160px", transition: "all 0.3s ease" }}
             />
           </Link>
@@ -297,8 +297,8 @@ export default function Navbar({ lang }) {
               alt="Sensing Nature logo"
               width={140}
               height={42}
+              quality={75}
               priority={false}
-              quality={50}
               sizes="140px"
               style={{ width: "140px", height: "auto" }}
             />

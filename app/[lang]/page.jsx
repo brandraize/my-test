@@ -17,7 +17,7 @@ export default function Home({ params }) {
       description: "Innovative environmental, geological, geophysical & meteorological solutions with accurate insights using latest techniques.",
       keywords: "environmental services, geological solutions, geophysical surveys, meteorological services, sensing nature, sustainable development",
       heroTitle: "Innovative Environmental, Geological, Geophysical & Meteorological Solutions",
-      heroDescription: "Accurate insights with the latest geological & geophysical techniques.",
+      heroDescription: "Accurate insights with the latest geological & geophysical techniques",
       shopNow: "Contact Us",
       learnMore: "Learn More",
     },

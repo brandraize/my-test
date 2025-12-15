@@ -1,7 +1,3 @@
-export const dynamic = "force-dynamic";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/configuration/firebase-config";
-
 import AllProducts from "@/components/AllProducts";
 
 export async function generateMetadata({ params }) {
@@ -55,20 +51,8 @@ export default async function ProductsPage({ params }) {
   const resolvedParams = await params;
   const { lang } = resolvedParams;
 
-  const querySnapshot = await getDocs(collection(db, "products"));
-  const products = querySnapshot.docs.map((doc) => {
-    const data = doc.data();
-    return {
-      ...data,
-      id: doc.id,
-      title: data.title[lang],
-      category: data.category[lang],
-      shortDesc: data.shortDesc[lang],
-      fullDesc: data.fullDesc[lang],
-      slug: data.title["en"],
-      timestamp: null,
-    };
-  });
+  // Products disabled - Firebase removed
+  const products = [];
 
   const content = {
     en: {

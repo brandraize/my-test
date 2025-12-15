@@ -1,31 +1,15 @@
-export const dynamic = "force-dynamic";
-
 import { notFound } from "next/navigation";
-import { db } from "@/configuration/firebase-config";
-import { collection, query, where, getDocs } from "firebase/firestore";
-
 import Loading from "@/components/Loading";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { lang, title } = resolvedParams;
-  const titleFromUrl = decodeURIComponent(title).replace(/_/g, " ");
 
-  const productsRef = collection(db, "products");
-  const q = query(productsRef, where(`title.en`, "==", titleFromUrl));
-  const querySnapshot = await getDocs(q);
-  const product = querySnapshot.docs[0]?.data();
-
-  if (!product) {
-    return {
-      title: "Product Not Found",
-      description: "The product you are looking for does not exist.",
-    };
-  }
-
-  const productTitle = product.title[lang] || product.title.en;
-  const productDesc = product.shortDesc[lang] || product.shortDesc.en;
-  const productImage = product.image;
+  // Products disabled - Firebase removed
+  return {
+    title: "Product Details",
+    description: "Product information",
+  };
 
   const baseUrl = "https://happy-face.co";
   const canonicalUrl = `${baseUrl}/${lang}/${title}`;
@@ -57,20 +41,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ProductDetailsPage({ params }) {
-  const resolvedLang = await params;
-  const lang = resolvedLang.lang || "en";
-  const titleFromUrl = decodeURIComponent(resolvedLang.title).replace(
-    /_/g,
-    " "
-  );
-  const productsRef = collection(db, "products");
-  const q = query(productsRef, where(`title.en`, "==", titleFromUrl));
-  const querySnapshot = await getDocs(q);
-  const product = querySnapshot.docs[0]?.data();
-
-  if (!product) {
-    notFound();
-  }
+  // Products disabled - Firebase removed
+  notFound();
 
   const content = {
     en: {

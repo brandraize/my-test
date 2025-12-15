@@ -60,7 +60,7 @@ export default function AllProjects({ lang, projects }) {
     client
   } = content[lang] || content.en;
 
-  const categories = [...new Set(projects.map((p) => p.category))];
+  const categories = [...new Set((projects || []).map((p) => p.category))];
 
   const projectsToDisplay =
     searchResult.length > 0 && filteredProjects.length > 0
@@ -69,7 +69,7 @@ export default function AllProjects({ lang, projects }) {
       ? filteredProjects
       : searchResult.length > 0
       ? searchResult
-      : projects;
+      : projects || [];
 
   const {
     totalPages,
@@ -91,7 +91,7 @@ export default function AllProjects({ lang, projects }) {
   const searchProjects = (e) => {
     e.preventDefault();
 
-    const filtered = projects.filter((p) =>
+    const filtered = (projects || []).filter((p) =>
       p.title.toLowerCase().includes(search.toLowerCase())
     );
 
@@ -119,7 +119,7 @@ export default function AllProjects({ lang, projects }) {
   };
 
   useEffect(() => {
-    const filtered = projects.filter((p) => {
+    const filtered = (projects || []).filter((p) => {
       const matchCategory =
         selectedCategories.length === 0 ||
         selectedCategories.includes(p.category);
@@ -127,7 +127,7 @@ export default function AllProjects({ lang, projects }) {
     });
     setcurrentPageIndex(1);
     setFilteredProjects(filtered);
-  }, [selectedCategories]);
+  }, [selectedCategories, projects]);
 
   useEffect(() => {
     if (search.trim() === "") {
@@ -137,7 +137,7 @@ export default function AllProjects({ lang, projects }) {
 
   return (
     <div className="container my-5">
-      {projects.length > 0 ? (
+      {(projects || []).length > 0 ? (
         <>
           <div className="d-flex justify-content-center mb-5">
             <div

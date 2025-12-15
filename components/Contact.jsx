@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { db } from "@/configuration/firebase-config";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
@@ -112,11 +110,7 @@ export default function ContactPage({ lang = "en" }) {
     e.preventDefault();
     try {
       setLoading(true);
-      await addDoc(collection(db, "contacts"), {
-        ...formData,
-        timestamp: serverTimestamp(),
-        read: false,
-      });
+      // Firebase removed - form submission disabled
       toast.success(messages.success);
       setFormData({
         firstName: "",

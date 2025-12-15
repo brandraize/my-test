@@ -1,7 +1,5 @@
 import { Tajawal } from "next/font/google";
 import "@/styles/globals.css";
-// Moved slick-carousel CSS into the slider component to avoid render-blocking
-// Removed font-awesome global CSS (unused) to reduce blocking CSS
 import { ToastContainer } from "react-toastify";
 import ContextProvider from "@/providers/ContextProvider";
 import Navbar from "@/components/Navbar";
@@ -9,6 +7,8 @@ import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import PerformanceBoot from "@/components/PerformanceBoot";
+import CriticalCSS from "@/components/CriticalCSS";
+import AsyncBootstrap from "@/components/AsyncBootstrap";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -125,25 +125,18 @@ export default async function RootLayout({ children, params }) {
         
         {/* Resource hints */}
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
-
-        {/* Bootstrap CSS - load early to prevent layout shifts */}
-        <link
-          rel="preload"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          crossOrigin="anonymous"
-        />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        
+        {/* Critical CSS inline for instant render */}
+        <CriticalCSS />
         
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
       </head>
       <body style={{ position: "relative" }}>
         <ContextProvider>
-          {/* Disable animations/transitions during first paint for better LCP */}
+          {/* Inline critical CSS, async load full Bootstrap */}
+          <AsyncBootstrap />
           <PerformanceBoot />
           <Navbar lang={lang} />
           <WhatsAppButton lang={lang} />

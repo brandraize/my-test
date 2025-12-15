@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // REMOVE this line - it's slowing you down
-  // turbopack: {},
+  turbopack: {},
   
   images: {
     remotePatterns: [
@@ -31,18 +30,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['react-icons', '@mui/material', '@mui/icons-material'],
-    // ⭐ ADD THIS FOR RENDER OPTIMIZATION
-    serverComponentsExternalPackages: ['bootstrap'],
-  },
-  
-  // ⭐ ADD THIS FOR PRELOADING
-  async rewrites() {
-    return [
-      {
-        source: '/preload-hero.css',
-        destination: '/api/preload-hero',
-      },
-    ];
   },
 
   webpack: (config, { isServer, dev }) => {

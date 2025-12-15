@@ -4,9 +4,14 @@ export default function CriticalCSS() {
       /* Critical Bootstrap subset for initial render */
       *,::after,::before{box-sizing:border-box}
       body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;font-display:optional}
-      /* Prevent CLS from images */
+      /* ⭐ Prevent CLS from images - CRITICAL FOR 92+ */
       img{vertical-align:middle;border-style:none;height:auto;max-width:100%}
       img[width][height]{aspect-ratio:attr(width)/attr(height)}
+      /* ⭐ Hero section critical styles for LCP */
+      h1{font-size:2.5rem;margin-top:0;margin-bottom:.5rem;font-weight:700;line-height:1.2}
+      .lead{font-size:1.25rem;font-weight:300}
+      /* ⭐ Button styles to prevent CLS */
+      .btn{display:inline-block;font-weight:400;text-align:center;vertical-align:middle;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;min-height:48px}
       .container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
       @media (min-width:576px){.container{max-width:540px}}
       @media (min-width:768px){.container{max-width:720px}}

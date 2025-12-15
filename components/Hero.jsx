@@ -2,20 +2,6 @@
 import { useState } from "react";
 import Link from "next/link";
 
-// ⭐ ADD THIS: Extract critical styles to avoid FOUC
-const heroStyles = `
-  .hero-section {
-    background: linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%);
-    min-height: 720px;
-    padding-top: 80px;
-    contain: layout style paint;
-  }
-  .hero-pattern {
-    background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
-    background-size: 40px 40px;
-  }
-`;
-
 export default function HeroSection({
   text = "Get in Touch",
   lang = "en",
@@ -27,30 +13,30 @@ export default function HeroSection({
   const isRTL = lang === "ar";
 
   return (
-    <>
-      {/* ⭐ ADD INLINE CRITICAL CSS */}
-      <style jsx global>{`
-        ${heroStyles}
-      `}</style>
-      
-      <section
-        className="hero-section position-relative w-100 d-flex align-items-center justify-content-center"
+    <section
+      className="position-relative w-100 d-flex align-items-center justify-content-center"
+      style={{
+        minHeight: "720px",
+        height: "auto",
+        width: "100%",
+        overflow: "hidden",
+        paddingTop: "80px",
+        background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
+        contain: "layout style paint",
+      }}
+      aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
+      role="banner"
+    >
+      {/* Pattern overlay */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
         style={{
-          height: "auto",
-          width: "100%",
-          overflow: "hidden",
+          backgroundImage: "radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 2px, transparent 2px)",
+          backgroundSize: "40px 40px",
+          zIndex: 1,
         }}
-        aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
-        role="banner"
-      >
-        {/* Pattern overlay */}
-        <div
-          className="hero-pattern position-absolute top-0 start-0 w-100 h-100"
-          style={{
-            zIndex: 1,
-          }}
-          aria-hidden="true"
-        />
+        aria-hidden="true"
+      />
 
         {/* Centered content */}
         <div
@@ -63,9 +49,13 @@ export default function HeroSection({
           }}
         >
           <h1
-            className="hero-title"
             style={{
+              color: "white",
+              fontSize: "clamp(1.75rem, 4vw, 3rem)",
+              fontWeight: "bold",
+              lineHeight: 1.2,
               marginBottom: "1rem",
+              textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
               padding: "0 10px",
             }}
           >
@@ -73,10 +63,14 @@ export default function HeroSection({
           </h1>
 
           <p
-            className="hero-description lead w-100"
+            className="lead w-100"
             style={{
+              color: "#ffffff",
+              fontSize: "clamp(0.95rem, 2vw, 1.3rem)",
+              lineHeight: 1.5,
               margin: "0 auto",
               padding: "0 10px 20px",
+              textShadow: "0 1px 5px rgba(0, 0, 0, 0.2)",
               width: "100%",
             }}
           >
@@ -182,6 +176,5 @@ export default function HeroSection({
           </div>
         </div>
       </section>
-    </>
   );
 }

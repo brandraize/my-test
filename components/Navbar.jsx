@@ -114,7 +114,7 @@ export default function Navbar({ lang }) {
       >
         <div className="container d-flex align-items-center justify-content-between">
           {/* Logo */}
-          <Link href={`/${lang}`} className="navbar-brand" aria-label="Home">
+          <Link href={`/${lang}`} className="navbar-brand" aria-label="Sensing Nature home">
             <Image
               src="/logo.png"
               alt="Sensing Nature logo"
@@ -122,7 +122,7 @@ export default function Navbar({ lang }) {
               height={48}
               priority
               sizes="(max-width: 767px) 140px, 160px"
-              quality={70}
+              quality={65}
               style={{ height: "auto", width: "160px", transition: "all 0.3s ease" }}
             />
           </Link>

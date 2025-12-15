@@ -66,7 +66,7 @@ export default function HeroSection({
         <p
           className="lead w-100"
           style={{
-            color: "white",
+            color: "#ffffff",
             fontSize: "clamp(0.95rem, 2vw, 1.3rem)",
             lineHeight: 1.5,
             margin: "0 auto",
@@ -111,7 +111,7 @@ export default function HeroSection({
                 minHeight: "48px",
                 willChange: hoverContact ? "transform" : "auto",
               }}
-              aria-label={isRTL ? "تواصل معنا" : "Contact Us"}
+              aria-label={isRTL ? "تواصل معنا" : "Contact us button"}
             >
               <span>{isRTL ? "تواصل معنا" : "Contact Us"}</span>
               <span

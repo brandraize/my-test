@@ -51,8 +51,11 @@ export default function ServicesSection({ lang = "en" }) {
           <Image
             src={imagePaths.mountain}
             alt="Geological Services"
-            fill
+            width={60}
+            height={60}
             className="object-contain"
+            sizes="60px"
+            quality={70}
             style={{ filter: "drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))" }}
           />
         </div>
@@ -79,8 +82,11 @@ export default function ServicesSection({ lang = "en" }) {
             <Image
               src={imagePaths.circle}
               alt="Geophysical Services"
-              fill
+              width={60}
+              height={60}
               className="object-contain"
+              sizes="60px"
+              quality={70}
               style={{ filter: "drop-shadow(0 2px 4px rgba(139, 92, 246, 0.3))" }}
             />
             <div className="position-absolute top-50 start-50 translate-middle"
@@ -115,8 +121,11 @@ export default function ServicesSection({ lang = "en" }) {
           <Image
             src={imagePaths.leaf}
             alt="Environmental Services"
-            fill
+            width={60}
+            height={60}
             className="object-contain"
+            sizes="60px"
+            quality={70}
             style={{ filter: "drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3))" }}
           />
         </div>

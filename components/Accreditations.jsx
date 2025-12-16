@@ -76,14 +76,15 @@ export default function Accreditations({ lang = "en" }) {
                   height: "100%",
                 }}
               >
-                <div style={{ position: "relative", width: "140px", height: "60px" }}>
+                <div style={{ position: "relative", width: "120px", height: "60px" }}>
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
                     style={{ objectFit: "contain" }}
-                    sizes="(min-width: 1400px) 140px, (min-width: 992px) 120px, (min-width: 768px) 140px, 120px"
-                    quality={60}
+                    sizes="(min-width: 1400px) 120px, (min-width: 992px) 100px, (min-width: 768px) 120px, 100px"
+                    quality={35}
+                    loading={idx < 3 ? "eager" : "lazy"}
                     priority={idx === 0}
                   />
                 </div>

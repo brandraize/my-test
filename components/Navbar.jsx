@@ -136,7 +136,7 @@ export default function Navbar({ lang }) {
               alt="Sensing Nature logo"
               width={160}
               height={48}
-              quality={50}
+              quality={40}
               priority={true}
               fetchPriority="high"
               loading="eager"
@@ -144,6 +144,7 @@ export default function Navbar({ lang }) {
               style={{
                 height: "auto",
                 width: "160px",
+                marginBottom: "1rem",
               }}
             />
           </Link>
@@ -340,7 +341,7 @@ export default function Navbar({ lang }) {
               alt="Sensing Nature logo"
               width={140}
               height={42}
-              quality={65}
+              quality={40}
               priority={false}
               sizes="140px"
               style={{ width: "140px", height: "auto" }}

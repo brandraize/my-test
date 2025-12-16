@@ -11,7 +11,7 @@ export default function CriticalCSS() {
       h1{font-size:2.5rem;margin-top:0;margin-bottom:.5rem;font-weight:700;line-height:1.2}
       .lead{font-size:1.25rem;font-weight:300}
       /* ⭐ Button styles to prevent CLS */
-      .btn{display:inline-block;font-weight:400;text-align:center;vertical-align:middle;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;min-height:48px}
+      .btn{display:inline-block;font-weight:400;text-align:center;vertical-align:middle;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;min-height:48px;cursor:pointer}
       .container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
       @media (min-width:576px){.container{max-width:540px}}
       @media (min-width:768px){.container{max-width:720px}}
@@ -22,6 +22,7 @@ export default function CriticalCSS() {
       @media (min-width:992px){.col-lg-6{flex:0 0 50%;max-width:50%}}
       .d-flex{display:flex!important}
       .flex-column{flex-direction:column!important}
+      .flex-wrap{flex-wrap:wrap!important}
       .align-items-center{align-items:center!important}
       .justify-content-center{justify-content:center!important}
       .justify-content-between{justify-content:space-between!important}
@@ -38,15 +39,17 @@ export default function CriticalCSS() {
       .text-center{text-align:center!important}
       .bg-white{background-color:#fff!important}
       .rounded-4{border-radius:.5rem!important}
+      .rounded-pill{border-radius:50rem!important}
       .shadow{box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important}
       .fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030}
-      .navbar{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 1rem}
+      .navbar{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 1rem;min-height:64px}
       .navbar-brand{display:inline-block;padding-top:.3125rem;padding-bottom:.3125rem;margin-right:1rem;font-size:1.25rem;line-height:inherit;white-space:nowrap}
       .d-none{display:none!important}
       @media (min-width:992px){.d-lg-flex{display:flex!important}.d-lg-none{display:none!important}}
-      .btn{display:inline-block;font-weight:400;text-align:center;vertical-align:middle;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out}
       .gap-2{gap:.5rem!important}
       .gap-3{gap:1rem!important}
+      .fw-semibold{font-weight:600!important}
+      .fw-bold{font-weight:700!important}
       a{color:#0d6efd;text-decoration:none}
       a:hover{color:#0a58ca}
       h1,h2,h3{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}
@@ -61,6 +64,10 @@ export default function CriticalCSS() {
       /* GPU acceleration for transforms */
       .btn:hover{transform:translateZ(0)}
       *{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+      /* Prevent FOUC */
+      .container,.row,.col-lg-6{contain:layout style}
+      /* Optimize rendering */
+      body{content-visibility:auto}
     `}} />
   );
 }

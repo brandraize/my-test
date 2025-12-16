@@ -10,9 +10,13 @@ const nextConfig = {
       },
     ],
     formats: ['image/webp'],
-    deviceSizes: [640, 1080, 1920],
+    deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 86400,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Optimize image quality for better compression
+    unoptimized: false,
   },
   compress: true,
   reactStrictMode: true,
@@ -30,8 +34,9 @@ const nextConfig = {
       // Aggressive code splitting
       config.optimization.splitChunks = {
         chunks: 'all',
-        maxInitialRequests: 25,
-        minSize: 20000,
+        maxInitialRequests: 20,
+        minSize: 30000,
+        maxSize: 100000,
         cacheGroups: {
           default: false,
           vendors: false,
@@ -50,12 +55,6 @@ const nextConfig = {
             minChunks: 1,
             reuseExistingChunk: true,
           },
-          // ⭐ REMOVE THIS - YOU DON'T USE BOOTSTRAP ENOUGH
-          // bootstrap: {
-          //   name: 'bootstrap',
-          //   test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
-          //   priority: 35,
-          // },
           // React Icons (separate chunk)
           icons: {
             name: 'icons',
@@ -86,6 +85,9 @@ const nextConfig = {
       // Tree shaking
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
+      
+      // Minimize CSS
+      config.optimization.minimize = true;
     }
     return config;
   },

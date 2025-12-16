@@ -55,7 +55,8 @@ export default function ServicesSection({ lang = "en" }) {
             height={60}
             className="object-contain"
             sizes="60px"
-            quality={50}
+            quality={30}
+            loading="lazy"
             style={{ filter: "drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3))" }}
           />
         </div>
@@ -86,7 +87,8 @@ export default function ServicesSection({ lang = "en" }) {
               height={60}
               className="object-contain"
               sizes="60px"
-              quality={50}
+              quality={30}
+              loading="lazy"
               style={{ filter: "drop-shadow(0 2px 4px rgba(139, 92, 246, 0.3))" }}
             />
             <div className="position-absolute top-50 start-50 translate-middle"
@@ -125,7 +127,8 @@ export default function ServicesSection({ lang = "en" }) {
             height={60}
             className="object-contain"
             sizes="60px"
-            quality={50}
+            quality={30}
+            loading="lazy"
             style={{ filter: "drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3))" }}
           />
         </div>
@@ -153,7 +156,8 @@ export default function ServicesSection({ lang = "en" }) {
             alt="Meteorological Services"
             fill
             className="object-contain"
-            quality={50}
+            quality={30}
+            loading="lazy"
             sizes="60px"
             style={{ filter: "drop-shadow(0 2px 4px rgba(14, 165, 233, 0.3))" }}
           />

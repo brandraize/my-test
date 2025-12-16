@@ -123,6 +123,22 @@ export default async function RootLayout({ children, params }) {
         />
         <link rel="icon" href="/favicon.ico" />
         
+        {/* Google Ads Conversion Tracking */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17674108919"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17674108919');
+            `,
+          }}
+        />
+        
         {/* Resource hints - Critical for LCP */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />

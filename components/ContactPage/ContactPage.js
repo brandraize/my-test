@@ -210,6 +210,14 @@ export default function ContactPage({ lang = "en" }) {
       setIsSubmitting(false);
       setIsSubmitted(true);
       
+      // 🔥 Track Google Ads Conversion - Lead submission
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17674108919/oZUpCKnWw8obEPf_1etB'
+        });
+        console.log('✅ Google Ads Lead Conversion Tracked');
+      }
+      
       // Reset form after success
       setTimeout(() => {
         setFormData({

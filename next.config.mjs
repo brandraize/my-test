@@ -15,7 +15,6 @@ const nextConfig = {
     minimumCacheTTL: 86400,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Optimize image quality for better compression
     unoptimized: false,
   },
   compress: true,

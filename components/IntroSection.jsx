@@ -200,7 +200,7 @@ export default function IntroSection({ lang = "en" }) {
                         width={60}
                         height={60}
                         loading="lazy"
-                        quality={50}
+                        quality={75}
                         sizes="60px"
                         className="object-contain"
                       />
@@ -212,7 +212,7 @@ export default function IntroSection({ lang = "en" }) {
                         width={50}
                         height={50}
                         loading="lazy"
-                        quality={50}
+                        quality={75}
                         sizes="50px"
                         className="object-contain"
                       />
@@ -224,7 +224,7 @@ export default function IntroSection({ lang = "en" }) {
                         width={50}
                         height={50}
                         loading="lazy"
-                        quality={50}
+                        quality={75}
                         sizes="50px"
                         className="object-contain"
                       />

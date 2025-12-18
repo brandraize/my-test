@@ -468,10 +468,10 @@ export default function ServicesSection({ lang = "en" }) {
                     ))}
                   </div>
 
-                  {/* Learn More Link with Arrow */}
+                  {/* View All Services Link */}
                   <div className="mt-4 pt-3 border-top border-light">
                     <Link 
-                      href={`/service`} 
+                      href={`/${lang}/service`} 
                       className="d-inline-flex align-items-center gap-2 text-decoration-none"
                       style={{
                         color: service.color,
@@ -479,7 +479,7 @@ export default function ServicesSection({ lang = "en" }) {
                         fontSize: "0.95rem",
                       }}
                     >
-                      <span>{isRTL ? "المزيد من التفاصيل" : "Learn More"}</span>
+                      <span>{isRTL ? "عرض جميع الخدمات" : "View All Services"}</span>
                       <motion.span
                         style={{ 
                           transform: isRTL ? "rotate(180deg)" : "none",
@@ -540,10 +540,6 @@ export default function ServicesSection({ lang = "en" }) {
               ))}
             </div>
           </div>
-
-          <Link href="/services">
-        
-          </Link>
         </motion.div>
       </div>
     </section>

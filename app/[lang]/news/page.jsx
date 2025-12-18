@@ -1,216 +1,261 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
-import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Calendar } from "lucide-react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// Define all news data in a separate file or here
-const allNewsData = {
-  en: {
-    "umt-acca-global-workshop-2024": {
-      id: "umt-acca-global-workshop-2024",
-      slug: "umt-acca-global-workshop-2024",
-      title: "UMT ACCA Global Workshop 2024",
-      description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards.",
-      category: "Announcements",
-      image: "/5.jpg",
-      fullContent: `UMT recently conducted a comprehensive ACCA Global Workshop 2024, bringing together accounting professionals and students from around the world. The workshop focused on the latest developments in global accounting standards, with special emphasis on IFRS updates and their implementation challenges.
-
-Key Highlights:
-• In-depth sessions on IFRS 9, 15, and 16
-• Panel discussions with industry leaders
-• Hands-on training with real-world case studies
-• Networking opportunities with global accounting professionals
-
-The event was attended by over 300 participants from 15 different countries, making it one of the largest accounting workshops in the region this year.`,
-      date: "March 15, 2024",
-      author: "John Smith",
-      tags: ["ACCA", "Workshop", "Accounting", "Global Standards"]
-    },
-    "umt-wins-academic-excellence-award": {
-      id: "umt-wins-academic-excellence-award",
-      slug: "umt-wins-academic-excellence-award",
-      title: "UMT Wins Academic Excellence Award",
-      description: "UMT received national recognition for academic excellence and research innovation.",
-      category: "University News",
-      image: "/55.jpg",
-      fullContent: `The University of Management and Technology (UMT) has been honored with the prestigious National Academic Excellence Award for 2024. This recognition comes as a result of UMT's outstanding performance in academic innovation, research output, and student success rates.
-
-Achievements Recognized:
-• 95% graduate employment rate
-• 200+ research papers published in 2023
-• 15 national research grants secured
-• Implementation of innovative teaching methodologies
-
-The award ceremony took place at the National Education Convention, where UMT was praised for its commitment to academic excellence and its contribution to the national education landscape.`,
-      date: "February 28, 2024",
-      author: "Sarah Johnson",
-      tags: ["Award", "Excellence", "Academic", "Recognition"]
-    },
-    "student-achieves-top-national-rank": {
-      id: "student-achieves-top-national-rank",
-      slug: "student-achieves-top-national-rank",
-      title: "Student Achieves Top National Rank",
-      description: "UMT student secures 1st position in nationwide talent examination.",
-      category: "Achievements",
-      image: "/bg-1.webp",
-      fullContent: `Sarah Ahmed, a final year Computer Science student at UMT, has secured the first position in the nationwide talent examination conducted by the Ministry of Education. The exam, which attracted over 50,000 participants from universities across the country, tested students on various aspects including critical thinking, problem-solving, and technical knowledge.
-
-Sarah's achievement is a testament to UMT's commitment to academic excellence and holistic student development. Her success has brought pride not only to UMT but also to the entire region.`,
-      date: "January 20, 2024",
-      author: "Michael Chen",
-      tags: ["Student", "Achievement", "Ranking", "Examination"]
-    },
-    // Add other news items...
-  },
-  ar: {
-    "umt-acca-global-workshop-2024": {
-      id: "umt-acca-global-workshop-2024",
-      slug: "umt-acca-global-workshop-2024",
-      title: "ورشة عمل UMT ACCA العالمية 2024",
-      description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية.",
-      category: "الإعلانات",
-      image: "/5.jpg",
-      fullContent: `نظمت UMT مؤخرًا ورشة عمل ACCA العالمية الشاملة 2024، حيث جمعت محترفين وطلاب محاسبة من جميع أنحاء العالم. ركزت الورشة على أحدث التطورات في معايير المحاسبة العالمية، مع التركيز بشكل خاص على تحديثات المعايير الدولية للتقارير المالية وتحديات تنفيذها.
-
-أبرز النقاط:
-• جلسات متعمقة حول المعايير الدولية للتقارير المالية 9 و15 و16
-• مناقشات مع قادة الصناعة
-• تدريب عملي مع دراسات حالة من العالم الحقيقي
-• فرص التواصل مع محترفي المحاسبة العالميين
-
-حضر الحدث أكثر من 300 مشارك من 15 دولة مختلفة، مما جعله أحد أكبر ورش عمل المحاسبة في المنطقة هذا العام.`,
-      date: "15 مارس 2024",
-      author: "جون سميث",
-      tags: ["ACCA", "ورشة عمل", "محاسبة", "معايير عالمية"]
-    },
-    "umt-wins-academic-excellence-award": {
-      id: "umt-wins-academic-excellence-award",
-      slug: "umt-wins-academic-excellence-award",
-      title: "UMT تفوز بجائزة التميز الأكاديمي",
-      description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي.",
-      category: "أخبار الجامعة",
-      image: "/55.jpg",
-      fullContent: `تم تكريم جامعة الإدارة والتكنولوجيا (UMT) بجائزة التميز الأكاديمي الوطنية المرموقة لعام 2024. يأتي هذا التقدير نتيجة لأداء UMT المتميز في الابتكار الأكاديمي، والإنتاج البحثي، ومعدلات نجاح الطلاب.
-
-الإنجازات المعترف بها:
-• معدل توظيف الخريجين 95٪
-• نشر أكثر من 200 ورقة بحثية في عام 2023
-• تأمين 15 منحة بحثية وطنية
-• تنفيذ منهجيات تدريس مبتكرة
-
-أقيم حفل توزيع الجوائز في المؤتمر الوطني للتعليم، حيث تم الإشادة بـ UMT لالتزامها بالتميز الأكاديمي وإسهامها في المشهد التعليمي الوطني.`,
-      date: "28 فبراير 2024",
-      author: "سارة جونسون",
-      tags: ["جائزة", "تميز", "أكاديمي", "اعتراف"]
-    },
-    // Add other Arabic news items...
-  }
-};
-
-export default function SingleNewsPage() {
+export default function NewsPage() {
   const params = useParams();
   const router = useRouter();
-  const { lang, slug } = params;
+  const { lang } = params;
   const isRTL = lang === "ar";
-  
-  const [newsItem, setNewsItem] = useState(null);
+
+  const [newsEvents, setNewsEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    // Simple data fetch without API
-    setTimeout(() => {
-      const data = allNewsData[lang]?.[slug] || allNewsData.en?.[slug];
-      if (data) {
-        setNewsItem(data);
-      } else {
-        // Redirect to news list if not found
-        router.push(`/${lang}/news`);
+    const fetchNewsEvents = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/news-events");
+        const result = await response.json();
+        if (result.success) {
+          setNewsEvents(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching news & events:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    }, 100);
-  }, [slug, lang, router]);
+    };
 
-  const handleBack = () => {
-    router.back();
+    fetchNewsEvents();
+  }, []);
+
+  const content = {
+    en: {
+      title: "News & Events",
+      subtitle: "Stay updated with our latest news, events, and announcements",
+      all: "All",
+      loading: "Loading...",
+      noNews: "No news available at the moment",
+      readMore: "Read More",
+    },
+    ar: {
+      title: "الأخبار والفعاليات",
+      subtitle: "ابقَ على اطلاع بأحدث الأخبار والفعاليات والإعلانات",
+      all: "الكل",
+      loading: "جاري التحميل...",
+      noNews: "لا توجد أخبار متاحة في الوقت الحالي",
+      readMore: "اقرأ المزيد",
+    }
+  };
+
+  const t = content[lang] || content.en;
+
+  // Get unique categories
+  const categories = ["all", ...new Set(newsEvents.map(item => item.category[lang] || item.category.en))];
+
+  // Filter news by category
+  const filteredNews = filter === "all" 
+    ? newsEvents 
+    : newsEvents.filter(item => (item.category[lang] || item.category.en) === filter);
+
+  const handleCardClick = (slug) => {
+    router.push(`/${lang}/news/${slug}`);
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-50 to-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">
-            {isRTL ? "جاري تحميل..." : "Loading..."}
-          </p>
+      <>
+        <Navbar />
+        <div
+          className="min-vh-100 d-flex align-items-center justify-content-center"
+          style={{ paddingTop: "80px", backgroundColor: "#f9fafb" }}
+        >
+          <p>{t.loading}</p>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 
-  if (!newsItem) {
-    return null;
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-8" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Back Button */}
-        <button
-          onClick={handleBack}
-          className="flex items-center gap-2 text-gray-600 hover:text-green-700 transition-colors mb-8 group"
-        >
-          <ArrowLeft 
-            size={20} 
-            className="group-hover:-translate-x-1 transition-transform"
-            style={{ transform: isRTL ? "rotate(180deg)" : "none" }} 
-          />
-          <span>{isRTL ? "العودة للأخبار" : "Back to News"}</span>
-        </button>
-
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          {/* Category Badge */}
-          <div className="px-6 pt-6">
-            <span className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-              {newsItem.category}
-            </span>
+    <>
+      <Navbar />
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#f9fafb",
+          paddingTop: "100px",
+          paddingBottom: "60px",
+          direction: isRTL ? "rtl" : "ltr",
+        }}
+      >
+        <div className="container">
+          {/* Header */}
+          <div className="text-center mb-5">
+            <h1
+              className="fw-bold mb-3"
+              style={{ fontSize: "clamp(32px, 5vw, 48px)", color: "#111827" }}
+            >
+              {t.title}
+            </h1>
+            <p className="text-muted" style={{ fontSize: "18px", maxWidth: "600px", margin: "0 auto" }}>
+              {t.subtitle}
+            </p>
           </div>
 
-          {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 px-6 pt-6 pb-4 leading-tight">
-            {newsItem.title}
-          </h1>
+          {/* Category Filter */}
+          <div className="d-flex justify-content-center mb-5 flex-wrap gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className="btn"
+                style={{
+                  backgroundColor: filter === category ? "#059669" : "white",
+                  color: filter === category ? "white" : "#374151",
+                  border: `1px solid ${filter === category ? "#059669" : "#e5e7eb"}`,
+                  borderRadius: "20px",
+                  padding: "8px 20px",
+                  fontWeight: "500",
+                  transition: "all 0.3s",
+                }}
+              >
+                {category === "all" ? t.all : category}
+              </button>
+            ))}
+          </div>
 
-          {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-4 px-6 pb-6 text-gray-600 border-b">
-            <div className="flex items-center gap-2">
-              <Calendar size={18} />
-              <span className="text-sm">{newsItem.date}</span>
+          {/* News Grid */}
+          {filteredNews.length === 0 ? (
+            <div className="text-center py-5">
+              <p className="text-muted">{t.noNews}</p>
             </div>
-            <div className="flex items-center gap-2">
-              <User size={18} />
-              <span className="text-sm">{newsItem.author}</span>
+          ) : (
+            <div className="row g-4">
+              {filteredNews.map((item, index) => (
+                <div key={item.id} className="col-12 col-md-6 col-lg-4">
+                  <div
+                    className="card h-100 shadow-sm"
+                    style={{
+                      border: "none",
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      cursor: "pointer",
+                      transition: "transform 0.3s, box-shadow 0.3s",
+                    }}
+                    onClick={() => handleCardClick(item.slug)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-8px)";
+                      e.currentTarget.style.boxShadow = "0 12px 24px rgba(0,0,0,0.15)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "";
+                    }}
+                  >
+                    {/* Image */}
+                    {item.image && (
+                      <div style={{ position: "relative", width: "100%", height: "220px" }}>
+                        <Image
+                          src={item.image}
+                          alt={item.title[lang] || item.title.en}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          loading={index < 6 ? "eager" : "lazy"}
+                          unoptimized
+                        />
+                        {/* Category Badge */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "12px",
+                            [isRTL ? "right" : "left"]: "12px",
+                            backgroundColor: "#059669",
+                            color: "white",
+                            padding: "6px 14px",
+                            borderRadius: "16px",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          {item.category[lang] || item.category.en}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="card-body p-4">
+                      <h3
+                        className="card-title fw-bold mb-2"
+                        style={{
+                          fontSize: "18px",
+                          color: "#111827",
+                          lineHeight: "1.4",
+                          textAlign: isRTL ? "right" : "left",
+                        }}
+                      >
+                        {item.title[lang] || item.title.en}
+                      </h3>
+
+                      <p
+                        className="card-text text-muted mb-3"
+                        style={{
+                          fontSize: "14px",
+                          lineHeight: "1.6",
+                          textAlign: isRTL ? "right" : "left",
+                        }}
+                      >
+                        {(item.description[lang] || item.description.en)?.replace(/<[^>]*>/g, '').substring(0, 150)}...
+                      </p>
+
+                      {/* Date & Read More */}
+                      <div
+                        className="d-flex align-items-center justify-content-between"
+                        style={{ fontSize: "13px", color: "#6b7280" }}
+                      >
+                        {item.event_date && (
+                          <div className="d-flex align-items-center gap-1">
+                            <Calendar size={14} />
+                            <span>
+                              {new Date(item.event_date).toLocaleDateString(
+                                isRTL ? "ar-SA" : "en-US",
+                                { year: "numeric", month: "short", day: "numeric" }
+                              )}
+                            </span>
+                          </div>
+                        )}
+                        <span
+                          style={{
+                            color: "#059669",
+                            fontWeight: "600",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {t.readMore} →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          )}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+}
 
-          {/* Featured Image - Made smaller */}
-          <div className="relative w-full h-64 md:h-80 my-6 mx-auto px-6">
-            <Image
-              src={newsItem.image}
-              alt={newsItem.title}
-              fill
-              className="object-cover rounded-lg"
-              priority
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
-          </div>
-
-          {/* Main Content */}
-          <div className="px-6 pb-8">
-            {/* Description */}
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed border-l-4 border-green-600 pl-4 italic">
-              {newsItem.description}
             </p>
 
             {/* Full Content with proper formatting */}

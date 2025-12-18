@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
+import apiService from "@/lib/api";
 
 export default function ContactPage({ lang = "en" }) {
   const [loading, setLoading] = useState(false);
@@ -108,20 +109,40 @@ export default function ContactPage({ lang = "en" }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.firstName || !formData.lastName || !formData.email || 
+        !formData.mobile || !formData.company || !formData.country || !formData.message) {
+      toast.error(lang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
+      return;
+    }
+
     try {
       setLoading(true);
-      // Firebase removed - form submission disabled
-      toast.success(messages.success);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        mobile: "",
-        company: "",
-        country: "",
-        message: "",
+      
+      // Submit to Laravel API
+      const response = await apiService.submitContactForm({
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.mobile,
+        subject: `${formData.company} - ${formData.country}`,
+        message: formData.message,
       });
+
+      if (response.success) {
+        toast.success(messages.success);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          mobile: "",
+          company: "",
+          country: "",
+          message: "",
+        });
+      }
     } catch (error) {
+      console.error('Contact form error:', error);
       toast.error(messages.error);
     } finally {
       setLoading(false);

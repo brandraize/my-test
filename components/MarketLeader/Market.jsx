@@ -214,7 +214,7 @@ export default function Market({ lang }) {
 
         {/* CTA Button */}
         <div className="text-center mt-4">
-          <a href="/en/about-us" className="btn btn-primary btn-lg">
+          <a href="/en/about" className="btn btn-primary btn-lg">
             {t.cta}
           </a>
         </div>

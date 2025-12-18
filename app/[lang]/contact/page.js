@@ -1,5 +1,6 @@
 // app/[lang]/contact/page.js
 import ContactPage from "../../../components/ContactPage/ContactPage";
+import apiService from "@/lib/api";
 
 export async function generateMetadata({ params }) {
   const { lang = "en" } = await params;
@@ -46,5 +47,23 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const { lang = "en" } = await params;
-  return <ContactPage lang={lang} />;
+  
+  // Fetch contact info from Laravel API
+  let contactInfo = null;
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/contact-info`, {
+      cache: 'no-store',
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        contactInfo = data.data;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch contact info:', error);
+  }
+  
+  return <ContactPage lang={lang} contactInfo={contactInfo} />;
 }

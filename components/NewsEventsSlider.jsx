@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -9,131 +10,50 @@ import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function NewsEventsSlider({ lang = "en" }) {
+  const [newsEvents, setNewsEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const isRTL = lang === "ar";
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchNewsEvents = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/news-events/featured");
+        const result = await response.json();
+        if (result.success) {
+          setNewsEvents(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching news & events:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNewsEvents();
+  }, []);
 
   // Content based on language
   const content = {
     en: {
       title: "News & Events",
-      subtitle: "Stay informed about the latest happenings, achievements, and announcements from UMT",
+      subtitle: "Stay informed about the latest happenings, achievements, and announcements",
       readMore: "Read More",
       viewAll: "View All",
-      newsItems: [
-        {
-          id: "umt-acca-global-workshop-2024",
-          slug: "umt-acca-global-workshop-2024",
-          title: "UMT ACCA Global Workshop 2024",
-          description: "UMT conducted an exclusive ACCA workshop focusing on global accounting standards.",
-          category: "Announcements",
-          image: "/5.webp",
-        },
-        {
-          id: "umt-wins-academic-excellence-award",
-          slug: "umt-wins-academic-excellence-award",
-          title: "UMT Wins Academic Excellence Award",
-          description: "UMT received national recognition for academic excellence and research innovation.",
-          category: "University News",
-          image: "/55.webp",
-        },
-        {
-          id: "student-achieves-top-national-rank",
-          slug: "student-achieves-top-national-rank",
-          title: "Student Achieves Top National Rank",
-          description: "UMT student secures 1st position in nationwide talent examination.",
-          category: "Achievements",
-          image: "/bg-1.webp",
-        },
-        {
-          id: "new-research-center-launch",
-          slug: "new-research-center-launch",
-          title: "New Research Center Launch",
-          description: "UMT launches state-of-the-art research center for sustainable technologies.",
-          category: "Research",
-          image: "/5.webp",
-        },
-        {
-          id: "international-collaboration",
-          slug: "international-collaboration",
-          title: "International Collaboration",
-          description: "UMT signs partnership with leading European university.",
-          category: "Partnerships",
-          image: "/55.webp",
-        },
-        {
-          id: "annual-career-fair-2024",
-          slug: "annual-career-fair-2024",
-          title: "Annual Career Fair 2024",
-          description: "Over 100 companies participate in UMT's annual career fair.",
-          category: "Events",
-          image: "/bg-1.webp",
-        },
-      ]
     },
     ar: {
       title: "الأخبار والفعاليات",
-      subtitle: "ابقَ على اطلاع بأحدث الأحداث والإنجازات والإعلانات من UMT",
+      subtitle: "ابقَ على اطلاع بأحدث الأحداث والإنجازات والإعلانات",
       readMore: "اقرأ المزيد",
       viewAll: "عرض الكل",
-      newsItems: [
-        {
-          id: "umt-acca-global-workshop-2024",
-          slug: "umt-acca-global-workshop-2024",
-          title: "ورشة عمل UMT ACCA العالمية 2024",
-          description: "أجرت UMT ورشة عمل حصرية لـ ACCA تركز على معايير المحاسبة العالمية.",
-          category: "الإعلانات",
-          image: "/5.webp",
-        },
-        {
-          id: "umt-wins-academic-excellence-award",
-          slug: "umt-wins-academic-excellence-award",
-          title: "UMT تفوز بجائزة التميز الأكاديمي",
-          description: "حصلت UMT على اعتراف وطني للتميز الأكاديمي والابتكار البحثي.",
-          category: "أخبار الجامعة",
-          image: "/55.webp",
-        },
-        {
-          id: "student-achieves-top-national-rank",
-          slug: "student-achieves-top-national-rank",
-          title: "طالب يحقق المركز الأول على المستوى الوطني",
-          description: "حقق طالب UMT المركز الأول في الامتحان الوطني للمواهب.",
-          category: "الإنجازات",
-          image: "/bg-1.webp",
-        },
-        {
-          id: "new-research-center-launch",
-          slug: "new-research-center-launch",
-          title: "إطلاق مركز بحثي جديد",
-          description: "تطلق UMT مركزًا بحثيًا حديثًا للتقنيات المستدامة.",
-          category: "البحث",
-          image: "/5.webp",
-        },
-        {
-          id: "international-collaboration",
-          slug: "international-collaboration",
-          title: "تعاون دولي",
-          description: "توقع UMT شراكة مع جامعة أوروبية رائدة.",
-          category: "الشراكات",
-          image: "/55.webp",
-        },
-        {
-          id: "annual-career-fair-2024",
-          slug: "annual-career-fair-2024",
-          title: "معرض التوظيف السنوي 2024",
-          description: "يشارك أكثر من 100 شركة في معرض التوظيف السنوي لـ UMT.",
-          category: "الفعاليات",
-          image: "/bg-1.webp",
-        },
-      ]
     }
   };
 
   const t = content[lang] || content.en;
-  const slides = t.newsItems;
 
-  // Handle Read More click
-  const handleReadMore = (slug) => {
-    router.push(`service`);
+  // Handle card click (entire card is clickable)
+  const handleCardClick = (slug) => {
+    router.push(`/${lang}/news/${slug}`);
   };
 
   // Handle View All click
@@ -141,10 +61,25 @@ export default function NewsEventsSlider({ lang = "en" }) {
     router.push(`/${lang}/news`);
   };
 
-  // Handle card click (entire card is clickable)
-  const handleCardClick = (slug) => {
-    router.push(`/${lang}/news/${slug}`);
-  };
+  if (loading) {
+    return (
+      <section
+        style={{
+          background: "linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%)",
+          padding: "60px 20px",
+        }}
+        dir={isRTL ? "rtl" : "ltr"}
+      >
+        <div className="container text-center">
+          <p>{lang === "ar" ? "جاري التحميل..." : "Loading..."}</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (newsEvents.length === 0) {
+    return null;
+  }
 
   return (
     <section
@@ -175,7 +110,7 @@ export default function NewsEventsSlider({ lang = "en" }) {
               el: '.swiper-pagination',
               type: 'bullets',
             }}
-            loop={true}
+            loop={newsEvents.length > 3}
             className="NewsSlider_slideContainer"
             spaceBetween={30}
             slidesPerView={1}
@@ -194,52 +129,55 @@ export default function NewsEventsSlider({ lang = "en" }) {
               },
             }}
           >
-            {slides.map((slide, index) => (
-              <SwiperSlide key={index} className="NewsSlider_slide">
+            {newsEvents.map((item, index) => (
+              <SwiperSlide key={item.id} className="NewsSlider_slide">
                 {/* Single Card Design */}
                 <div 
                   className="NewsSlider_card cursor-pointer"
-                  onClick={() => handleCardClick(slide.slug)}
+                  onClick={() => handleCardClick(item.slug)}
                   role="article"
-                  aria-label={slide.title}
+                  aria-label={item.title[lang] || item.title.en}
                 >
                   {/* Image Section */}
                   <div className="NewsSlider_cardImageContainer">
-                    <Image
-                      src={slide.image}
-                      alt={slide.title}
-                      fill
-                      className="NewsSlider_cardImage"
-                      sizes="(min-width:1024px) 28vw, (min-width:768px) 42vw, 88vw"
-                      quality={75}
-                      loading={index < 2 ? "eager" : "lazy"}
-                      priority={index === 0}
-                    />
+                    {item.image && (
+                      <Image
+                        src={item.image}
+                        alt={item.title[lang] || item.title.en}
+                        fill
+                        className="NewsSlider_cardImage"
+                        sizes="(min-width:1024px) 28vw, (min-width:768px) 42vw, 88vw"
+                        quality={75}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        priority={index === 0}
+                        unoptimized
+                      />
+                    )}
                   </div>
 
                   {/* Category Badge */}
                   <div className="NewsSlider_cardCategoryBadge">
-                    {slide.category}
+                    {item.category[lang] || item.category.en}
                   </div>
 
                   {/* Content Section */}
                   <div className="NewsSlider_cardContent" style={{ direction: isRTL ? "rtl" : "ltr" }}>
                     {/* Title */}
                     <h3 className="NewsSlider_cardTitle">
-                      {slide.title}
+                      {item.title[lang] || item.title.en}
                     </h3>
 
                     {/* Description */}
                     <p className="NewsSlider_cardDescription">
-                      {slide.description}
+                      {(item.description[lang] || item.description.en)?.replace(/<[^>]*>/g, '').substring(0, 150)}...
                     </p>
 
                     {/* Read More Button */}
                     <button 
                       className="NewsSlider_cardReadMore"
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent card click
-                        handleReadMore(slide.slug);
+                        e.stopPropagation();
+                        handleCardClick(item.slug);
                       }}
                     >
                       <span>{t.readMore}</span>

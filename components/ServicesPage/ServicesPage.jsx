@@ -34,11 +34,11 @@ import {
 } from "react-icons/fa";
 import styles from "./ServicesPage.module.css";
 
-export default function ServicesPage({ lang = "en" }) {
+export default function ServicesPage({ lang = "en", services = [] }) {
   const currentLang = lang;
   const router = useRouter();
   const isRTL = currentLang === "ar";
-  const [activeService, setActiveService] = useState("geological");
+  const [activeService, setActiveService] = useState(services[0]?.slug || "geological");
 
   // Content translations (keeping only relevant parts)
   const content = {

@@ -1,5 +1,5 @@
 // app/[lang]/projects/page.js
-import ProjectsPage from "../../../components/ProjectsPage/ProjectsPage";
+import DynamicProjectsPage from "../../../components/DynamicProjectsPage";
 
 export async function generateMetadata({ params }) {
   const { lang = "en" } = await params;
@@ -48,5 +48,23 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const { lang = "en" } = await params;
-  return <ProjectsPage lang={lang} />;
+
+  // Fetch projects from Laravel API
+  let projects = [];
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/projects`, {
+      cache: 'no-store',
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        projects = data.data;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch projects:', error);
+  }
+
+  return <DynamicProjectsPage lang={lang} projects={projects} />;
 }

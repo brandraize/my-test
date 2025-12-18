@@ -283,6 +283,7 @@ export default function AllProducts({ lang, projects }) {
                         sizes="(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw"
                         style={{ objectFit: "cover" }}
                         priority={false}
+                        unoptimized
                       />
                     </Link>
                     <div className="position-absolute top-0 end-0 m-2">

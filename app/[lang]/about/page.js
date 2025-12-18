@@ -1,4 +1,5 @@
 import AboutPage from "../../../components/AboutPage/AboutPage";
+import apiService from "@/lib/api";
 
 export async function generateMetadata({ params }) {
   // Add await for params
@@ -46,5 +47,23 @@ export async function generateMetadata({ params }) {
 // Make the component async and await params
 export default async function Page({ params }) {
   const { lang = "en" } = await params;
-  return <AboutPage lang={lang} />;
+  
+  // Fetch about section from Laravel API
+  let aboutData = null;
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/about`, {
+      cache: 'no-store',
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        aboutData = data.data;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch about data:', error);
+  }
+  
+  return <AboutPage lang={lang} aboutData={aboutData} />;
 }

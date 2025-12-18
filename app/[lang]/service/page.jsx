@@ -1,5 +1,5 @@
 // app/[lang]/services/page.js
-import ServicesPage from "../../../components/ServicesPage/ServicesPage";
+import DynamicServicesPage from "../../../components/DynamicServicesPage";
 
 export async function generateMetadata({ params }) {
   // Add await for params
@@ -50,5 +50,23 @@ export async function generateMetadata({ params }) {
 // Make the component async and await params
 export default async function Page({ params }) {
   const { lang = "en" } = await params;
-  return <ServicesPage lang={lang} />;
+
+  // Fetch services from Laravel API
+  let services = [];
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/services`, {
+      cache: 'no-store',
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        services = data.data;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch services:', error);
+  }
+
+  return <DynamicServicesPage lang={lang} services={services} />;
 }

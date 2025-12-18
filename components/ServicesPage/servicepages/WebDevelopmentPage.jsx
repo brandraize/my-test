@@ -124,7 +124,7 @@ export default function WebDevelopmentPage({ params }) {
             <button className="btn btn-primary btn-lg" onClick={() => document.getElementById("services-section")?.scrollIntoView({ behavior: "smooth" })}>
               {t.readMore}
             </button>
-            <Link href="/contact-us" className="btn btn-outline border text-light p-2">{t.getStarted}</Link>
+            <Link href={`/${lang}/contact`} className="btn btn-outline border text-light p-2">{t.getStarted}</Link>
           </motion.div>
         </div>
       </div>

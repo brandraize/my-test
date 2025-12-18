@@ -203,34 +203,66 @@ export default function ContactPage({ lang = "en" }) {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
+      alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      
-      // 🔥 Track Google Ads Conversion - Lead submission
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'conversion', {
-          'send_to': 'AW-17674108919/oZUpCKnWw8obEPf_1etB'
-        });
-        console.log('✅ Google Ads Lead Conversion Tracked');
+    try {
+      // Submit to Laravel API
+      const response = await fetch('http://localhost:8000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: `${formData.subject}${formData.company ? ' - ' + formData.company : ''}`,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        
+        // 🔥 Track Google Ads Conversion - Lead submission
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-17674108919/oZUpCKnWw8obEPf_1etB'
+          });
+          console.log('✅ Google Ads Lead Conversion Tracked');
+        }
+        
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            company: "",
+            subject: "",
+            message: ""
+          });
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        alert(currentLang === 'ar' ? 'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.' : 'Failed to send message. Please try again.');
       }
-      
-      // Reset form after success
-      setTimeout(() => {
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          company: "",
-          subject: "",
-          message: ""
-        });
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1500);
+    } catch (error) {
+      console.error('Contact form error:', error);
+      alert(currentLang === 'ar' ? 'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.' : 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Contact info cards

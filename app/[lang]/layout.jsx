@@ -123,6 +123,22 @@ export default async function RootLayout({ children, params }) {
         />
         <link rel="icon" href="/favicon.ico" />
         
+        {/* Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-3YXY5MDWCP"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3YXY5MDWCP');
+            `,
+          }}
+        />
+        
         {/* Google Ads Conversion Tracking */}
         <script
           async
@@ -159,29 +175,31 @@ export default async function RootLayout({ children, params }) {
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
       </head>
-      <body style={{ position: "relative" }}>
+      <body>
         <ContextProvider>
           {/* Inline critical CSS, async load full Bootstrap */}
           <AsyncBootstrap />
           <PerformanceBoot />
           <Navbar lang={lang} />
-          <WhatsAppButton lang={lang} />
           <ToastContainer position="top-center" autoClose={3000} />
 
           <main
             className="d-flex flex-column flex-grow-1 bg-white"
             style={{
               minHeight: "100vh",
-              paddingTop: 0, // keep hero snug under fixed navbar
+              paddingTop: 0,
+              position: "relative",
+              zIndex: 1,
             }}
           >
             {children}
           </main>
 
-          {/* WhatsApp Button - Ensure it has high z-index */}
-
           <BackToTopButton />
           <Footer lang={lang} />
+          
+          {/* WhatsApp Button - MUST be outside main to avoid stacking context issues */}
+          <WhatsAppButton lang={lang} />
         </ContextProvider>
       </body>
     </html>

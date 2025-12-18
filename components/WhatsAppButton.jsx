@@ -16,32 +16,31 @@ const WhatsAppButton = ({ lang = "en" }) => {
   const position = lang === "ar" ? { left: "20px" } : { right: "20px" };
 
   return (
-    <>
-      <div 
-        className="whatsapp-button"
-        onClick={handleClick}
-        style={{
-          position: "fixed",
-          bottom: "30px",
-          ...position,
-          zIndex: 999999, // Very high z-index
-          cursor: "pointer",
-          backgroundColor: "#25D366",
-          width: "70px",
-          height: "70px",
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
-          transition: "all 0.3s ease",
-          animation: "pulse 2s infinite",
-          border: "3px solid white",
-          // Add this to ensure it's on top of everything
-          willChange: "transform",
-        }}
-        // ... rest of your event handlers ...
-      >
+    <div 
+      className="whatsapp-button"
+      onClick={handleClick}
+      style={{
+        position: "fixed",
+        bottom: "30px",
+        ...position,
+        zIndex: 2147483647,
+        cursor: "pointer",
+        backgroundColor: "#25D366",
+        width: "70px",
+        height: "70px",
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
+        transition: "all 0.3s ease",
+        animation: "pulse 2s infinite",
+        border: "3px solid white",
+        willChange: "transform",
+        transform: "translateZ(0)",
+        isolation: "isolate",
+      }}
+    >
         <FaWhatsapp 
           style={{ 
             color: "white", 
@@ -85,74 +84,6 @@ const WhatsAppButton = ({ lang = "en" }) => {
           />
         </div>
       </div>
-      
-      <style jsx global>{`
-        @keyframes pulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-          }
-          70% {
-            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-          }
-        }
-        
-        /* IMPORTANT: Force WhatsApp button on top */
-        .whatsapp-button {
-          z-index: 99999222233333333333339 !important;
-          transform: translateZ(0); /* Force hardware acceleration */
-        }
-        
-        /* Show tooltip on hover */
-        .whatsapp-button:hover .whatsapp-tooltip {
-          opacity: 1;
-          visibility: visible;
-        }
-        
-        /* Reset any stacking contexts that might interfere */
-        body > div, 
-        body > section,
-        main,
-        .container,
-        .row,
-        .col-lg-6 {
-          transform-style: flat !important;
-        }
-        
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-          .whatsapp-button {
-            width: 65px !important;
-            height: 65px !important;
-            bottom: 25px !important;
-            z-index: 999999 !important;
-          }
-          
-          .whatsapp-button svg {
-            font-size: 34px !important;
-          }
-          
-          .whatsapp-tooltip {
-            display: none;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .whatsapp-button {
-            width: 60px !important;
-            height: 60px !important;
-            bottom: 20px !important;
-            z-index: 999999 !important;
-          }
-          
-          .whatsapp-button svg {
-            font-size: 30px !important;
-          }
-        }
-      `}</style>
-    </>
   );
 };
 

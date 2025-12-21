@@ -172,10 +172,15 @@ export default async function RootLayout({ children, params }) {
         {/* Critical CSS inline for instant render */}
         <CriticalCSS />
         
+   
+        
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
       </head>
       <body>
+        {/* WHATSAPP BUTTON at body level - OUTSIDE all containers */}
+        <WhatsAppButton lang={lang} />
+        
         <ContextProvider>
           {/* Inline critical CSS, async load full Bootstrap */}
           <AsyncBootstrap />
@@ -188,8 +193,6 @@ export default async function RootLayout({ children, params }) {
             style={{
               minHeight: "100vh",
               paddingTop: 0,
-              position: "relative",
-              zIndex: 1,
             }}
           >
             {children}
@@ -197,10 +200,9 @@ export default async function RootLayout({ children, params }) {
 
           <BackToTopButton />
           <Footer lang={lang} />
-          
-          {/* WhatsApp Button - MUST be outside main to avoid stacking context issues */}
-          <WhatsAppButton lang={lang} />
         </ContextProvider>
+        
+        {/* WhatsApp Button - Outside ALL containers for maximum visibility */}
       </body>
     </html>
   );

@@ -18,10 +18,11 @@ export default function HeroSection({
       style={{
         height: "720px",
         width: "100%",
-        overflow: "hidden",
+        overflow: "visible",
         paddingTop: "80px",
         background: "linear-gradient(135deg, #043911 0%, #33750c 50%, #25a244 100%)",
         contain: "layout style paint",
+        zIndex: "auto",
       }}
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
       role="banner"
@@ -89,7 +90,7 @@ export default function HeroSection({
         <div
           className="position-relative text-center w-100"
           style={{
-            zIndex: 2,
+            zIndex: "auto",
             maxWidth: "800px",
             margin: "0 auto",
             padding: "20px",

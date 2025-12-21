@@ -1,7 +1,10 @@
 "use client";
 import { FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
 
 const WhatsAppButton = ({ lang = "en" }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   const phoneNumber = "+966534161555"; 
   const message = lang === "ar" 
     ? "مرحبا، أريد الاستفسار عن خدماتكم" 
@@ -10,80 +13,77 @@ const WhatsAppButton = ({ lang = "en" }) => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   const handleClick = () => {
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    window.open(whatsappUrl, "_blank");
   };
 
-  const position = lang === "ar" ? { left: "20px" } : { right: "20px" };
+  // Consistent positioning - always show on right for LTR, left for RTL
+  const buttonStyle = {
+    position: "fixed",
+    top: "450px",
+    [lang === "ar" ? "left" : "right"]: "20px",
+    zIndex: 2147483647, // Maximum z-index to always stay on top
+    cursor: "pointer",
+    backgroundColor: "#25D366",
+    width: "70px",
+    height: "70px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: isHovered ? "0 6px 20px rgba(0,0,0,0.4)" : "0 6px 20px rgba(0,0,0,0.4)",
+    transition: "transform 0.3s ease",
+    border: "3px solid white",
+    transform: isHovered ? "scale(1.1)" : "scale(1)",
+    willChange: "transform",
+  };
 
   return (
-    <div 
-      className="whatsapp-button"
-      onClick={handleClick}
-      style={{
-        position: "fixed",
-        bottom: "30px",
-        ...position,
-        zIndex: 2147483647,
-        cursor: "pointer",
-        backgroundColor: "#25D366",
-        width: "70px",
-        height: "70px",
-        borderRadius: "50%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
-        transition: "all 0.3s ease",
-        animation: "pulse 2s infinite",
-        border: "3px solid white",
-        willChange: "transform",
-        transform: "translateZ(0)",
-        isolation: "isolate",
-      }}
-    >
+    <>
+      <div 
+        className="whatsapp-fixed-button"
+        onClick={handleClick}
+        style={buttonStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        role="button"
+        aria-label="Contact us on WhatsApp"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleClick();
+          }
+        }}
+      >
         <FaWhatsapp 
           style={{ 
             color: "white", 
-            fontSize: "38px",
+            fontSize: "38px" 
           }} 
         />
-        
-        {/* Tooltip */}
-        <div 
-          className="whatsapp-tooltip"
-          style={{
-            position: "absolute",
-            bottom: "100%",
-            [lang === "ar" ? "right" : "left"]: "50%",
-            transform: lang === "ar" ? "translateX(50%)" : "translateX(-50%)",
-            backgroundColor: "rgba(0, 0, 0, 0.9)",
-            color: "white",
-            padding: "8px 12px",
-            borderRadius: "8px",
-            fontSize: "14px",
-            whiteSpace: "nowrap",
-            marginBottom: "10px",
-            opacity: 0,
-            visibility: "hidden",
-            transition: "all 0.3s ease",
-            pointerEvents: "none",
-            zIndex: 999999, // Same high z-index
-          }}
-        >
-          {lang === "ar" ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
-          <div 
-            style={{
-              position: "absolute",
-              top: "100%",
-              [lang === "ar" ? "right" : "left"]: "50%",
-              transform: lang === "ar" ? "translateX(50%)" : "translateX(-50%)",
-              borderLeft: "6px solid transparent",
-              borderRight: "6px solid transparent",
-              borderTop: "6px solid rgba(0, 0, 0, 0.9)",
-            }}
-          />
-        </div>
       </div>
+      
+      <style jsx global>{`
+        @keyframes whatsappPulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+          }
+        }
+        
+        .whatsapp-fixed-button {
+          animation: whatsappPulse 2s infinite;
+        }
+        
+        .whatsapp-fixed-button:active {
+          transform: scale(0.95) !important;
+        }
+      `}</style>
+    </>
   );
 };
 

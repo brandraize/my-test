@@ -26,6 +26,36 @@ export default function HeroSection({
       aria-label={isRTL ? "قسم البطل الرئيسي" : "Hero section"}
       role="banner"
     >
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      >
+        <source src="/bg.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay for better text readability */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+        style={{
+          backgroundColor: "rgba(4, 57, 17, 0.5)",
+          zIndex: 1,
+        }}
+        aria-hidden="true"
+      />
+
       {/* ⭐ LCP Tracking - Tiny preload image */}
       <img
         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect width='1200' height='600' fill='%23043911'/%3E%3C/svg%3E"

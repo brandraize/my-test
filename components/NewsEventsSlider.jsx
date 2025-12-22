@@ -18,13 +18,21 @@ export default function NewsEventsSlider({ lang = "en" }) {
   useEffect(() => {
     const fetchNewsEvents = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/news-events/featured");
+        const response = await fetch("/api/news-events/featured", {
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store'
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const result = await response.json();
         if (result.success) {
           setNewsEvents(result.data);
         }
       } catch (error) {
         console.error("Error fetching news & events:", error);
+        // Set empty array on error to prevent loading state forever
+        setNewsEvents([]);
       } finally {
         setLoading(false);
       }

@@ -96,12 +96,6 @@ a {
   margin: 0;
 }
 
-/* During initial paint, disable animations/transitions to avoid long tasks */
-html.preload *, html.preload *::before, html.preload *::after {
-  animation: none !important;
-  transition: none !important;
-}
-
 /* Reserve space for critical sections to prevent CLS (0.374 → < 0.1) */
 html {
   scroll-behavior: smooth;
@@ -623,4 +617,125 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 }
 
-/* WhatsApp button final override removed - handled in component */
+/* WhatsApp Button - Always fixed at bottom */
+.whatsapp-button {
+  position: fixed !important;
+  bottom: 30px !important;
+  z-index: 2147483647 !important;
+  width: 70px !important;
+  height: 70px !important;
+  background-color: #25D366 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  border: 3px solid white !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 0.3s ease !important;
+  animation: whatsappPulse 2s infinite !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+}
+
+.whatsapp-button svg {
+  color: white !important;
+  font-size: 38px !important;
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  animation-play-state: paused !important;
+}
+
+.whatsapp-button:active {
+  transform: scale(0.95) !important;
+}
+
+/* Also keep old class for compatibility */
+.whatsapp-fixed-button {
+  position: fixed !important;
+  bottom: 30px !important;
+  z-index: 2147483647 !important;
+  width: 70px !important;
+  height: 70px !important;
+  background-color: #25D366 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  border: 3px solid white !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 0.3s ease !important;
+  animation: whatsappPulse 2s infinite !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.whatsapp-fixed-button.ltr {
+  right: 20px !important;
+  left: auto !important;
+}
+
+.whatsapp-fixed-button.rtl {
+  left: 20px !important;
+  right: auto !important;
+}
+
+.whatsapp-fixed-button svg {
+  color: white !important;
+  font-size: 38px !important;
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.whatsapp-fixed-button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  animation-play-state: paused !important;
+}
+
+.whatsapp-fixed-button:active {
+  transform: scale(0.95) !important;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-fixed-button {
+    width: 60px !important;
+    height: 60px !important;
+    bottom: 20px !important;
+  }
+  
+  .whatsapp-fixed-button.ltr {
+    right: 15px !important;
+  }
+  
+  .whatsapp-fixed-button.rtl {
+    left: 15px !important;
+  }
+  
+  .whatsapp-fixed-button svg {
+    font-size: 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+}

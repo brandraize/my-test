@@ -317,7 +317,7 @@ export default function IntroSection({ lang = "en" }) {
 
       <style jsx global>{`
         /* CRITICAL FIX: Ensure WhatsApp button is always on top */
-        .whatsapp-button {
+        .whatsapp-fixed-button {
           z-index: 2147483647 !important;
           transform: translateZ(0) !important;
           isolation: isolate !important;

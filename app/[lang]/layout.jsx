@@ -5,18 +5,18 @@ import ContextProvider from "@/providers/ContextProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import ClientWhatsAppButton from "@/components/ClientWhatsAppButton";
 import PerformanceBoot from "@/components/PerformanceBoot";
 import CriticalCSS from "@/components/CriticalCSS";
 import AsyncBootstrap from "@/components/AsyncBootstrap";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
-  weight: ["400", "700"], 
+  weight: ["400", "700"],
   variable: "--font-tajawal",
-  display: "optional",
+  display: "swap",
   preload: true,
-  fallback: ['system-ui', 'arial'],
+  fallback: ["system-ui", "arial"],
   adjustFontFallback: true,
 });
 
@@ -53,17 +53,18 @@ export async function generateMetadata({ params }) {
       template: `%s | Sensing Nature`,
     },
     description: meta.description,
-    keywords: lang === 'en' 
-      ? 'environmental services, geological solutions, geophysical surveys, meteorological services, sensing nature, sustainable development'
-      : 'خدمات بيئية, حلول جيولوجية, مسوحات جيوفيزيائية, خدمات أرصاد جوية, سينسينغ نيتشر, تنمية مستدامة',
-    authors: [{ name: 'Sensing Nature' }],
-    creator: 'Sensing Nature',
-    publisher: 'Sensing Nature',
+    keywords:
+      lang === "en"
+        ? "environmental services, geological solutions, geophysical surveys, meteorological services, sensing nature, sustainable development"
+        : "خدمات بيئية, حلول جيولوجية, مسوحات جيوفيزيائية, خدمات أرصاد جوية, سينسينغ نيتشر, تنمية مستدامة",
+    authors: [{ name: "Sensing Nature" }],
+    creator: "Sensing Nature",
+    publisher: "Sensing Nature",
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en`,
-        'ar': `${baseUrl}/ar`,
+        en: `${baseUrl}/en`,
+        ar: `${baseUrl}/ar`,
       },
     },
     openGraph: {
@@ -71,8 +72,8 @@ export async function generateMetadata({ params }) {
       description: meta.description,
       type: "website",
       url: canonicalUrl,
-      siteName: 'Sensing Nature',
-      locale: lang === 'ar' ? 'ar_SA' : 'en_US',
+      siteName: "Sensing Nature",
+      locale: lang === "ar" ? "ar_SA" : "en_US",
       images: [
         {
           url: `${baseUrl}/og.webp`,
@@ -94,13 +95,13 @@ export async function generateMetadata({ params }) {
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
     verification: {
-      google: 'your-google-verification-code',
+      google: "your-google-verification-code",
     },
   };
 }
@@ -122,7 +123,7 @@ export default async function RootLayout({ children, params }) {
           content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
         />
         <link rel="icon" href="/favicon.ico" />
-        
+
         {/* Google Analytics */}
         <script
           async
@@ -138,7 +139,7 @@ export default async function RootLayout({ children, params }) {
             `,
           }}
         />
-        
+
         {/* Google Ads Conversion Tracking */}
         <script
           async
@@ -154,33 +155,26 @@ export default async function RootLayout({ children, params }) {
             `,
           }}
         />
-        
+
         {/* Resource hints - Critical for LCP */}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        
-        {/* Preload hero font for immediate render */}
         <link
-          rel="preload"
-          href="/_next/static/media/tajawal-latin-400-normal.woff2"
-          as="font"
-          type="font/woff2"
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        
+        <link rel="dns-prefetch" href="https://d1foa0aaimjyw4.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
         {/* Critical CSS inline for instant render */}
         <CriticalCSS />
-        
-   
-        
+
         {/* Theme Color */}
         <meta name="theme-color" content="#043911" />
       </head>
       <body>
         {/* WHATSAPP BUTTON at body level - OUTSIDE all containers */}
-        <WhatsAppButton lang={lang} />
-        
+        <ClientWhatsAppButton lang={lang} />
+
         <ContextProvider>
           {/* Inline critical CSS, async load full Bootstrap */}
           <AsyncBootstrap />
@@ -201,7 +195,7 @@ export default async function RootLayout({ children, params }) {
           <BackToTopButton />
           <Footer lang={lang} />
         </ContextProvider>
-        
+
         {/* WhatsApp Button - Outside ALL containers for maximum visibility */}
       </body>
     </html>

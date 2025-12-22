@@ -90,7 +90,7 @@ export default function HeroSection({
         <div
           className="position-relative text-center w-100"
           style={{
-            zIndex: "auto",
+            zIndex: 10,
             maxWidth: "800px",
             margin: "0 auto",
             padding: "20px",
@@ -103,7 +103,7 @@ export default function HeroSection({
               fontWeight: "bold",
               lineHeight: 1.2,
               marginBottom: "1rem",
-              textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+              textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)",
               padding: "0 10px",
               minHeight: "72px",
               display: "flex",
@@ -122,7 +122,7 @@ export default function HeroSection({
               lineHeight: 1.5,
               margin: "0 auto",
               padding: "0 10px 20px",
-              textShadow: "0 1px 5px rgba(0, 0, 0, 0.2)",
+              textShadow: "1px 1px 6px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.4)",
               width: "100%",
               minHeight: "58px",
               display: "flex",
